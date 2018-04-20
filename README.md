@@ -55,9 +55,43 @@ Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; &nbsp; Back End: Almaz   <br/>
-<img src="/planning/Duane.png" width="125"> &nbsp; <img src="/planning/Almaz.png" width="125">
+&nbsp; &nbsp; &nbsp; &nbsp;Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Back End: Almaz   <br/>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Duane.png" width="125"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Almaz.png" width="125">
 
+|   &nbsp; &nbsp; &nbsp; &nbsp;Front End  &nbsp; &nbsp;  &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;  Back End &nbsp; &nbsp; &nbsp; &nbsp; |
+|-------------|------------|
+|  &nbsp; &nbsp; &nbsp; &nbsp;React.js  &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;Mongo DB  &nbsp; &nbsp; &nbsp; &nbsp;  |
+|  &nbsp; &nbsp; &nbsp; &nbsp;HTML   &nbsp; &nbsp; &nbsp; &nbsp;      |  &nbsp; &nbsp; &nbsp; &nbsp;Express.js  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;CSS   &nbsp; &nbsp; &nbsp; &nbsp;       |  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3      &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;Bootstrap  &nbsp; &nbsp; &nbsp; &nbsp;  |  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;JavaScript &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;API  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;JavaScript &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;AXIOS  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3  &nbsp; &nbsp; &nbsp; &nbsp;   | &nbsp; &nbsp; &nbsp; &nbsp;Mongoose &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AXIOS   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;React.js  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;GitHub   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;Node.js  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;API   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;GitHub  &nbsp; &nbsp; &nbsp; &nbsp;|
+
+
+### Front End:
+
+- Tailoring user experience;
+- Bringing a designer’s concept to life with HTML, CSS, JavaScript and React.js;
+- Production, modification, and maintenance of web application user interface;
+- Implementing responsive design for mobile app;
+- Contributing some back-end experience, collaborating on APIs, and AWS;
+- Maintaining software workflow management with a project management tool like GitHub;
+- Testing the site during development for usability and fixing any bugs.
+
+### Back End:
+
+- Database creation, integration, and management — MongoDB;
+- Using back-end frameworks to build server-side software, like Express.js;
+- Cloud computing integration — Amazon Web Services;
+- Server-side programming languages — Node.js;
+- Deployment, and maintenance;
+- API integration
+- Backup and restore technologies for website’s files and DB.
 
 #### How to get help with Persona?
 Just create an issue and we will investigate a resolution.
