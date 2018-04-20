@@ -55,15 +55,17 @@ Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; &nbsp; Back End: Almaz   <br/>
+Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Back End: Almaz   <br/>
 <img src="/planning/Duane.png" width="125"> &nbsp; <img src="/planning/Almaz.png" width="125">
 
-|  Front End  |  Back End  |
+|   &nbsp; &nbsp; &nbsp; &nbsp;Front End  &nbsp; &nbsp;  &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;  Back End &nbsp; &nbsp; &nbsp; &nbsp; |
 |-------------|------------|
 | React.js    | Mongo DB   |
 | HTML        | Express.js |
 | CSS         | AWS S3     |
 | Bootstrap   | AWS Rekognition|
+| AWS Rekognition | AXIOS |
+| AWS S3    | Mongoose |
 
 
 
