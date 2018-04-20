@@ -51,9 +51,9 @@ Waiter views
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; Back End: Almaz   
+Front End: Duane &nbsp; &nbsp; Back End: Almaz   
 
-<img src="/planning/Duane.png" width="125"> <img src="/planning/Almaz.png" width="125">
+<img src="/planning/Duane.png" width="125"> &nbsp; <img src="/planning/Almaz.png" width="125">
 
 
 #### How to get help with Persona?
