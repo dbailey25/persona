@@ -32,7 +32,7 @@ Persona is an application that captures an image of a face from a video then mat
   * Summary with most common food and drink orders
 
 ## Wireframes
-Login and User Management
+<p style="text-decoration: underline">Login and User Management</p>
 
 Login &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; User Profile <br />
@@ -41,13 +41,13 @@ Login &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs
 Update User Info Confirmation <br />
 ![User Update Confirmation](/planning/User_Update_Confirmation.png)
 
-Hostess views
+<p style="text-decoration: underline">Hostess Views</p>
 
 Image Capture &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Hostess View <br />
 ![Image Capture](/planning/Image_Capture.png)  ![Hostess View](/planning/Hostess_View.png)
 
-Waiter views
+<p style="text-decoration: underline">Waiter Views</p>
 
 Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Waiter View - Detail <br />
 ![Waiter View - Summary](/planning/Waiter_View-Summary.png)  ![Waiter View](/planning/Waiter_View-Detail.png)
