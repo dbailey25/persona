@@ -5,11 +5,13 @@ Persona is an application that captures an image of a face from a video then mat
 - [Features](#features)
 - [Wireframes](#wireframes)
 
+### Test
+
 ## Features?
 * Compare a comparison image to all reference images
-* If no match, save comparison image as reference image
-* If match, return data associated with reference image
-* User profile containing all user preferences
+  * If not matched, save comparison image as reference image
+  * If matched, return customer data associated with reference image
+* Customer profile containing all preferences
   * Face ID
   * Create date
   * Name
@@ -28,7 +30,7 @@ Persona is an application that captures an image of a face from a video then mat
   * Waiter
 * 2 data views
   * Full order details
-  * Summary with food/drink preferences
+  * Summary with most common food and drink orders
 
 ## Wireframes
 Login and User Management
