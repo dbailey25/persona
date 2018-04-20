@@ -36,23 +36,26 @@ Persona is an application that captures an image of a face from a video then mat
 #### Wireframes
 Login and User Management
 
+Login &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   User Profile <br />
 ![Login Screen](/planning/Login.png)  ![User Profile](/planning/User_Profile.png)
 
+Update User Info Confirmation <br />
 ![User Update Confirmation](/planning/User_Update_Confirmation.png)
 
 Hostess views
 
+Image Capture &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Hostess View <br />
 ![Image Capture](/planning/Image_Capture.png)  ![Hostess View](/planning/Hostess_View.png)
 
 Waiter views
 
+Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Waiter View - Detail <br />
 ![Waiter View - Summary](/planning/Waiter_View-Summary.png)  ![Waiter View](/planning/Waiter_View-Detail.png)
 
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; &nbsp; Back End: Almaz   
-
+Front End: Duane &nbsp; &nbsp; Back End: Almaz   <br />
 <img src="/planning/Duane.png" width="125"> &nbsp; <img src="/planning/Almaz.png" width="125">
 
 
