@@ -58,6 +58,14 @@ This project is diligently maintained be the Persona team. :sweat_smile:
 Front End: Duane &nbsp; &nbsp; Back End: Almaz   <br/>
 <img src="/planning/Duane.png" width="125"> &nbsp; <img src="/planning/Almaz.png" width="125">
 
+|  Front End  |  Back End  |
+|-------------|------------|
+| React.js    | Mongo DB   |
+| HTML        | Express.js |
+| CSS         | AWS S3     |
+| Bootstrap   | AWS Rekognition|
+
+
 
 #### How to get help with Persona?
 Just create an issue and we will investigate a resolution.
