@@ -64,12 +64,14 @@ This project is diligently maintained be the Persona team. :sweat_smile:
 |  &nbsp; &nbsp; &nbsp; &nbsp;HTML   &nbsp; &nbsp; &nbsp; &nbsp;      |  &nbsp; &nbsp; &nbsp; &nbsp;Express.js  &nbsp; &nbsp; &nbsp; &nbsp;|
 |  &nbsp; &nbsp; &nbsp; &nbsp;CSS   &nbsp; &nbsp; &nbsp; &nbsp;       |  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3      &nbsp; &nbsp; &nbsp; &nbsp;|
 |  &nbsp; &nbsp; &nbsp; &nbsp;Bootstrap  &nbsp; &nbsp; &nbsp; &nbsp;  |  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp;|
-|  &nbsp; &nbsp; &nbsp; &nbsp;JavaScript &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; APIs  &nbsp; &nbsp; &nbsp; &nbsp;|
-|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; JavaScript &nbsp; &nbsp; &nbsp; &nbsp;|
-|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; AXIOS  &nbsp; &nbsp; &nbsp; &nbsp;|
-|  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3  &nbsp; &nbsp; &nbsp; &nbsp;   | &nbsp; &nbsp; &nbsp; &nbsp; Mongoose &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;JavaScript &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;API  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;JavaScript &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;AXIOS  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3  &nbsp; &nbsp; &nbsp; &nbsp;   | &nbsp; &nbsp; &nbsp; &nbsp;Mongoose &nbsp; &nbsp; &nbsp; &nbsp;|
 |  &nbsp; &nbsp; &nbsp; &nbsp;AXIOS   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;React.js  &nbsp; &nbsp; &nbsp; &nbsp;|
 |  &nbsp; &nbsp; &nbsp; &nbsp;GitHub   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;Node.js  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;API   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;GitHub  &nbsp; &nbsp; &nbsp; &nbsp;|
+
 
 ### Front End:
 
