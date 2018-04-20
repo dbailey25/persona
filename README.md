@@ -55,8 +55,8 @@ Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Back End: Almaz   <br/>
-<img src="/planning/Duane.png" width="125"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Almaz.png" width="125">
+&nbsp; &nbsp; &nbsp; &nbsp;Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Back End: Almaz   <br/>
+&nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Duane.png" width="125"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Almaz.png" width="125">
 
 |   &nbsp; &nbsp; &nbsp; &nbsp;Front End  &nbsp; &nbsp;  &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;  Back End &nbsp; &nbsp; &nbsp; &nbsp; |
 |-------------|------------|
