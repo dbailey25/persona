@@ -55,18 +55,18 @@ Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
-Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Back End: Almaz   <br/>
-<img src="/planning/Duane.png" width="125"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="/planning/Almaz.png" width="125">
+Front End: Duane &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Back End: Almaz   <br/>
+<img src="/planning/Duane.png" width="125"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;<img src="/planning/Almaz.png" width="125">
 
 |   &nbsp; &nbsp; &nbsp; &nbsp;Front End  &nbsp; &nbsp;  &nbsp; &nbsp;| &nbsp; &nbsp; &nbsp; &nbsp;  Back End &nbsp; &nbsp; &nbsp; &nbsp; |
 |-------------|------------|
-| React.js    | Mongo DB   |
-| HTML        | Express.js |
-| CSS         | AWS S3     |
-| Bootstrap   |  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp;|
-|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | AXIOS |
-| AWS S3    | Mongoose |
-| AXIOS     | React.js |
+|  &nbsp; &nbsp; &nbsp; &nbsp;React.js  &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;Mongo DB  &nbsp; &nbsp; &nbsp; &nbsp;  |
+|  &nbsp; &nbsp; &nbsp; &nbsp;HTML   &nbsp; &nbsp; &nbsp; &nbsp;      |  &nbsp; &nbsp; &nbsp; &nbsp;Express.js  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;CSS   &nbsp; &nbsp; &nbsp; &nbsp;       |  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3      &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;Bootstrap  &nbsp; &nbsp; &nbsp; &nbsp;  |  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS Rekognition &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; AXIOS  &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AWS S3  &nbsp; &nbsp; &nbsp; &nbsp;   | &nbsp; &nbsp; &nbsp; &nbsp; Mongoose &nbsp; &nbsp; &nbsp; &nbsp;|
+|  &nbsp; &nbsp; &nbsp; &nbsp;AXIOS   &nbsp; &nbsp; &nbsp; &nbsp;   |  &nbsp; &nbsp; &nbsp; &nbsp;React.js  &nbsp; &nbsp; &nbsp; &nbsp;|
 
 
 
