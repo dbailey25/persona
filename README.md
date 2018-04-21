@@ -61,7 +61,7 @@ Customer Data Input <br/>
 ![Customer View](/planning/Customer_View.png)
 
 ## Data Flows
-Phase 1
+Phase-1
 
 Capture Image and Display Image with Data <br/>
 ![Phase 1](/planning/Persona_Data_Flow-Phase_1.jpg)
