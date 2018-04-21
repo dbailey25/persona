@@ -24,12 +24,14 @@ Persona is an application that captures an image of a face from a video then mat
     * Food allergies
     * Dietary restrictions
 * Update profile with visit details
-* 2 UI views
+* 3 UI views
   * Hostess
   * Waiter
-* 2 data views
+  * Customer
+* 3 data views
   * Full order details
   * Summary with most common food and drink orders
+  * Customer personal data
 
 ## Wireframes
 Login and User Management
