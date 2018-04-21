@@ -3,8 +3,8 @@ Persona is an application that captures an image of a face from a video then mat
 
 ## Contents
 - [Features](#features)
-- [UI Wireframes](#ui_wireframes)
-- [Data Flows](#data_flows)
+- [UI Wireframes](#ui-wireframes)
+- [Data Flows](#data-flows)
 
 ## Features
 * Compare a comparison image to all reference images
