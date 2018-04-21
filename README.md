@@ -54,6 +54,11 @@ Waiter Views
 Waiter View - Summary &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Waiter View - Detail <br/>
 ![Waiter View - Summary](/planning/Waiter_View-Summary.png)  ![Waiter View](/planning/Waiter_View-Detail.png)
 
+Customer View
+
+Customer Data Input <br/>
+![Customer View](/planning/Customer_View.png)
+
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
 
