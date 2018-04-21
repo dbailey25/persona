@@ -3,7 +3,8 @@ Persona is an application that captures an image of a face from a video then mat
 
 ## Contents
 - [Features](#features)
-- [Wireframes](#wireframes)
+- [UI Wireframes](#ui_wireframes)
+- [Data Flows](#data_flows)
 
 ## Features
 * Compare a comparison image to all reference images
@@ -33,7 +34,7 @@ Persona is an application that captures an image of a face from a video then mat
   * Summary with most common food and drink orders
   * Customer personal data
 
-## Wireframes
+## UI Wireframes
 Login and User Management
 
 Login &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -58,6 +59,12 @@ Customer View
 
 Customer Data Input <br/>
 ![Customer View](/planning/Customer_View.png)
+
+## Data Flows
+Phase 1
+
+Capture Image and Display Image with Data <br/>
+![Phase 1](/planning/Persona_Data_Flow-Phase_1.jpg)
 
 #### Who maintains Persona?
 This project is diligently maintained be the Persona team. :sweat_smile:
