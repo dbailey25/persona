@@ -35,11 +35,11 @@ router.route("/")
 router
   .route("/collection")
   .post(function (req, res, next) {
-    const image = req.body.imageData.replace("data:image/jpeg;base64,", "");
+    const image = req.body.imageData.imageSrc.replace("data:image/jpeg;base64,", "");
     const bitmap =  Buffer.from(image, 'base64');
-    const name = Math.floor(Math.random()*1000).toString();
+    const name = req.body.imageData.name;
    
-    console.log(name);
+    // console.log(name);
         
     rekognition.indexFaces({
         "CollectionId": collectionName,
@@ -52,6 +52,7 @@ router
     	if (err) {
 				console.log(err, err.stack); // an error occurred
 			} else {
+        res.send(data.FaceRecords[0].Face); 
 				console.log(data);           // successful response
 			}
     });

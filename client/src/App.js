@@ -6,7 +6,8 @@ import API from "../src/utils/API";
 class WebcamCapture extends React.Component {
 
     state = {
-        imageSrc: ""
+        imageSrc: "",
+        name: ""
     }
 
     setRef = (webcam) => {
@@ -16,22 +17,34 @@ class WebcamCapture extends React.Component {
     capture = () => {
       const imageSrc = this.webcam.getScreenshot();
       this.setState( {imageSrc});
+      
       // console.log(imageSrc);
 
       API.checkImg(
-        imageSrc
-       )
+        imageSrc,
+        )
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
     };
 
-    addPhoto = () => {
-      console.log(this.state.imageSrc);
-      API.addImg(
-        this.state.imageSrc
+    addPhoto = event => {
+      event.preventDefault();
+      const name = this.state.name;
+      this.setState({name});
+      API.addImg( {
+        imageSrc: this.state.imageSrc,
+        name: this.state.name
+        }
       )
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
+    };
+
+    handleInputChange = event => {
+      const { name, value } = event.target;
+      this.setState({
+        [name]: value
+      });
     };
    
     render() {
@@ -48,7 +61,16 @@ class WebcamCapture extends React.Component {
           <br />
           <img src= {this.state.imageSrc} alt="img" />
           <br />
-          <button onClick={this.addPhoto}>Add photo to Collection</button>
+          <form>
+              <input
+                value={this.state.name}
+                onChange={this.handleInputChange}
+                name="name"
+                placeholder="Name"
+              />
+               <button onClick={this.addPhoto}>Add photo to Collection</button>
+            </form>
+         
         </div>
       );
     }
