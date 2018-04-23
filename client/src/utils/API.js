@@ -4,6 +4,6 @@ export default {
 
   // Saves a book to the database
   checkImg: function(imageData) {
-    return axios.post("/api/recognize", {imageData});
+    return axios.post("/api/aws", {imageData});
   }
 };
