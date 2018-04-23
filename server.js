@@ -6,13 +6,8 @@ const bodyParser = require('body-parser');
 const routes = require("./routes");
 //Rekognition *************************************************************************************************************************
 
-
-
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' });
-
-
-
 const uuid = require('node-uuid');
 const fs = require('fs-extra');
 
