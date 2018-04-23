@@ -43,7 +43,7 @@ router
     //var bitmap =  JSON.stringify({img: image});
     // const bitmap = req.body.imageData.replace("data:image/jpeg;base64,", "").toString();
     // const bitmap =  Buffer.from(image, 'base64');
-    const name = Math.floor(Math.random()*1000);
+    const name = Math.floor(Math.random()*1000).toString();
    
     console.log(name);
       
@@ -56,12 +56,12 @@ router
         "Bytes": bitmap
         }
     }, function(err, data) {
-      if (err) {
-        console.log(err, err.stack); // an error occurred
-      } else {
-        console.log("Succsecc");           // successful response
-    
-      }
+    	if (err) {
+				console.log(err, err.stack); // an error occurred
+			} else {
+				console.log(data);           // successful response
+				
+			}
     });
   });
 
