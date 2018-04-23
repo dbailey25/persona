@@ -19,10 +19,19 @@ class WebcamCapture extends React.Component {
       // console.log(imageSrc);
 
       API.checkImg(
-       imageSrc
+        imageSrc
        )
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
+    };
+
+    addPhoto = () => {
+      console.log(this.state.imageSrc);
+      API.addImg(
+        this.state.imageSrc
+      )
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
     };
    
     render() {
@@ -38,6 +47,8 @@ class WebcamCapture extends React.Component {
           <button onClick={this.capture}>Capture photo</button>
           <br />
           <img src= {this.state.imageSrc} alt="img" />
+          <br />
+          <button onClick={this.addPhoto}>Add photo to Collection</button>
         </div>
       );
     }
