@@ -17,14 +17,14 @@ router.route("/")
       "Image": { 
         "Bytes": bitmap,
       },
-      "MaxFaces": 1
+      "MaxFaces": 10
     }, function(err, data) {
       if (err) {
         res.send(err);
       } else {
         if(data.FaceMatches && data.FaceMatches.length > 0 && data.FaceMatches[0].Face)
         {
-          res.send(data.FaceMatches[0].Face);	
+          res.send(data);	
         } else {
           res.send("Not recognized");
         }
