@@ -7,23 +7,39 @@ class WebcamCapture extends React.Component {
 
     state = {
         imageSrc: "",
-        name: ""
+        name: "",
+        matchName: ""
     }
 
     setRef = (webcam) => {
       this.webcam = webcam;
     }
-   
+
     capture = () => {
       const imageSrc = this.webcam.getScreenshot();
       this.setState( {imageSrc});
-      
+
       // console.log(imageSrc);
+
+
+      const handleMatchResult = res => {
+        console.log(res.data);
+        let matchResult = setMatchStatement(res);
+        this.setState({matchName: matchResult});
+      };
+
+      const setMatchStatement = res  => {
+        return (res.data === 'Not recognized') ? 'Not recognized'
+              :(res.data.message)              ? res.data.message
+              :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
+              :                                  'No image'
+      }
 
       API.checkImg(
         imageSrc,
         )
-        .then(res => console.log(res.data))
+        // .then(res => console.log(res.data))
+        .then(res => handleMatchResult(res))
         .catch(err => console.log(err));
     };
 
@@ -46,7 +62,7 @@ class WebcamCapture extends React.Component {
         [name]: value
       });
     };
-   
+
     render() {
       return (
         <div>
@@ -59,6 +75,9 @@ class WebcamCapture extends React.Component {
           />
           <button onClick={this.capture}>Capture photo</button>
           <br />
+          <span>Match result: {this.state.matchName}</span>
+          <br />
+          <br />
           <img src= {this.state.imageSrc} alt="img" />
           <br />
           <form>
@@ -70,11 +89,11 @@ class WebcamCapture extends React.Component {
               />
                <button onClick={this.addPhoto}>Add photo to Collection</button>
             </form>
-         
+
         </div>
       );
     }
   }
-  
+
 
 export default WebcamCapture;
