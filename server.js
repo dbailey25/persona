@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const bodyParser = require('body-parser');
 const routes = require("./routes");
+const mongoose = require("mongoose");
+
 //Rekognition *************************************************************************************************************************
 
 const multer  = require('multer')
@@ -21,7 +23,12 @@ app.use(routes);
 
 
 //****************************************************************************************************************************************
-
+// Set up promises with mongoose
+mongoose.Promise = global.Promise;
+// Connect to the Mongo DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
+);
 
 
 // Serve up static assets (usually on heroku)
