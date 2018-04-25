@@ -21,19 +21,36 @@ class WebcamCapture extends React.Component {
 
       // console.log(imageSrc);
 
-
       const handleMatchResult = res => {
-        console.log(res.data);
-        let matchResult = setMatchStatement(res);
-        this.setState({matchName: matchResult});
-      };
+        let matchResult = ''
+        if (res.data === 'Not recognized') {
+          matchResult = 'Not recognized'
+        } else if (res.data.message) {
+          matchResult = res.data.message
+        } else if (res.data.FaceMatches) {
+          // API.getCustomer(res.data.FaceMatches[0].Face.FaceId)
+          API.getCustomer("5adf8a4f4bff30546beced09") // hard coded MongoDB _id for a seeded document
 
-      const setMatchStatement = res  => {
-        return (res.data === 'Not recognized') ? 'Not recognized'
-              :(res.data.message)              ? res.data.message
-              :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
-              :                                  'No image'
+          // .then(res => matchResult = res)
+          .then(res => console.log(res))
+        } else {
+          matchResult = 'Unexpected result'
+        }
+        this.setState({matchName: matchResult})
       }
+
+      // const handleMatchResult = res => {
+      //   console.log(res.data);
+      //   let matchResult = setMatchStatement(res);
+      //   this.setState({matchName: matchResult});
+      // };
+      //
+      // const setMatchStatement = res  => {
+      //   return (res.data === 'Not recognized') ? 'Not recognized'
+      //         :(res.data.message)              ? res.data.message
+      //         :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
+      //         :                                  'No image'
+      // }
 
       API.checkImg(
         imageSrc,
