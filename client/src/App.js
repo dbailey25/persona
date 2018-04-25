@@ -8,7 +8,9 @@ class WebcamCapture extends React.Component {
     state = {
         imageSrc: "",
         name: "",
-        matchName: ""
+        matchName: "",
+        faceId: "",
+        imageName: "",
     }
 
     setRef = (webcam) => {
@@ -21,7 +23,15 @@ class WebcamCapture extends React.Component {
 
       // console.log(imageSrc);
 
+      API.checkImg(
+        imageSrc,
+        )
+        // .then(res => console.log(res.data))
+        .then(res => handleMatchResult(res))
+        .catch(err => console.log(err));
+
       const handleMatchResult = res => {
+        console.log(res.data);
         let matchResult = ''
         if (res.data === 'Not recognized') {
           matchResult = 'Not recognized'
@@ -29,7 +39,7 @@ class WebcamCapture extends React.Component {
           matchResult = res.data.message
         } else if (res.data.FaceMatches) {
           // API.getCustomer(res.data.FaceMatches[0].Face.FaceId)
-          API.getCustomer("5adf8a4f4bff30546beced09") // hard coded MongoDB _id for a seeded document
+          API.getCustomer(res.data.FaceMatches[0].Face.FaceId) // hard coded MongoDB _id for a seeded document
 
           // .then(res => matchResult = res)
           .then(res => console.log(res))
@@ -52,12 +62,7 @@ class WebcamCapture extends React.Component {
       //         :                                  'No image'
       // }
 
-      API.checkImg(
-        imageSrc,
-        )
-        // .then(res => console.log(res.data))
-        .then(res => handleMatchResult(res))
-        .catch(err => console.log(err));
+     
     };
 
     addPhoto = event => {
@@ -69,8 +74,24 @@ class WebcamCapture extends React.Component {
         name: this.state.name
         }
       )
+      .then(res => handlePostCustomer(res))
+      .catch(err => console.log(err));
+
+      const handlePostCustomer = res => {
+        console.log(res.data);
+        this.setState({
+          faceId: res.data.FaceId,
+          imageName: res.data.ExternalImageId
+        });
+        API.postCustomer(
+          {
+            faceId: this.state.faceId,
+            name: this.state.imageName
+          }
+        )
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
+      }
     };
 
     handleInputChange = event => {

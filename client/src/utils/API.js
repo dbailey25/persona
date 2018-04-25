@@ -14,5 +14,10 @@ export default {
   // Gets a customer with the given id
   getCustomer: function(id) {
     return axios.get("/api/customers/" + id);
-}
+},
+
+  postCustomer: function(data){
+    console.log(data);
+    return axios.post("api/customers/", data)
+  }
 };
