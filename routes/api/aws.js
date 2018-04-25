@@ -17,7 +17,7 @@ router.route("/")
       "Image": { 
         "Bytes": bitmap,
       },
-      "MaxFaces": 10
+      "MaxFaces": 1
     }, function(err, data) {
       if (err) {
         res.send(err);
