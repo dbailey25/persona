@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const customerSchema = new Schema({
   faceId: { type: String, required: true},
   name: { type: String, required: true },
-  photo: { type: Buffer, required: false },
+  photo: { type: String, required: false },
   table: { type: Number, required: false },
   date: { type: Date, default: Date.now }
 });
