@@ -5,7 +5,7 @@ const rekognition = new aws.Rekognition({region: config.region});
 const collectionName = config.collectionName;
 aws.config.region = config.region;
 
-// Matches with "/api/aws"
+// Matches with "/api/aws";
 router.route("/")
   .post(function (req, res, next) {
   var image = req.body.imageData.replace("data:image/jpeg;base64,", "");
