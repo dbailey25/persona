@@ -58,6 +58,10 @@ router
     });
   });
 
+  let s3 = new aws.S3({
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
+  });
 // Matches with "/api/books/:id"
 // router
 //   .route("/:id")
