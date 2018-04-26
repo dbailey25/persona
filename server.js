@@ -7,10 +7,6 @@ const routes = require("./routes");
 const mongoose = require("mongoose");
 
 //Rekognition *************************************************************************************************************************
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' });
-const uuid = require('node-uuid');
-const fs = require('fs-extra');
 
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
