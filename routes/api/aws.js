@@ -1,15 +1,20 @@
 const router = require("express").Router();
 const aws = require('aws-sdk');
-const config = require('../../config/config.js');
-const rekognition = new aws.Rekognition({region: config.region});
-const collectionName = config.collectionName;
-aws.config.region = config.region;
+// const config = require('../../config/config.js');
+const rekognition = new aws.Rekognition({region: "us-east-1"});
+const collectionName = "myCollection";
+aws.config = new aws.Config();
+// aws.config.region = config.region;
+aws.config.accessKeyId = process.env.S3_KEY;
+aws.config.secretAccessKey = process.env.S3_SECRET;
+aws.config.region = "us-east-1";
 
-  let s3 = new aws.S3({
-    accessKeyId: process.env.S3_KEY,
-    secretAccessKey: process.env.S3_SECRET,
-    region: "usa-east-1"
-  });
+
+// aws.config.update({
+//   accessKeyId: process.env.S3_KEY,
+//   secretAccessKey: process.env.S3_SECRET,
+//   region: "usa-east-1"
+// });
 // Matches with "/api/aws";
 router.route("/")
   .post(function (req, res, next) {
@@ -17,7 +22,7 @@ router.route("/")
   var bitmap =  Buffer.from(image, 'base64');
   
     rekognition.searchFacesByImage({
-      "CollectionId": config.collectionName,
+      "CollectionId": collectionName,
       "FaceMatchThreshold": 70,
       "Image": { 
         "Bytes": bitmap,
