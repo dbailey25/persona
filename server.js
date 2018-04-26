@@ -7,7 +7,6 @@ const routes = require("./routes");
 const mongoose = require("mongoose");
 
 //Rekognition *************************************************************************************************************************
-
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' });
 const uuid = require('node-uuid');
