@@ -5,6 +5,11 @@ const rekognition = new aws.Rekognition({region: config.region});
 const collectionName = config.collectionName;
 aws.config.region = config.region;
 
+aws.config.update({
+  accessKeyId: process.env.S3_KEY,
+  secretAccessKey: process.env.S3_SECRET,
+  region: "usa-east-1"
+});
 // Matches with "/api/aws";
 router.route("/")
   .post(function (req, res, next) {
