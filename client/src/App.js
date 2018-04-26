@@ -6,9 +6,12 @@ import API from "../src/utils/API";
 class WebcamCapture extends React.Component {
 
     state = {
-        imageSrc: "",
+        lastPhoto: "",
         name: "",
-        matchName: ""
+        matchName: "",
+        faceId: "",
+        imageName: "",
+        initialPhoto: ""
     }
 
     setRef = (webcam) => {
@@ -16,31 +19,57 @@ class WebcamCapture extends React.Component {
     }
 
     capture = () => {
-      const imageSrc = this.webcam.getScreenshot();
-      this.setState( {imageSrc});
+      const lastPhoto = this.webcam.getScreenshot();
+      this.setState( {lastPhoto});
 
-      // console.log(imageSrc);
-
-
-      const handleMatchResult = res => {
-        console.log(res.data);
-        let matchResult = setMatchStatement(res);
-        this.setState({matchName: matchResult});
-      };
-
-      const setMatchStatement = res  => {
-        return (res.data === 'Not recognized') ? 'Not recognized'
-              :(res.data.message)              ? res.data.message
-              :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
-              :                                  'No image'
-      }
+      // console.log(lastPhoto);
 
       API.checkImg(
-        imageSrc,
+        lastPhoto,
         )
         // .then(res => console.log(res.data))
         .then(res => handleMatchResult(res))
         .catch(err => console.log(err));
+
+      const handleMatchResult = res => {
+        console.log(res.data.FaceMatches[0].Face);
+        let matchResult = ''
+        if (res.data === 'Not recognized') {
+          matchResult = 'Not recognized'
+        } else if (res.data.message) {
+          matchResult = res.data.message
+        } else if (res.data.FaceMatches) {
+          // API.getCustomer(res.data.FaceMatches[0].Face.FaceId)
+          API.getCustomer(res.data.FaceMatches[0].Face.FaceId) // hard coded MongoDB _id for a seeded document
+
+          // .then(res => matchResult = res)
+          .then(res => handleDisplayData(res.data));
+         
+         const handleDisplayData = data => {
+            this.setState({initialPhoto: data.photo})
+          }
+        } else {
+          matchResult = 'Unexpected result'
+        }
+        this.setState({matchName: matchResult})
+     }
+
+    
+
+      // const handleMatchResult = res => {
+      //   console.log(res.data);
+      //   let matchResult = setMatchStatement(res);
+      //   this.setState({matchName: matchResult});
+      // };
+      //
+      // const setMatchStatement = res  => {
+      //   return (res.data === 'Not recognized') ? 'Not recognized'
+      //         :(res.data.message)              ? res.data.message
+      //         :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
+      //         :                                  'No image'
+      // }
+
+     
     };
 
     addPhoto = event => {
@@ -48,12 +77,34 @@ class WebcamCapture extends React.Component {
       const name = this.state.name;
       this.setState({name});
       API.addImg( {
-        imageSrc: this.state.imageSrc,
+        lastPhoto: this.state.lastPhoto,
         name: this.state.name
         }
       )
-      .then(res => console.log(res.data))
+      .then(res => handlePostCustomer(res))
       .catch(err => console.log(err));
+
+      const handlePostCustomer = res => {
+        // const image = this.state.lastPhoto.replace("data:image/jpeg;base64,", "");
+        // const photo =  Buffer.from(image, 'base64');
+        console.log(res.data);
+        this.setState({
+          faceId: res.data.FaceId,
+          imageName: res.data.ExternalImageId
+        });
+        API.postCustomer(
+          {
+            faceId: this.state.faceId,
+            name: this.state.imageName,
+            photo: this.state.lastPhoto
+          }
+        )
+      .then(res => handleDisplayData(res.data))
+      .catch(err => console.log(err));
+      }
+      const handleDisplayData = data => {
+        this.setState({initialPhoto: data.photo})
+      }
     };
 
     handleInputChange = event => {
@@ -78,7 +129,7 @@ class WebcamCapture extends React.Component {
           <span>Match result: {this.state.matchName}</span>
           <br />
           <br />
-          <img src= {this.state.imageSrc} alt="img" />
+          <img src= {this.state.lastPhoto} alt="img" />
           <br />
           <form>
               <input
@@ -89,7 +140,8 @@ class WebcamCapture extends React.Component {
               />
                <button onClick={this.addPhoto}>Add photo to Collection</button>
             </form>
-
+          <br />
+          <img src= {this.state.initialPhoto} alt="img" />
         </div>
       );
     }
