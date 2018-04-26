@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const AWS = require('aws-sdk');
-const config = require('../../config/config.js')
+const config = require('../../config/config.js');
 const rekognition = new AWS.Rekognition({region: config.region});
 const collectionName = config.collectionName;
 AWS.config.region = config.region;
@@ -17,7 +17,7 @@ router.route("/")
       "Image": { 
         "Bytes": bitmap,
       },
-      "MaxFaces": 1
+      "MaxFaces": 1 
     }, function(err, data) {
       if (err) {
         res.send(err);
