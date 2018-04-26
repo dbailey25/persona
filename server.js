@@ -27,15 +27,20 @@ mongoose.connect(
 
 
 // Serve up static assets (usually on heroku)
+// var options = {
+//   index: false
+// } // unsuccessful deploy fix attempt based on https://github.com/react-boilerplate/react-boilerplate/issues/1676 and https://expressjs.com/en/4x/api.html#express.static
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  // app.use(express.static("client/build", options)); // unsuccessful deploy fix attempt based on https://github.com/react-boilerplate/react-boilerplate/issues/1676 and https://expressjs.com/en/4x/api.html#express.static
 }
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", function(req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// }); // deploy fix (removed) per Week 20 homework solution
 
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
