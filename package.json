@@ -1,6 +1,6 @@
 {
-  "name": "mern",
-  "version": "1.0.0",
+  "name": "Persona",
+  "version": "0.1.0",
   "description": "Persona",
   "main": "server.js",
   "scripts": {
