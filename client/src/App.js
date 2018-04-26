@@ -32,7 +32,7 @@ class WebcamCapture extends React.Component {
         .catch(err => console.log(err));
 
       const handleMatchResult = res => {
-        console.log(res.data.FaceMatches[0].Face);
+        console.log(res.data);
         let matchResult = ''
         if (res.data === 'Not recognized') {
           matchResult = 'Not recognized'
@@ -46,7 +46,7 @@ class WebcamCapture extends React.Component {
           .then(res => handleDisplayData(res.data));
          
          const handleDisplayData = data => {
-            this.setState({initialPhoto: data.photo})
+            this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId})
           }
         } else {
           matchResult = 'Unexpected result'
