@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const AWS = require('aws-sdk');
-const config = require('../../config.js')
+const config = require('../../config/config.js')
 const rekognition = new AWS.Rekognition({region: config.region});
 const collectionName = config.collectionName;
 AWS.config.region = config.region;
@@ -35,7 +35,7 @@ router.route("/")
 router
   .route("/collection")
   .post(function (req, res, next) {
-    const image = req.body.imageData.imageSrc.replace("data:image/jpeg;base64,", "");
+    const image = req.body.imageData.lastPhoto.replace("data:image/jpeg;base64,", "");
     const bitmap =  Buffer.from(image, 'base64');
     const name = req.body.imageData.name;
    
