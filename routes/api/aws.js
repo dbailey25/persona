@@ -1,9 +1,9 @@
 const router = require("express").Router();
-const AWS = require('aws-sdk');
+const aws = require('aws-sdk');
 const config = require('../../config/config.js');
-const rekognition = new AWS.Rekognition({region: config.region});
+const rekognition = new aws.Rekognition({region: config.region});
 const collectionName = config.collectionName;
-AWS.config.region = config.region;
+aws.config.region = config.region;
 
 // Matches with "/api/aws"
 router.route("/")
@@ -58,7 +58,7 @@ router
     });
   });
 
-  let s3 = new AWS.S3({
+  let s3 = new aws.S3({
     accessKeyId: process.env.S3_KEY,
     secretAccessKey: process.env.S3_SECRET
   });
