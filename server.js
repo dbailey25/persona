@@ -10,12 +10,11 @@ const mongoose = require("mongoose");
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
-
 // app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, '/build')));
+
+app.use(express.static("client/build"));
+
 app.use(routes);
-
-
 
 //****************************************************************************************************************************************
 // Set up promises with mongoose
