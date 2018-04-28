@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/Card";
 import LoginForm from "../../components/LoginForm";
-import Footer from "../../components/Footer";
 // import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 
@@ -39,7 +38,6 @@ class Login extends Component {
               </Card>
             </Col>
           </Row>
-          <Footer />
         </Container>
       </div>
     );
