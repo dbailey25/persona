@@ -8,14 +8,16 @@ import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import Waiter from "./pages/Waiter";
 import Footer from "./components/Footer";
+import WebcamCapture from "./App0"
 
 const App = () => (
   <Router>
     <div>
       <Nav />
       <Switch>
+<Route exact path="/app0" component={WebcamCapture} />
         <Route exact path="/" component={Login} />
-        <Route exact path="/captureimage" component={CaptureImage} />
+        <Route exact path="/host" component={CaptureImage} />
         <Route exact path="/waiter" component={Waiter} />
         {/*<Route exact path="/customer" component={Customer} />*/}
         <Route component={NoMatch} />

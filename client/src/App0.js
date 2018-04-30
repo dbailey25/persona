@@ -1,12 +1,6 @@
 import React from "react";
 import Webcam from 'react-webcam';
-// import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
 import API from "../src/utils/API";
-import Form from './components/Form';
-import FormGroup from './components/FormGroup';
-import Input from './components/Input';
-import ButtonRight from './components/ButtonRight';
 
 
 class WebcamCapture extends React.Component {
@@ -59,23 +53,6 @@ class WebcamCapture extends React.Component {
         }
         this.setState({matchName: matchResult})
      }
-
-
-
-      // const handleMatchResult = res => {
-      //   console.log(res.data);
-      //   let matchResult = setMatchStatement(res);
-      //   this.setState({matchName: matchResult});
-      // };
-      //
-      // const setMatchStatement = res  => {
-      //   return (res.data === 'Not recognized') ? 'Not recognized'
-      //         :(res.data.message)              ? res.data.message
-      //         :(res.data.FaceMatches)          ? res.data.FaceMatches[0].Face.ExternalImageId
-      //         :                                  'No image'
-      // }
-
-
     };
 
     addPhoto = event => {
@@ -122,12 +99,7 @@ class WebcamCapture extends React.Component {
 
     render() {
       return (
-      <Router>
         <div>
-          <Nav />
-          <Form role="form">
-            {this.props.children}
-          </Form>
           <Webcam
             audio={false}
             height={350}
@@ -154,7 +126,6 @@ class WebcamCapture extends React.Component {
           <br />
           <img src= {this.state.initialPhoto} alt="img" />
         </div>
-        </Router>
       );
     }
   }
