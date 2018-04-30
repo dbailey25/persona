@@ -1,0 +1,7 @@
+.image-small {
+  min-height: 150px;
+  min-width: 150px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  /* margin-left: 25px; */
+}
