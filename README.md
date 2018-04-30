@@ -1,10 +1,10 @@
 # Persona
 
 ### Active Routes
-/app0 => MVP page
-/ => login page
-/host => host view
-/waiter => waiter view
+- /app0 => MVP page
+- / => login page
+- /host => host view
+- /waiter => waiter view
 
 Persona is an application that captures an image of a face from a video then matches it to previously captured images and retrieves data associated with the person in the image. The primary use case is for restaurants and bars to be able to provide more personalized service to their patrons. Though, it can also be used by other retail businesses such as stores, dry cleaners, etc. Persona can also aid the business owners' planning by providing statistics such as new/return visitors, number of visits within a time period, visits with/without purchase and more. Persona's facial recognition capabilities are powered by the AWS Rekognition API. The User Interface uses React while a Node JS server manages routing of data through the application. A Mongo DB database stores the data for each customer's persona.
 
