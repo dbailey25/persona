@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import CamImage from "../../components/CamImage";
+import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import API from "../../utils/API";
-import { Container } from "../../components/Grid";
 
 class Host extends Component {
   state = {
@@ -10,16 +9,19 @@ class Host extends Component {
       matchName: "",
       faceId: "",
       imageName: "",
-      initialPhoto: ""
+      initialPhoto: "",
+      addPicVisibility: 'invisible',
+      currentPicVisibility: 'invisible',
+      initialPicVisibility: 'invisible'
   }
-
-// change all this. to this.state
 
   setRef = (webcam) => {
     this.webcam = webcam;
   }
 
   capture = () => {
+    this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible'});
+
     const lastPhoto = this.webcam.getScreenshot();
     this.setState( {lastPhoto});
 
@@ -34,11 +36,13 @@ class Host extends Component {
       console.log(res.data);
       let matchResult = ''
       if (res.data === 'Not recognized') {
-        matchResult = 'Not recognized'
+        matchResult = 'Not recognized';
+        this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible'});
       } else if (res.data.message) {
         matchResult = res.data.message
       } else if (res.data.FaceMatches) {
-        API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data)
+        API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
+        this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
       );
 
        const handleDisplayData = data => {
@@ -94,17 +98,24 @@ class Host extends Component {
     });
   };
 
+
   render() {
     return (
       <div>
-        <Container>
-          <CamImage />
-
-
-        </Container>
+        <ImageCapture
+        setRef={this.setRef}
+        capture={this.capture}
+        matchName={this.state.matchName}
+        lastPhoto={this.state.lastPhoto}
+        initialPhoto={this.state.initialPhoto}
+        currentPicVisibility={this.state.currentPicVisibility}
+        initialPicVisibility={this.state.initialPicVisibility}
+        />
+        <AddImage
+        visibility={this.state.addPicVisibility}/>
       </div>
     );
-  } // end method, render
-} // end class, CaptureImag
+  } // end function, render
+} // end class, Host
 
 export default Host;
