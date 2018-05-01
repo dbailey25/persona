@@ -3,7 +3,7 @@ import CamImage from "../../components/CamImage";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 
-class CaptureImage extends Component {
+class Host extends Component {
   state = {
       lastPhoto: "",
       name: "",
@@ -100,32 +100,6 @@ class CaptureImage extends Component {
         <Container>
           <CamImage />
 
-        {/*<Webcam
-          audio={false}
-          height={350}
-          ref={this.setRef}
-          screenshotFormat="image/jpeg"
-          width={350}
-        />
-        <button onClick={this.capture}>Capture photo</button>
-        <br />
-        <span>Match result: {this.state.matchName}</span>
-        <br />
-        <br />
-        <img src= {this.state.lastPhoto} alt="img" />
-        <br />
-        <form>
-            <input
-              value={this.state.name}
-              onChange={this.handleInputChange}
-              name="name"
-              placeholder="Name"
-            />
-             <button onClick={this.addPhoto}>Add photo to Collection</button>
-          </form>
-        <br />
-        <img src= {this.state.initialPhoto} alt="img" />
-        */}
 
         </Container>
       </div>
@@ -133,4 +107,4 @@ class CaptureImage extends Component {
   } // end method, render
 } // end class, CaptureImag
 
-export default CaptureImage;
+export default Host;
