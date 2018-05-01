@@ -6,14 +6,19 @@ import Host from "./pages/Host";
 // import Customer from "./pages/Customer";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
+import { Container } from "./components/Grid";
 import Waiter from "./pages/Waiter";
 import Footer from "./components/Footer";
 import WebcamCapture from "./App0"
+
+let userName = "N/A";
 
 const App = () => (
   <Router>
     <div>
       <Nav />
+      <Container>
+      <h4>User: {userName}</h4>
       <Switch>
 <Route exact path="/app0" component={WebcamCapture} />
         <Route exact path="/" component={Login} />
@@ -22,6 +27,7 @@ const App = () => (
         {/*<Route exact path="/customer" component={Customer} />*/}
         <Route component={NoMatch} />
       </Switch>
+      </Container>
       <Footer />
     </div>
   </Router>
