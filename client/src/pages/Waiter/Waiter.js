@@ -7,9 +7,11 @@ class Waiter extends Component {
   state = {
     bevPref: "N/A",
     restriction: "None",
+    appPref: "N/A",
     protPref: "N/A",
     vegPref: "N/A",
     starchPref: "N/A",
+    dessertPref: "N/A",
     firstName: "N/A",
     lastName: "N/A",
     table: 1,
@@ -52,14 +54,18 @@ class Waiter extends Component {
           </Col>
           <Col size="md-6">
           <h3>Food</h3>
-          <p>Prot: {this.state.protPref}</p>
-          <p>Veg: {this.state.vegPref}</p>
+          <p>Appetizer: {this.state.appPref}</p>
+          <p>Protein: {this.state.protPref}</p>
+          <p>Vegetable: {this.state.vegPref}</p>
           <p>Starch: {this.state.starchPref}</p>
+          <p>Dessert: {this.state.dessertPref}</p>
         </Col>
         </Row>
         <Row>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal">Take Order</button>
         </Row>
+
+        {/* Modal =======================================================================*/}
 
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -97,22 +103,41 @@ class Waiter extends Component {
                           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
                             <button className="dropdown-item" type="button" value="calamari">Calamari</button>
                             <button className="dropdown-item" type="button" value="wings">Chicken Wings</button>
-                            <button className="dropdown-item" type="button" value="mozz_sticks"> Mozzarella Sticks</button>
+                            <button className="dropdown-item" type="button" value="salad">Salad</button>
+                          </div>
+                        </div>
+                        <h4>Main Course</h4>
+                        <div className="dropdown">
+                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Protein
+                          </button>
+                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button className="dropdown-item" type="button" value="chicken">Chicken</button>
+                            <button className="dropdown-item" type="button" value="steak">Steak</button>
+                            <button className="dropdown-item" type="button" value="salmon">Salmon</button>
                           </div>
                         </div>
                         <div className="dropdown">
                           <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Main Course
+                            Starch
                           </button>
                           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="fiesta_chicken">Fiesta Lime Chicken</button>
-                            <button className="dropdown-item" type="button" value="bourbon_chicken">Bourbon Street Chicken</button>
-                            <button className="dropdown-item" type="button" value="steak">Top Sirloin</button>
-                            <button className="dropdown-item" type="button" value="ribs">Baby Back Ribs</button>
-                            <button className="dropdown-item" type="button" value="salmon">Cedar Salmon</button>
-                            <button className="dropdown-item" type="button" value="tuna">Seared Ahi</button>
+                            <button className="dropdown-item" type="button" value="potato">Potato</button>
+                            <button className="dropdown-item" type="button" value="pasta">Pasta</button>
+                            <button className="dropdown-item" type="button" value="rice">Rice</button>
                           </div>
                         </div>
+                        <div className="dropdown">
+                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Vegetable
+                          </button>
+                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <button className="dropdown-item" type="button" value="carrots">Carrots</button>
+                            <button className="dropdown-item" type="button" value="broccoli">Broccoli</button>
+                            <button className="dropdown-item" type="button" value="sprouts">Brussel Sprouts</button>
+                          </div>
+                        </div>
+                        <h4>Dessert</h4>
                         <div className="dropdown">
                           <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Dessert
