@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
-import CaptureImage from "./pages/CaptureImage";
+import Host from "./pages/Host";
 // import Waiter from "./pages/Waiter";
 // import Customer from "./pages/Customer";
 import NoMatch from "./pages/NoMatch";
@@ -17,7 +17,7 @@ const App = () => (
       <Switch>
 <Route exact path="/app0" component={WebcamCapture} />
         <Route exact path="/" component={Login} />
-        <Route exact path="/host" component={CaptureImage} />
+        <Route exact path="/host" component={Host} />
         <Route exact path="/waiter" component={Waiter} />
         {/*<Route exact path="/customer" component={Customer} />*/}
         <Route component={NoMatch} />

@@ -3,7 +3,7 @@ import CamImage from "../../components/CamImage";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 
-class CaptureImage extends Component {
+class Host extends Component {
   state = {
       lastPhoto: "",
       name: "",
@@ -133,4 +133,4 @@ class CaptureImage extends Component {
   } // end method, render
 } // end class, CaptureImag
 
-export default CaptureImage;
+export default Host;
