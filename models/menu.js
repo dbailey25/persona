@@ -2,13 +2,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const menuSchema = new Schema({
-  id: { type: String, required: true},
   dishName: { type: String, required: true},
-  protein: { type: String, required: false },
-  vegetable: { type: String, required: false },
-  starch: { type: String, required: false },
-  calories: { type: String, required: false },
-  price: { type: String, required: false }
+  type: { type: String, required: false },
+  date: { type: Date, default: Date.now }
 });
 
 const Menu = mongoose.model("Menu", menuSchema);
