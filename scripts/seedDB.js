@@ -11,92 +11,92 @@ mongoose.connect(
 const menuSeed = [
   {
     dishName: "Beer",
-    type: "Beverage",
+    menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Wine",
-    type: "Beverage",
+    menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Tea",
-    type: "Beverage",
+    menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Calamari",
-    type: "Appetizer",
+    menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
     dishName: "Chicken Wings",
-    type: "Appetizer",
+    menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
     dishName: "Salad",
-    type: "Appetizer",
+    menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
     dishName: "Chiken",
-    type: "Protein",
+    menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Steak",
-    type: "Protein",
+    menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Salmon",
-    type: "Protein",
+    menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Pasta",
-    type: "Starch",
+    menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Potato",
-    type: "Starch",
+    menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Rice",
-    type: "Starch",
+    menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Carrots",
-    type: "Vegetable",
+    menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Broccoli",
-    type: "Vegetable",
+    menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Brussel Sprouts",
-    type: "Vegetable",
+    menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Chocolate Cake",
-    type: "Desert",
+    menuSelection: "Desert",
     date: new Date(Date.now())
   },
   {
     dishName: "Ice Cream Trio",
-    type: "Desert",
+    menuSelection: "Desert",
     date: new Date(Date.now())
   },
   {
     dishName: "New York Cheesecake",
-    type: "Desert",
+    menuSelection: "Desert",
     date: new Date(Date.now())
   }
 ];

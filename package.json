@@ -5,11 +5,13 @@
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
+    "seed": "node scripts/seedDB.js",
     "client": "node scripts/start-client.js",
     "start": "concurrently \"nodemon server.js\" \"npm run client\"",
     "build": "node scripts/build.js",
+    
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "installDeps": "yarn && cd client && yarn"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +21,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.229.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.15.4",
     "mongoose": "^5.0.16"

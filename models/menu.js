@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const menuSchema = new Schema({
   dishName: { type: String, required: true},
-  type: { type: String, required: false },
+  menuSelection: { type: String, required: false },
   date: { type: Date, default: Date.now }
 });
 
