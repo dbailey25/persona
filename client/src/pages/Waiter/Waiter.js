@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-// import API from "../../utils/API";
 import { Col, Row } from "../../components/Grid";
+import Wrapper from "../../components/Wrapper";
+import MenuCard from "../../components/MenuCard";
 import "./Waiter.css"
 import API from "../../utils/API";
 
@@ -17,7 +18,7 @@ class Waiter extends Component {
     lastName: "N/A",
     table: 1,
     position: 1,
-    menu: {}
+    menu: []
     };
 
 
@@ -92,8 +93,19 @@ hadleMenuData = (data) => {
               </div>
               <div className="modal-body">
                 <form>
-              
 
+ <Wrapper>
+            {this.state.menu
+               .map(dishes => (
+                <MenuCard
+                  key={dishes._id}
+                  date={dishes.date}
+                  dishName={dishes.dishName}
+                  menuSelection={dishes.menuSelection}
+
+              />))}
+                  
+          </Wrapper> 
 
                   {/* <div className="form-group">
                     <Row>
