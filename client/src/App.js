@@ -9,15 +9,11 @@ import Waiter from "./pages/Waiter";
 import Footer from "./components/Footer";
 import WebcamCapture from "./App0"
 
-
-let userName = "N/A";
-
 const App = () => (
   <Router>
     <div>
       <Nav />
       <Container>
-      <h4>User: {userName}</h4>
       <Switch>
         <Route exact path="/" component={Login} />
 <Route exact path="/app0" component={WebcamCapture} />
