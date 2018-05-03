@@ -58,8 +58,11 @@ class Host extends Component {
 
   addPhoto = event => {
     event.preventDefault();
-    const name = this.state.name;
-    this.setState({name});
+    console.log("Host-addPhoto");
+    // const name = this.state.name;
+    // this.setState({name});
+    console.log('lastPhoto', this.state.lastPhoto);
+    console.log('name', this.state.name);
     API.addImg( {
       lastPhoto: this.state.lastPhoto,
       name: this.state.name
@@ -67,6 +70,8 @@ class Host extends Component {
     )
     .then(res => handlePostCustomer(res))
     .catch(err => console.log(err));
+
+    console.log("image added");
 
     const handlePostCustomer = res => {
       // const image = this.state.lastPhoto.replace("data:image/jpeg;base64,", "");
@@ -112,7 +117,9 @@ class Host extends Component {
         initialPicVisibility={this.state.initialPicVisibility}
         />
         <AddImage
-        visibility={this.state.addPicVisibility}/>
+        visibility={this.state.addPicVisibility}
+        addPhoto={this.addPhoto}
+        handleInputChange={this.handleInputChange}/>
       </div>
     );
   } // end function, render

@@ -7,6 +7,8 @@ import Nav from "./components/Nav";
 import { Container } from "./components/Grid";
 import Waiter from "./pages/Waiter";
 import Footer from "./components/Footer";
+import WebcamCapture from "./App0"
+
 
 let userName = "N/A";
 
@@ -18,6 +20,7 @@ const App = () => (
       <h4>User: {userName}</h4>
       <Switch>
         <Route exact path="/" component={Login} />
+<Route exact path="/app0" component={WebcamCapture} />
         <Route exact path="/host" component={Host} />
         <Route exact path="/waiter" component={Waiter} />
         {/*<Route exact path="/customer" component={Customer} />*/}
