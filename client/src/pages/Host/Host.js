@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
+import UserName from "../../components/UserName";
+import TableAssign from "../../components/TableAssign";
 import API from "../../utils/API";
 
 class Host extends Component {
   state = {
+      userName: 'N/A',
       lastPhoto: "",
       name: "",
       matchName: "",
@@ -107,6 +110,8 @@ class Host extends Component {
   render() {
     return (
       <div>
+        <UserName
+        userName={this.state.userName}/>
         <ImageCapture
         setRef={this.setRef}
         capture={this.capture}
@@ -114,6 +119,9 @@ class Host extends Component {
         lastPhoto={this.state.lastPhoto}
         initialPhoto={this.state.initialPhoto}
         currentPicVisibility={this.state.currentPicVisibility}
+        initialPicVisibility={this.state.initialPicVisibility}
+        />
+        <TableAssign
         initialPicVisibility={this.state.initialPicVisibility}
         />
         <AddImage
