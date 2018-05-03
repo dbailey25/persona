@@ -1,7 +1,7 @@
-/* .wrapper {
+.wrapper {
   display: flex;
   flex-flow: row wrap;
-  padding: 20px;
+  padding: 4px;
   justify-content: space-around;
   align-content: flex-start;
   overflow: auto;
@@ -10,4 +10,4 @@
   background-attachment: fixed;
   background-position: center; 
   background-size: cover;
-} */
+}

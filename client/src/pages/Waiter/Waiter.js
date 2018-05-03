@@ -41,6 +41,11 @@ getMenuData = event => {
 .catch(err => console.log(err));
 }
 
+postOrder = event =>{
+  event.preventDefault();
+  alert("Order here");
+}
+
 hadleMenuData = (data) => {
   this.setState({menu: data});
  console.log(this.state.menu);
@@ -94,7 +99,7 @@ hadleMenuData = (data) => {
               <div className="modal-body">
                 <form>
 
- <Wrapper>
+          <Wrapper>
             {this.state.menu
                .map(dishes => (
                 <MenuCard
@@ -102,86 +107,11 @@ hadleMenuData = (data) => {
                   date={dishes.date}
                   dishName={dishes.dishName}
                   menuSelection={dishes.menuSelection}
-
+                  postOrder={this.postOrder}
               />))}
                   
           </Wrapper> 
-
-                  {/* <div className="form-group">
-                    <Row>
-                      <Col size="md-6">
-                        <h3>Beverage</h3>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Beverage
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="beer">Beer</button>
-                            <button className="dropdown-item" type="button" value="wine">Wine</button>
-                            <button className="dropdown-item" type="button" value="tea">Tea</button>
-                          </div>
-                        </div>
-                      </Col>
-                      <Col size="md-6">
-                        <h3>Food</h3>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Appetizer
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="calamari" href="#">Calamari</button>
-                            <button className="dropdown-item" type="button" value="wings" href="#">Chicken Wings</button>
-                            <button className="dropdown-item" type="button" value="salad" href="#">Salad</button>
-                          </div>
-                        </div>
-                        <h4>Main Course</h4>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Protein
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="chicken">Chicken</button>
-                            <button className="dropdown-item" type="button" value="steak">Steak</button>
-                            <button className="dropdown-item" type="button" value="salmon">Salmon</button>
-                          </div>
-                        </div>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Starch
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="potato">Potato</button>
-                            <button className="dropdown-item" type="button" value="pasta">Pasta</button>
-                            <button className="dropdown-item" type="button" value="rice">Rice</button>
-                          </div>
-                        </div>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Vegetable
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="carrots">Carrots</button>
-                            <button className="dropdown-item" type="button" value="broccoli">Broccoli</button>
-                            <button className="dropdown-item" type="button" value="sprouts">Brussel Sprouts</button>
-                          </div>
-                        </div>
-                        <h4>Dessert</h4>
-                        <div className="dropdown">
-                          <button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dessert
-                          </button>
-                          <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="cake">Chocolate Cake</button>
-                            <button className="dropdown-item" type="button" value="ice_cream">Ice Cream Trio</button>
-                            <button className="dropdown-item" type="button" value="cheesecake"> New York Cheesecake</button>
-                          </div>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div> */}
-
-                </form>
-
+                 </form>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>
