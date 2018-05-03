@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import API from "../../utils/API";
 import { Col, Row } from "../../components/Grid";
 import "./Waiter.css"
+import API from "../../utils/API";
 
 class Waiter extends Component {
   state = {
@@ -15,7 +16,8 @@ class Waiter extends Component {
     firstName: "N/A",
     lastName: "N/A",
     table: 1,
-    position: 1
+    position: 1,
+    menu: {}
     };
 
 
@@ -31,6 +33,17 @@ class Waiter extends Component {
     console.log('order placed');
   };
 
+getMenuData = event => {
+  event.preventDefault();
+  API.getMenuData()
+.then(res => this.hadleMenuData(res.data))
+.catch(err => console.log(err));
+}
+
+hadleMenuData = (data) => {
+  this.setState({menu: data});
+ console.log(this.state.menu);
+ }
   render() {
     return (
       <div>
@@ -62,7 +75,7 @@ class Waiter extends Component {
         </Col>
         </Row>
         <Row>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal">Take Order</button>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
         </Row>
 
         {/* Modal =======================================================================*/}
@@ -79,7 +92,10 @@ class Waiter extends Component {
               </div>
               <div className="modal-body">
                 <form>
-                  <div className="form-group">
+              
+
+
+                  {/* <div className="form-group">
                     <Row>
                       <Col size="md-6">
                         <h3>Beverage</h3>
@@ -101,9 +117,9 @@ class Waiter extends Component {
                             Appetizer
                           </button>
                           <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <button className="dropdown-item" type="button" value="calamari">Calamari</button>
-                            <button className="dropdown-item" type="button" value="wings">Chicken Wings</button>
-                            <button className="dropdown-item" type="button" value="salad">Salad</button>
+                            <button className="dropdown-item" type="button" value="calamari" href="#">Calamari</button>
+                            <button className="dropdown-item" type="button" value="wings" href="#">Chicken Wings</button>
+                            <button className="dropdown-item" type="button" value="salad" href="#">Salad</button>
                           </div>
                         </div>
                         <h4>Main Course</h4>
@@ -150,7 +166,7 @@ class Waiter extends Component {
                         </div>
                       </Col>
                     </Row>
-                  </div>
+                  </div> */}
 
                 </form>
 

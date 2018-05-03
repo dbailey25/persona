@@ -19,5 +19,10 @@ export default {
   postCustomer: function(data){
     console.log(data);
     return axios.post("api/customers/", data)
+  },
+
+  //get Menu Data
+  getMenuData: function(){
+    return axios.get("api/menu")
   }
 };
