@@ -41,9 +41,9 @@ getMenuData = event => {
 .catch(err => console.log(err));
 }
 
-postOrder = event =>{
-  event.preventDefault();
-  alert("Order here");
+postOrder = (data) =>{
+  console.log(data)
+  
 }
 
 hadleMenuData = (data) => {
@@ -97,7 +97,7 @@ hadleMenuData = (data) => {
                 </button>
               </div>
               <div className="modal-body">
-                <form>
+                
 
           <Wrapper>
             {this.state.menu
@@ -111,7 +111,7 @@ hadleMenuData = (data) => {
               />))}
                   
           </Wrapper> 
-                 </form>
+                
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>

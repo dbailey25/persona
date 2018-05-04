@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import API from "../../utils/API";
+import { Col, Row } from "../../components/Grid";
+import Wrapper from "../../components/Wrapper";
+import MenuCard from "../../components/MenuCard";
 
 class Host extends Component {
   state = {
@@ -120,6 +123,45 @@ class Host extends Component {
         visibility={this.state.addPicVisibility}
         addPhoto={this.addPhoto}
         handleInputChange={this.handleInputChange}/>
+         <Row>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
+        </Row>
+
+        {/* Modal =======================================================================*/}
+
+        <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="orderModalLabel">Order for First Name: {this.state.firstName} Last Name: {this.state.lastName}
+                </h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                
+
+          <Wrapper>
+            {/* {this.state.menu
+               .map(dishes => (
+                <MenuCard
+                  key={dishes._id}
+                  date={dishes.date}
+                  dishName={dishes.dishName}
+                  menuSelection={dishes.menuSelection}
+                  postOrder={this.postOrder}
+              />))} */}
+                  
+          </Wrapper> 
+                
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   } // end function, render
