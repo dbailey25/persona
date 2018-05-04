@@ -4,6 +4,7 @@ import Wrapper from "../../components/Wrapper";
 import MenuCard from "../../components/MenuCard";
 import "./Waiter.css"
 import API from "../../utils/API";
+import TableCard from "../../components/TableCard";
 
 class Waiter extends Component {
   state = {
@@ -18,7 +19,9 @@ class Waiter extends Component {
     lastName: "N/A",
     table: 1,
     position: 1,
-    menu: []
+    tableImg: "",
+    menu: [],
+    tables: []
     };
 
 
@@ -41,22 +44,55 @@ getMenuData = event => {
 .catch(err => console.log(err));
 }
 
-postOrder = event =>{
-  event.preventDefault();
-  alert("Order here");
+postOrder = (data) =>{
+  console.log(data)
+  
 }
 
 hadleMenuData = (data) => {
   this.setState({menu: data});
  console.log(this.state.menu);
  }
+
+ getTableData = () => {
+  API.getTablesData()
+  .then(res => this.handleTableData(res.data))
+  .catch(err => console.log(err));
+ }
+
+ handleTableData = data => {
+   for (let value of data){
+     if(value.tableAvailability === "available"){
+       value.tableImg = "/images/table.png";
+    };
+    this.setState({tables: data});
+ }
+ console.log(this.state.tables);
+}
+
+handleDataTable = (id, data) =>{
+   console.log (data.customerId);
+API.getCustomer(data.customerId)
+.then(res=>this.handleDisplayCustomerInfo(data))
+.catch(err => console.log(err));
+}
+
+handleDisplayCustomerInfo = data =>{
+  console.log(data);
+  this.setState({
+    firstName: data.customerName,
+    table: data.tableNumber,
+    tableImg: data.tableImg
+  })
+}
+
   render() {
     return (
       <div>
         <Row>
         <Col size="md-2">
         {/*<img className="image-small" src= {props.lastPhoto} alt="img" />*/}
-        <img className="image-small"  alt="img" />
+        <img className="image-small" src={this.state.tableImg} alt="img" />
         </Col>
         <Col size="md-10">
         <p>Table: {this.state.table} Position: {this.state.position}</p>
@@ -83,8 +119,12 @@ hadleMenuData = (data) => {
         <Row>
         <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
         </Row>
+        <br></br>
+        <Row>
+        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Table</button>
+        </Row>
 
-        {/* Modal =======================================================================*/}
+        {/* Menu Modal =======================================================================*/}
 
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -97,7 +137,7 @@ hadleMenuData = (data) => {
                 </button>
               </div>
               <div className="modal-body">
-                <form>
+                
 
           <Wrapper>
             {this.state.menu
@@ -111,10 +151,47 @@ hadleMenuData = (data) => {
               />))}
                   
           </Wrapper> 
-                 </form>
+                
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>
+              </div>
+            </div>
+          </div>
+        </div>
+     {/* Table Modal =======================================================================*/}
+     <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="orderModalLabel">Tables
+                </h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                
+
+          <Wrapper>
+          {this.state.tables
+               .map(table => (
+                <TableCard
+                  key={table._id}
+                  date={table.date}
+                  tableNumber={table.tableNumber}
+                  tableImg={table.tableImg}
+                  tableAvailability={table.tableAvailability}
+                  customerId={table.customerId}
+                  customerName={table.customerName}
+                  handleDataTable={this.handleDataTable}
+              />))}
+                  
+          </Wrapper> 
+                
+              </div>
+              <div className="modal-footer">
+               
               </div>
             </div>
           </div>

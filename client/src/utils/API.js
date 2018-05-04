@@ -11,7 +11,7 @@ export default {
     return axios.post("/api/aws/collection", {imageData});
   },
 
-  // Gets a customer with the given id
+  // Customer Data
   getCustomer: function(id) {
     return axios.get("/api/customers/" + id);
 },
@@ -21,7 +21,7 @@ export default {
     return axios.post("api/customers/", data)
   },
 
-  //get Menu Data
+  //Menu Data
   getMenuData: function(){
     return axios.get("api/menu")
   },
@@ -30,5 +30,14 @@ export default {
   postOrder: function(data){
     console.log(data);
     return axios.post("api/orders/", data)
+  },
+
+  //Table Data
+  getTablesData: function(){
+    return axios.get("api/table")
+  },
+
+  putTable: function(id, data){
+    return axios.put("api/table/" + id, data)
   }
 };
