@@ -26,6 +26,12 @@ export default {
     return axios.get("api/menu")
   },
 
+  // Order Data
+  postOrder: function(data){
+    console.log(data);
+    return axios.post("api/orders/", data)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")

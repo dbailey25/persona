@@ -3,7 +3,7 @@ import React from "react";
 const TableAssign = props => (
   <div>
     <button
-    className={`btn btn-primary dropdown-toggle ${props.initialPicVisibility}`} 
+    className={`btn btn-primary dropdown-toggle ${props.visibility}`} 
     type="button"
     id="tableAssign"
     data-toggle="dropdown"

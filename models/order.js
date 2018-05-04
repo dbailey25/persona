@@ -5,9 +5,10 @@ const orderSchema = new Schema({
   customerId: { type: String, required: true },
   waiterId: { type: String, required: false},
   orderStatus: { type: String, required: true},
-  dishName: { type: String, required: true },
-  menuSelection: { type: String, required: true },
-  price:{type: Number, required: false},
+  dishName: { type: String, required: false },
+  alias: { type: String, required: false },
+  menuSelection: { type: String, required: false },
+  photo: { type: String, required: false },
   table: { type: Number, required: false },
   date: { type: Date, default: Date.now }
 });
