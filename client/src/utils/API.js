@@ -24,5 +24,11 @@ export default {
   //get Menu Data
   getMenuData: function(){
     return axios.get("api/menu")
+  },
+
+  // create order in database
+  postOrder: function(data){
+    console.log(data);
+    return axios.post("api/orders/", data)
   }
 };

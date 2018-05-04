@@ -11,92 +11,110 @@ mongoose.connect(
 const menuSeed = [
   {
     dishName: "Beer",
+    alias: "beer",
     menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Wine",
+    alias: "wine",
     menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Tea",
+    alias: "tea",
     menuSelection: "Beverage",
     date: new Date(Date.now())
   },
   {
     dishName: "Calamari",
+    alias: "cala",
     menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
     dishName: "Chicken Wings",
+    alias: "wing",
     menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
     dishName: "Salad",
+    alias: "sald",
     menuSelection: "Appetizer",
     date: new Date(Date.now())
   },
   {
-    dishName: "Chiken",
+    dishName: "Chicken",
+    alias: "chkn",
     menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Steak",
+    alias: "beef",
     menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Salmon",
+    alias: "fish",
     menuSelection: "Protein",
     date: new Date(Date.now())
   },
   {
     dishName: "Pasta",
+    alias: "past",
     menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Potato",
+    alias: "pota",
     menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Rice",
+    alias: "rice",
     menuSelection: "Starch",
     date: new Date(Date.now())
   },
   {
     dishName: "Carrots",
+    alias: "carr",
     menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Broccoli",
+    alias: "broc",
     menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Brussel Sprouts",
+    alias: "sprt",
     menuSelection: "Vegetable",
     date: new Date(Date.now())
   },
   {
     dishName: "Chocolate Cake",
-    menuSelection: "Desert",
+    alias: "cake",
+    menuSelection: "Dessert",
     date: new Date(Date.now())
   },
   {
     dishName: "Ice Cream Trio",
-    menuSelection: "Desert",
+    alias: "icrm",
+    menuSelection: "Dessert",
     date: new Date(Date.now())
   },
   {
     dishName: "New York Cheesecake",
-    menuSelection: "Desert",
+    alias: "ccke",
+    menuSelection: "Dessert",
     date: new Date(Date.now())
   }
 ];
