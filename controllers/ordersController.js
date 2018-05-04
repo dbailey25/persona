@@ -15,6 +15,13 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  findCurrentOrders: function(req, res){
+    db.Order
+      .find({customerId: req.params.id, orderStatus:"open"})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   create: function(req, res) {
     db.Order
       .create(req.body)

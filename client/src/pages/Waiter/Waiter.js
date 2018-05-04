@@ -5,9 +5,11 @@ import MenuCard from "../../components/MenuCard";
 import "./Waiter.css"
 import API from "../../utils/API";
 import TableCard from "../../components/TableCard";
+import OrderCard from "../../components/OrderCard";
 
 class Waiter extends Component {
   state = {
+    faceId: "",
     bevPref: "N/A",
     restriction: "None",
     appPref: "N/A",
@@ -21,7 +23,8 @@ class Waiter extends Component {
     position: 1,
     tableImg: "",
     menu: [],
-    tables: []
+    tables: [],
+    orders: []
     };
 
 
@@ -44,17 +47,39 @@ getMenuData = event => {
 .catch(err => console.log(err));
 }
 
-postOrder = (data) =>{
-  console.log(data)
-  
-}
-
 hadleMenuData = (data) => {
   this.setState({menu: data});
  console.log(this.state.menu);
  }
 
- getTableData = () => {
+postOrderData = (data) =>{
+  API.postOrder({
+  customerId: this.state.faceId,
+  orderStatus: "open",
+  dishName: data.dishName,
+  alias: data.alias,
+  price: data.price,
+  menuSelection: data.menuSelection,
+  table: this.state.table
+  })
+.then(res => this.getCurrentOrderData(res.data))
+.catch(err => console.log(err));
+}
+
+getCurrentOrderData = data =>{
+  
+ API.getOrder(data.customerId)
+ .then(res => this.handleDisplayOrders(res.data))
+ .catch(err => console.log(err));
+}
+
+handleDisplayOrders = data =>{
+  console.log(data)
+  this.setState({orders: data})
+}
+
+
+getTableData = () => {
   API.getTablesData()
   .then(res => this.handleTableData(res.data))
   .catch(err => console.log(err));
@@ -71,7 +96,7 @@ hadleMenuData = (data) => {
 }
 
 handleDataTable = (id, data) =>{
-   console.log (data.customerId);
+  this.getCurrentOrderData(data);   
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -80,9 +105,11 @@ API.getCustomer(data.customerId)
 handleDisplayCustomerInfo = data =>{
   console.log(data);
   this.setState({
+    faceId: data.customerId,
     firstName: data.customerName,
     table: data.tableNumber,
-    tableImg: data.tableImg
+    tableImg: data.tableImg,
+    
   })
 }
 
@@ -101,19 +128,33 @@ handleDisplayCustomerInfo = data =>{
         </Col>
         </Row>
         <Row>
-          <Col size="md-6">
+          <Col size="md-4">
             <h3>Beverage</h3>
             <p>{this.state.bevPref}</p>
             <h3>Restrictions</h3>
             <p>{this.state.restriction}</p>
           </Col>
-          <Col size="md-6">
+          <Col size="md-4">
           <h3>Food</h3>
           <p>Appetizer: {this.state.appPref}</p>
           <p>Protein: {this.state.protPref}</p>
           <p>Vegetable: {this.state.vegPref}</p>
           <p>Starch: {this.state.starchPref}</p>
           <p>Dessert: {this.state.dessertPref}</p>
+        </Col>
+        <Col size="md-4">
+        <h3>Current Order</h3>
+        <Wrapper>
+            {this.state.orders
+               .map(order => (
+                <OrderCard
+                  key={order._id}
+                  dishName={order.dishName}
+                  alias={order.alias}
+                  menuSelection={order.menuSelection}
+                  price={order.price}
+          />))}
+        </Wrapper>
         </Col>
         </Row>
         <Row>
@@ -146,8 +187,10 @@ handleDisplayCustomerInfo = data =>{
                   key={dishes._id}
                   date={dishes.date}
                   dishName={dishes.dishName}
+                  alias={dishes.alias}
                   menuSelection={dishes.menuSelection}
-                  postOrder={this.postOrder}
+                  price={dishes.price}
+                  postOrderData={this.postOrderData}
               />))}
                   
           </Wrapper> 
@@ -185,6 +228,7 @@ handleDisplayCustomerInfo = data =>{
                   customerId={table.customerId}
                   customerName={table.customerName}
                   handleDataTable={this.handleDataTable}
+                  getCurrentOrderData={this.getCurrentOrderData}
               />))}
                   
           </Wrapper> 

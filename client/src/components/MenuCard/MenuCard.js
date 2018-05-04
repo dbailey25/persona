@@ -3,7 +3,7 @@ import "./MenuCard.css";
 
 // Character card component
 const CharacterCard = props => (
-  <button onClick={() => props.postOrder(props)}>
+  <button onClick={() => props.postOrderData(props)}>
        {props.dishName}
   </button>
   

@@ -2,11 +2,12 @@ import axios from "axios";
 
 export default {
 
-  // checks AWS for image match
+  // checks AWS for photo match
   checkImg: function(imageData) {
     return axios.post("/api/aws", {imageData});
   },
 
+  //add photo to AWS collection
   addImg: function(imageData) {
     return axios.post("/api/aws/collection", {imageData});
   },
@@ -26,10 +27,13 @@ export default {
     return axios.get("api/menu")
   },
 
-  // Order Data
+  //Orders Data
   postOrder: function(data){
-    console.log(data);
-    return axios.post("api/orders/", data)
+    return axios.post("api/order/", data)
+  },
+
+  getOrder: function(id){
+    return axios.get("api/order/current-order/customer/" + id)
   },
 
   //Table Data
