@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import UserName from "../../components/UserName";
-import TableAssign from "../../components/TableAssign";
+// import TableAssign from "../../components/TableAssign";
 import API from "../../utils/API";
-import { Col, Row } from "../../components/Grid";
+import { Row } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
-import MenuCard from "../../components/MenuCard";
+import TableCard from "../../components/TableCard";
 
 class Host extends Component {
   state = {
@@ -18,7 +18,8 @@ class Host extends Component {
       initialPhoto: "",
       addPicVisibility: 'invisible',
       currentPicVisibility: 'invisible',
-      initialPicVisibility: 'invisible'
+      initialPicVisibility: 'invisible',
+      tables: []
   }
 
   setRef = (webcam) => {
@@ -47,6 +48,7 @@ class Host extends Component {
       } else if (res.data.message) {
         matchResult = res.data.message
       } else if (res.data.FaceMatches) {
+        this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
         API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
         this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
       );
@@ -109,6 +111,34 @@ class Host extends Component {
     });
   };
 
+  getTableData = () => {
+   API.getTablesData()
+   .then(res => this.handleTableData(res.data))
+   .catch(err => console.log(err));
+  }
+
+  handleTableData = data => {
+    for (let value of data){
+      if(value.tableAvailability === "available"){
+        value.tableImg = "/images/table.png";
+     };
+     this.setState({tables: data});
+  }
+  console.log(this.state.tables);
+}
+
+handlePutTable = (id, data) =>{
+    console.log (this.state.faceId);
+ API.putTable(id, {
+  tableNumber: data.tableNumber,
+  tableAvailability: "occupied",
+  customerId: this.state.faceId,
+  tableImg: this.state.initialPhoto,
+  customerName: this.state.matchName,
+ })
+ .then(res=>console.log(data))
+ .catch(err => console.log(err));
+}
 
   render() {
     return (
@@ -124,15 +154,15 @@ class Host extends Component {
         currentPicVisibility={this.state.currentPicVisibility}
         initialPicVisibility={this.state.initialPicVisibility}
         />
-        <TableAssign
+        {/* <TableAssign
         initialPicVisibility={this.state.initialPicVisibility}
-        />
+        /> */}
         <AddImage
         visibility={this.state.addPicVisibility}
         addPhoto={this.addPhoto}
         handleInputChange={this.handleInputChange}/>
          <Row>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
+        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#orderModal" onClick={this.getTableData}>Table</button>
         </Row>
 
         {/* Modal =======================================================================*/}
@@ -141,7 +171,7 @@ class Host extends Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="orderModalLabel">Order for First Name: {this.state.firstName} Last Name: {this.state.lastName}
+                <h5 className="modal-title" id="orderModalLabel">Tables
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -151,21 +181,24 @@ class Host extends Component {
                 
 
           <Wrapper>
-            {/* {this.state.menu
-               .map(dishes => (
-                <MenuCard
-                  key={dishes._id}
-                  date={dishes.date}
-                  dishName={dishes.dishName}
-                  menuSelection={dishes.menuSelection}
-                  postOrder={this.postOrder}
-              />))} */}
+          {this.state.tables
+               .map(table => (
+                <TableCard
+                  key={table._id}
+                  date={table.date}
+                  tableNumber={table.tableNumber}
+                  tableImg={table.tableImg}
+                  tableAvailability={table.tableAvailability}
+                  customerId={table.customerId}
+                  customerName={table.customerName}
+                  handlePutTable={this.handlePutTable}
+              />))}
                   
           </Wrapper> 
                 
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>
+               
               </div>
             </div>
           </div>
