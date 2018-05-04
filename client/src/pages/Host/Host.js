@@ -127,7 +127,7 @@ class Host extends Component {
   console.log(this.state.tables);
 }
 
-handlePutTable = (id, data) =>{
+handleDataTable = (id, data) =>{
     console.log (this.state.faceId);
  API.putTable(id, {
   tableNumber: data.tableNumber,
@@ -162,12 +162,12 @@ handlePutTable = (id, data) =>{
         addPhoto={this.addPhoto}
         handleInputChange={this.handleInputChange}/>
          <Row>
-        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#orderModal" onClick={this.getTableData}>Table</button>
+        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Table</button>
         </Row>
 
         {/* Modal =======================================================================*/}
 
-        <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
@@ -191,7 +191,7 @@ handlePutTable = (id, data) =>{
                   tableAvailability={table.tableAvailability}
                   customerId={table.customerId}
                   customerName={table.customerName}
-                  handlePutTable={this.handlePutTable}
+                  handleDataTable={this.handleDataTable}
               />))}
                   
           </Wrapper> 
