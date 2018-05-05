@@ -5,6 +5,14 @@ import { Col, Row, Container } from "../../components/Grid";
 import { ImageCapture } from "../../components/ImageCapture";
 import API from "../../utils/API";
 
+import { Redirect } from "react-router-dom";
+// import Waiter from "../../pages/Waiter";
+// import NoMatch from "../../pages/NoMatch";
+// import Nav from "../../components/Nav";
+// import Footer from "../../components/Footer";
+
+
+
 class Login extends Component {
   state = {
     lastPhoto: "",
@@ -15,7 +23,8 @@ class Login extends Component {
     initialPhoto: "",
     addPicVisibility: 'invisible',
     currentPicVisibility: 'invisible',
-    initialPicVisibility: 'invisible'
+    initialPicVisibility: 'invisible',
+    redirect: false
     };
 
     setRef = (webcam) => {
@@ -35,25 +44,32 @@ class Login extends Component {
         .then(res => handleMatchResult(res))
         .catch(err => console.log(err));
 
+        const enableRedirect = () => {
+          this.setState({redirect: true})
+          console.log("state.redirect", this.state.redirect);
+        };
+
+
       const handleMatchResult = res => {
         console.log(res.data);
-        let matchResult = ''
-        if (res.data === 'Not recognized') {
-          matchResult = 'Not recognized. Please see manager.';
-        } else if (res.data.message) {
-          matchResult = res.data.message
-        } else if (res.data.FaceMatches) {
-          API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
-          this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
+        let matchResult = '';
+          if (res.data === 'Not recognized') {
+            matchResult = 'Not recognized. Please see manager.';
+            this.setState({matchName: matchResult})
+          } else if (res.data.message) {
+            matchResult = res.data.message
+            this.setState({matchName: matchResult})
+          } else if (res.data.FaceMatches) {
+            API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
+            this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
+            enableRedirect(),
           );
-
-         const handleDisplayData = data => {
-            this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId})
+           const handleDisplayData = data => {
+              this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId});
+            };
+          } else {
+            matchResult = 'Unexpected result'
           }
-        } else {
-          matchResult = 'Unexpected result'
-        }
-        this.setState({matchName: matchResult})
      } // end function, handleMatchResult
 
    }; // end function, capture
@@ -104,6 +120,11 @@ class Login extends Component {
     };
 
   render() {
+    const redirect = this.state.redirect;
+console.log('redirect', redirect);
+    if (redirect) {
+      return <Redirect to='/waiter'/>;
+    }
     return (
       <div>
         <Container>

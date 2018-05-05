@@ -16,9 +16,8 @@ class Customer extends Component {
       initialPhoto: "",
       addPicVisibility: 'invisible',
       currentPicVisibility: 'invisible',
-      initialPicVisibility: 'invisible',
-      menu: []
-}
+      initialPicVisibility: 'invisible'
+  }
 
   setRef = (webcam) => {
     this.webcam = webcam;
@@ -108,57 +107,8 @@ class Customer extends Component {
     });
   };
 
-
-
-
-  getMenuData = event => {
-    event.preventDefault();
-    API.getMenuData()
-  .then(res => this.hadleMenuData(res.data))
-  .catch(err => console.log(err));
-  }
-
-  handleMenuData = (data) => {
-    this.setState({menu: data});
-   console.log(this.state.menu);
-   }
-
-  writeTable = () => {
-    console.log("writeTable");
-    const maxVisits = 5;
-    var dishNumber = 1;
-    let dishes = this.state.menu;
-
-    var html = `<td>${dishes[dishNumber].dishName}</td>`;
-      for (var i = 0; i < dishes.length ; i++) {
-          // add opening <tr> tag to the string:
-          html += '<tr>';
-          for (var j = 0; j < maxVisits; j++) {
-              // add <td> elements to the string:
-              html += `<td>
-              <MenuCheckBox
-                key=${dishes[dishNumber]._id}
-                date=${dishes[dishNumber].date}
-                dishName=${dishes[dishNumber].dishName}
-                menuSelection=${dishes[dishNumber].menuSelection}
-                postOrder=${this.postOrder}
-              />
-              </td>`;
-              dishNumber++;
-          }
-          // add closing </tr> tag to the string:
-          html += '</tr>';
-      }
-      //append created html to the table body:
-      $('#body').append(html);
-      // reset the count:
-      dishNumber = 1;
-}
-
-
-
-  postOrder = (data) => {
-    alert(data.dishName, "was ordered");
+  postOrder = event => {
+    alert($(this).val());
     // API.postOrder(
     //   {
     //     faceId: this.state.faceId,
@@ -194,7 +144,6 @@ class Customer extends Component {
         handleInputChange={this.handleInputChange}/>
         <BulkOrder
         visibility={this.state.initialPicVisibility}
-        menu={this.state.menu}
         postOrder={this.postOrder} />
       </div>
     );
