@@ -9,12 +9,34 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
+  findHistoricalData: function(req, res) {
     db.Order
-      .findById(req.params.id)
+      .aggregate([
+        {$match:{customerId: req.params.id}},
+        {$sortByCount:"$dishName"}
+      ])
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  findCurrentOrders: function(req, res){
+    db.Order
+      .find({customerId: req.params.id, orderStatus:"open"})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  findTotalOrders: function(req, res){
+    db.Order
+      .aggregate([
+        { $match: { customerId: req.params.id, orderStatus:"open"} },
+        {$group:{_id:"$dishName", total:{$sum: "$price"}}},
+        { $sort: { total: -1 } }
+      ])
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   create: function(req, res) {
     db.Order
       .create(req.body)
