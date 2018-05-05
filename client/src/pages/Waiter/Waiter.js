@@ -95,6 +95,7 @@ getTableData = () => {
     this.setState({tables: data});
  }
  console.log(this.state.tables);
+ 
 }
 
 handleDataTable = (id, data) =>{
@@ -113,6 +114,10 @@ handleDisplayCustomerInfo = data =>{
     tableImg: data.tableImg,
     
   })
+
+  API.getHistoricalData(data.customerId)
+   .then(res => console.log(res.data))
+   .catch(err => console.log(err));
 }
 
 

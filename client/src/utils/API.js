@@ -40,6 +40,10 @@ export default {
     return axios.get("api/order/total/customer/" + id)
   },
 
+  getHistoricalData: function(id){
+    return axios.get("api/order/" + id)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")

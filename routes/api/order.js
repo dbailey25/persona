@@ -9,7 +9,7 @@ router.route("/")
 // Matches with "/api/order/:id"
 router
   .route("/:id")
-  .get(ordersController.findById)
+  .get(ordersController.findHistoricalData)
   .put(ordersController.update)
   .delete(ordersController.remove);
 
