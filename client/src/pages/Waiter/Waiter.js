@@ -99,6 +99,7 @@ getTableData = () => {
 }
 
 handleDataTable = (id, data) =>{
+  console.log(data)
   this.getCurrentOrderData(data);   
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
@@ -164,9 +165,6 @@ handleHistoricalData = data => {
    let obj6 = Math.max.apply(Math,dessert.map(function(o){return o.value;}));
    let dess = dessert.find(function(o){ return o.value === obj6; });
 
-  
-
- 
    this.setState({
     bevPref: bev.dish,
     appPref: app.dish,
@@ -186,6 +184,17 @@ getCheck = () => {
 
 handleTotalCheck = data => {
   this.setState({check: data})
+};
+
+closeTable = () =>{
+alert("hello")  
+  API.closeCurrentOrders(this.state.faceId)
+  .then(res=> console.log(res.data))
+  .catch(err => console.log(err));
+
+  API.closeTable(this.state.table)
+  .then(res=> console.log(res.data))
+  .catch(err => console.log(err));
 }
 
   render() {
@@ -332,7 +341,7 @@ handleTotalCheck = data => {
           </Wrapper> 
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Close Table</button>
+                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
               </div>
             </div>
           </div>

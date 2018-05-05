@@ -44,6 +44,11 @@ export default {
     return axios.get("api/order/" + id)
   },
 
+  closeCurrentOrders: function(id){
+    console.log(id)
+    return axios.put("api/order/closed/" + id)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")
@@ -51,5 +56,10 @@ export default {
 
   putTable: function(id, data){
     return axios.put("api/table/" + id, data)
-  }
+  },
+
+  closeTable: function(id){
+    console.log(id);
+    return axios.put("api/table/closed/" + id)
+  },
 };
