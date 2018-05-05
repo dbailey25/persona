@@ -69,7 +69,7 @@ postOrderData = (data) =>{
 }
 
 getCurrentOrderData = data =>{
-  
+
  API.getOrder(data.customerId)
  .then(res => this.handleDisplayOrders(res.data))
  .catch(err => console.log(err));
@@ -95,11 +95,11 @@ getTableData = () => {
     this.setState({tables: data});
  }
  console.log(this.state.tables);
- 
+
 }
 
 handleDataTable = (id, data) =>{
-  this.getCurrentOrderData(data);   
+  this.getCurrentOrderData(data);
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -112,10 +112,21 @@ handleDisplayCustomerInfo = data =>{
     firstName: data.customerName,
     table: data.tableNumber,
     tableImg: data.tableImg,
-    
+
   })
 
   API.getHistoricalData(data.customerId)
+   // .then(res => this.setState(
+   //   {
+   //     bevPref: data.,
+   //     restriction: "None",
+   //     appPref: "N/A",
+   //     protPref: "N/A",
+   //     vegPref: "N/A",
+   //     starchPref: "N/A",
+   //     dessertPref: "N/A",
+   //   }
+   // ))
    .then(res => console.log(res.data))
    .catch(err => console.log(err));
 }
@@ -209,11 +220,11 @@ handleTotalCheck = data => {
                   menuSelection={dishes.menuSelection}
                   price={dishes.price}
                   postOrderData={this.postOrderData}
-              />))}     
-          </Wrapper> 
+              />))}
+          </Wrapper>
               </div>
               <div className="modal-footer">
-               
+
               </div>
             </div>
           </div>
@@ -229,7 +240,7 @@ handleTotalCheck = data => {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">           
+              <div className="modal-body">
           <Wrapper>
           {this.state.tables
                .map(table => (
@@ -244,7 +255,7 @@ handleTotalCheck = data => {
                   handleDataTable={this.handleDataTable}
                   getCurrentOrderData={this.getCurrentOrderData}
               />))}
-          </Wrapper> 
+          </Wrapper>
               </div>
               <div className="modal-footer">
               </div>
@@ -270,9 +281,9 @@ handleTotalCheck = data => {
                 <CheckCard
                   key={dish._id}
                   dish={dish._id}
-                  total={dish.total}                  
-              />))}    
-          </Wrapper> 
+                  total={dish.total}
+              />))}
+          </Wrapper>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Close Table</button>
