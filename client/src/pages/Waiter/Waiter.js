@@ -116,11 +116,68 @@ handleDisplayCustomerInfo = data =>{
   })
 
   API.getHistoricalData(data.customerId)
-   .then(res => console.log(res.data))
+   .then(res => this.handleHistoricalData(res.data))
    .catch(err => console.log(err));
 }
 
+handleHistoricalData = data => {
+  let appetizer = [{dish: "N/A", value: 0}];
+  let beverage = [{dish: "N/A", value: 0}];
+  let protein = [{dish: "N/A", value: 0}];
+  let vegetable = [{dish: "N/A", value: 0}];
+  let starch = [{dish: "N/A", value: 0}];
+  let dessert = [{dish: "N/A", value: 0}];
+ 
 
+  for (let value of data){
+    if(value._id.menu === "Appetizer"){
+      appetizer.push({dish: value._id.dish, value: value.count});
+    }else if(value._id.menu === "Beverage"){
+      beverage.push({dish: value._id.dish, value: value.count});
+    }else if(value._id.menu === "Protein"){
+      protein.push({dish: value._id.dish, value: value.count});
+    }else if(value._id.menu === "Vegetable"){
+      vegetable.push({dish: value._id.dish, value: value.count});
+    }else if(value._id.menu === "Starch"){
+      starch.push({dish: value._id.dish, value: value.count});
+    }else if(value._id.menu === "Dessert"){
+      dessert.push({dish: value._id.dish, value: value.count});
+    }
+    }
+  
+
+   let obj1 = Math.max.apply(Math,appetizer.map(function(o){return o.value;}));
+   let app = appetizer.find(function(o){ return o.value === obj1; });
+
+   let obj2 = Math.max.apply(Math,beverage.map(function(o){return o.value;}));
+   let bev = beverage.find(function(o){ return o.value === obj2; });
+
+   let obj3 = Math.max.apply(Math,protein.map(function(o){return o.value;}));
+   let prot = protein.find(function(o){ return o.value === obj3; });
+
+   let obj4 = Math.max.apply(Math,vegetable.map(function(o){return o.value;}));
+   let veg = vegetable.find(function(o){ return o.value === obj4; });
+
+   let obj5 = Math.max.apply(Math,starch.map(function(o){return o.value;}));
+   let star = starch.find(function(o){ return o.value === obj5; });
+
+   let obj6 = Math.max.apply(Math,dessert.map(function(o){return o.value;}));
+   let dess = dessert.find(function(o){ return o.value === obj6; });
+
+  
+
+ 
+   this.setState({
+    bevPref: bev.dish,
+    appPref: app.dish,
+    protPref: prot.dish,
+    vegPref: veg.dish,
+    starchPref: star.dish,
+    dessertPref: dess.dish
+   }) 
+}
+
+ 
 getCheck = () => {
   API.getTotalAmount(this.state.faceId)
   .then(res=>this.handleTotalCheck(res.data))

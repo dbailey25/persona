@@ -13,7 +13,16 @@ module.exports = {
     db.Order
       .aggregate([
         {$match:{customerId: req.params.id}},
-        {$sortByCount:"$dishName"}
+        { $group: { 
+          _id: {dish:"$dishName", menu: "$menuSelection" }, 
+         count:{$sum:1}
+         
+        },
+        
+        },
+        
+
+        // {$group: {menu: "$menuSelection",count:{$count: 1}}}
       ])
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
