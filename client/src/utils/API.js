@@ -36,6 +36,10 @@ export default {
     return axios.get("api/order/current-order/customer/" + id)
   },
 
+  getTotalAmount: function(id){
+    return axios.get("api/order/total/customer/" + id)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")

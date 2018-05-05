@@ -4,10 +4,8 @@ import "./OrderCard.css";
 // Character card component
 const OrderCard = props => (
   <div>
-
-        
-        <p>{props.dishName}: {props.price}</p>
        
+        <p>{props.dishName}: {props.price}</p>
    
   </div>
 );

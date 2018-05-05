@@ -6,6 +6,7 @@ import "./Waiter.css"
 import API from "../../utils/API";
 import TableCard from "../../components/TableCard";
 import OrderCard from "../../components/OrderCard";
+import CheckCard from "../../components/CheckCard";
 
 class Waiter extends Component {
   state = {
@@ -24,7 +25,8 @@ class Waiter extends Component {
     tableImg: "",
     menu: [],
     tables: [],
-    orders: []
+    orders: [],
+    check: []
     };
 
 
@@ -113,6 +115,17 @@ handleDisplayCustomerInfo = data =>{
   })
 }
 
+
+getCheck = () => {
+  API.getTotalAmount(this.state.faceId)
+  .then(res=>this.handleTotalCheck(res.data))
+  .catch(err => console.log(err));
+}
+
+handleTotalCheck = data => {
+  this.setState({check: data})
+}
+
   render() {
     return (
       <div>
@@ -164,9 +177,11 @@ handleDisplayCustomerInfo = data =>{
         <Row>
         <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Table</button>
         </Row>
-
+        <br></br>
+        <Row>
+        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#calculationModal" onClick={this.getCheck}>Calculation</button>
+        </Row>
         {/* Menu Modal =======================================================================*/}
-
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -178,8 +193,6 @@ handleDisplayCustomerInfo = data =>{
                 </button>
               </div>
               <div className="modal-body">
-                
-
           <Wrapper>
             {this.state.menu
                .map(dishes => (
@@ -191,13 +204,11 @@ handleDisplayCustomerInfo = data =>{
                   menuSelection={dishes.menuSelection}
                   price={dishes.price}
                   postOrderData={this.postOrderData}
-              />))}
-                  
+              />))}     
           </Wrapper> 
-                
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Send Order</button>
+               
               </div>
             </div>
           </div>
@@ -213,9 +224,7 @@ handleDisplayCustomerInfo = data =>{
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">
-                
-
+              <div className="modal-body">           
           <Wrapper>
           {this.state.tables
                .map(table => (
@@ -230,17 +239,42 @@ handleDisplayCustomerInfo = data =>{
                   handleDataTable={this.handleDataTable}
                   getCurrentOrderData={this.getCurrentOrderData}
               />))}
-                  
           </Wrapper> 
-                
               </div>
               <div className="modal-footer">
-               
               </div>
             </div>
           </div>
         </div>
 
+     {/* Calculation Modal =======================================================================*/}
+     <div className="modal fade" id="calculationModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="orderModalLabel">Order for First Name: {this.state.firstName} Last Name: {this.state.lastName}
+                </h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+          <Wrapper>
+            {this.state.check
+               .map(dish => (
+                <CheckCard
+                  key={dish._id}
+                  dish={dish._id}
+                  total={dish.total}                  
+              />))}    
+          </Wrapper> 
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.handleFormSubmit}>Close Table</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

@@ -12,7 +12,12 @@ router
   .get(ordersController.findById)
   .put(ordersController.update)
   .delete(ordersController.remove);
-router
+
+  router
   .route("/current-order/customer/:id")
-  .get(ordersController.findCurrentOrders)
+  .get(ordersController.findCurrentOrders);
+
+router
+  .route("/total/customer/:id")
+  .get(ordersController.findTotalOrders)
 module.exports = router;
