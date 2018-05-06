@@ -69,7 +69,7 @@ postOrderData = (data) =>{
 }
 
 getCurrentOrderData = data =>{
-  
+
  API.getOrder(data.customerId)
  .then(res => this.handleDisplayOrders(res.data))
  .catch(err => console.log(err));
@@ -95,12 +95,16 @@ getTableData = () => {
     this.setState({tables: data});
  }
  console.log(this.state.tables);
- 
+
 }
 
 handleDataTable = (id, data) =>{
+<<<<<<< HEAD
   console.log(data)
   this.getCurrentOrderData(data);   
+=======
+  this.getCurrentOrderData(data);
+>>>>>>> 3f1310a1baf6b862a34a90eebbf587e18facb81f
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -113,7 +117,7 @@ handleDisplayCustomerInfo = data =>{
     firstName: data.customerName,
     table: data.tableNumber,
     tableImg: data.tableImg,
-    
+
   })
 
   API.getHistoricalData(data.customerId)
@@ -128,7 +132,7 @@ handleHistoricalData = data => {
   let vegetable = [{dish: "N/A", value: 0}];
   let starch = [{dish: "N/A", value: 0}];
   let dessert = [{dish: "N/A", value: 0}];
- 
+
 
   for (let value of data){
     if(value._id.menu === "Appetizer"){
@@ -145,7 +149,7 @@ handleHistoricalData = data => {
       dessert.push({dish: value._id.dish, value: value.count});
     }
     }
-  
+
 
    let obj1 = Math.max.apply(Math,appetizer.map(function(o){return o.value;}));
    let app = appetizer.find(function(o){ return o.value === obj1; });
@@ -165,6 +169,12 @@ handleHistoricalData = data => {
    let obj6 = Math.max.apply(Math,dessert.map(function(o){return o.value;}));
    let dess = dessert.find(function(o){ return o.value === obj6; });
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 3f1310a1baf6b862a34a90eebbf587e18facb81f
    this.setState({
     bevPref: bev.dish,
     appPref: app.dish,
@@ -172,10 +182,10 @@ handleHistoricalData = data => {
     vegPref: veg.dish,
     starchPref: star.dish,
     dessertPref: dess.dish
-   }) 
+   })
 }
 
- 
+
 getCheck = () => {
   API.getTotalAmount(this.state.faceId)
   .then(res=>this.handleTotalCheck(res.data))
@@ -278,11 +288,11 @@ emptyCurrentOrders = () =>{
                   menuSelection={dishes.menuSelection}
                   price={dishes.price}
                   postOrderData={this.postOrderData}
-              />))}     
-          </Wrapper> 
+              />))}
+          </Wrapper>
               </div>
               <div className="modal-footer">
-               
+
               </div>
             </div>
           </div>
@@ -298,7 +308,7 @@ emptyCurrentOrders = () =>{
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">           
+              <div className="modal-body">
           <Wrapper>
           {this.state.tables
                .map(table => (
@@ -313,7 +323,7 @@ emptyCurrentOrders = () =>{
                   handleDataTable={this.handleDataTable}
                   getCurrentOrderData={this.getCurrentOrderData}
               />))}
-          </Wrapper> 
+          </Wrapper>
               </div>
               <div className="modal-footer">
               </div>
@@ -339,9 +349,9 @@ emptyCurrentOrders = () =>{
                 <CheckCard
                   key={dish._id}
                   dish={dish._id}
-                  total={dish.total}                  
-              />))}    
-          </Wrapper> 
+                  total={dish.total}
+              />))}
+          </Wrapper>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
