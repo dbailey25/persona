@@ -39,7 +39,7 @@ class Login extends Component {
       const lastPhoto = this.webcam.getScreenshot();
       this.setState( {lastPhoto});
 
-      API.checkImg(
+      API.checkEmployeesImg(
         lastPhoto,
         )
         .then(res => handleMatchResult(res))
@@ -86,7 +86,16 @@ class Login extends Component {
 
     addPhoto = event => {
       event.preventDefault();
+<<<<<<< HEAD
       API.addImg( {
+=======
+      console.log("Host-addPhoto");
+      // const name = this.state.name;
+      // this.setState({name});
+      console.log('lastPhoto', this.state.lastPhoto);
+      console.log('name', this.state.name);
+      API.addEmployeesImg( {
+>>>>>>> master
         lastPhoto: this.state.lastPhoto,
         name: this.state.name
         }

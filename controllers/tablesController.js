@@ -27,6 +27,18 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+
+  updateAsClosed: function(req, res) {
+    db.Table
+      .findOneAndUpdate({ tableNumber: req.params.id }, {
+        tableAvailability: "available",
+        customerId: undefined,
+        customerName: "",
+        tableImg: ""})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }, 
+
   remove: function(req, res) {
     db.Table
       .findById({ _id: req.params.id })

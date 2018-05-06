@@ -2,14 +2,24 @@ import axios from "axios";
 
 export default {
 
-  // checks AWS for photo match
+  // checks AWS for customer photo match
   checkImg: function(imageData) {
     return axios.post("/api/aws", {imageData});
   },
 
-  //add photo to AWS collection
+  //add customer photo to AWS collection
   addImg: function(imageData) {
     return axios.post("/api/aws/collection", {imageData});
+  },
+
+   // checks AWS for customer photo match
+   checkEmployeesImg: function(imageData) {
+    return axios.post("/api/aws/employees", {imageData});
+  },
+
+  //add customer photo to AWS collection
+  addEmployeesImg: function(imageData) {
+    return axios.post("/api/aws/collection/employees", {imageData});
   },
 
   // Customer Data
@@ -44,6 +54,11 @@ export default {
     return axios.get("api/order/" + id)
   },
 
+  closeCurrentOrders: function(id){
+    console.log(id)
+    return axios.put("api/order/closed/" + id)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")
@@ -51,5 +66,10 @@ export default {
 
   putTable: function(id, data){
     return axios.put("api/table/" + id, data)
-  }
+  },
+
+  closeTable: function(id){
+    console.log(id);
+    return axios.put("api/table/closed/" + id)
+  },
 };

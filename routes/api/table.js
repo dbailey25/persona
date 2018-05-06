@@ -13,4 +13,8 @@ router
   .put(tablesController.update)
   .delete(tablesController.remove);
 
+router
+  .route("/closed/:id")
+  .put(tablesController.updateAsClosed)
+  
 module.exports = router;

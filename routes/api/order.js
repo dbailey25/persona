@@ -13,11 +13,16 @@ router
   .put(ordersController.update)
   .delete(ordersController.remove);
 
-  router
+router
   .route("/current-order/customer/:id")
   .get(ordersController.findCurrentOrders);
 
 router
   .route("/total/customer/:id")
   .get(ordersController.findTotalOrders)
-module.exports = router;
+
+router
+  .route("/closed/:id")
+  .put(ordersController.findOrdersAndClose)
+  
+  module.exports = router;

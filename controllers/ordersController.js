@@ -16,14 +16,16 @@ module.exports = {
         { $group: { 
           _id: {dish:"$dishName", menu: "$menuSelection" }, 
          count:{$sum:1}
-         
+         },
         },
-        
-        },
-        
-
-        // {$group: {menu: "$menuSelection",count:{$count: 1}}}
       ])
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
+  findOrdersAndClose: function(req, res){
+    db.Order
+      .updateMany({customerId: req.params.id}, {orderStatus:"closed"})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
