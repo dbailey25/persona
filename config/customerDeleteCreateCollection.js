@@ -18,9 +18,6 @@
 var config = require('./config')
 
 var AWS = require('aws-sdk');
-
-var uuid = require('node-uuid');
-var fs = require('fs-extra');
 var path = require('path');
 
 AWS.config.region = config.region;

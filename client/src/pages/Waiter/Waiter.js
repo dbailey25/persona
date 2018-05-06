@@ -186,15 +186,18 @@ handleTotalCheck = data => {
   this.setState({check: data})
 };
 
-closeTable = () =>{
-alert("hello")  
+closeTable = () =>{ 
   API.closeCurrentOrders(this.state.faceId)
-  .then(res=> console.log(res.data))
+  .then(res=> this.emptyCurrentOrders(res.data))
   .catch(err => console.log(err));
 
   API.closeTable(this.state.table)
   .then(res=> console.log(res.data))
   .catch(err => console.log(err));
+}
+
+emptyCurrentOrders = () =>{
+  this.setState({orders:[]})
 }
 
   render() {

@@ -28,7 +28,7 @@ class Login extends Component {
       const lastPhoto = this.webcam.getScreenshot();
       this.setState( {lastPhoto});
 
-      API.checkImg(
+      API.checkEmployeesImg(
         lastPhoto,
         )
         // .then(res => console.log(res.data))
@@ -65,7 +65,7 @@ class Login extends Component {
       // this.setState({name});
       console.log('lastPhoto', this.state.lastPhoto);
       console.log('name', this.state.name);
-      API.addImg( {
+      API.addEmployeesImg( {
         lastPhoto: this.state.lastPhoto,
         name: this.state.name
         }

@@ -2,14 +2,24 @@ import axios from "axios";
 
 export default {
 
-  // checks AWS for photo match
+  // checks AWS for customer photo match
   checkImg: function(imageData) {
     return axios.post("/api/aws", {imageData});
   },
 
-  //add photo to AWS collection
+  //add customer photo to AWS collection
   addImg: function(imageData) {
     return axios.post("/api/aws/collection", {imageData});
+  },
+
+   // checks AWS for customer photo match
+   checkEmployeesImg: function(imageData) {
+    return axios.post("/api/aws/employees", {imageData});
+  },
+
+  //add customer photo to AWS collection
+  addEmployeesImg: function(imageData) {
+    return axios.post("/api/aws/collection/employees", {imageData});
   },
 
   // Customer Data
