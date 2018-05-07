@@ -17,7 +17,7 @@ export default {
     return axios.post("/api/aws/employees", {imageData});
   },
 
-  //add customer photo to AWS collection
+  //add employee photo to AWS collection
   addEmployeesImg: function(imageData) {
     return axios.post("/api/aws/collection/employees", {imageData});
   },

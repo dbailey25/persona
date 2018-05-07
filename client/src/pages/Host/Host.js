@@ -44,18 +44,20 @@ class Host extends Component {
       let matchResult = ''
       if (res.data === 'Not recognized') {
         matchResult = 'Not recognized';
-        this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible'});
+        this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult});
       } else if (res.data.message) {
         matchResult = res.data.message
       } else if (res.data.FaceMatches) {
         this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
         API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
         this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
+        matchResult = res.data.FaceMatches[0].Face.ExternalImageId
       );
 
-       const handleDisplayData = data => {
-          this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId})
-        }
+       const handleDisplayData = data => (
+          this.setState({initialPhoto: data.photo})
+           // matchResult = data.FaceMatches[0].Face.ExternalImageId
+        )
       } else {
         matchResult = 'Unexpected result'
       }
@@ -99,9 +101,9 @@ class Host extends Component {
     .then(res => handleDisplayData(res.data))
     .catch(err => console.log(err));
     }
-    const handleDisplayData = data => {
+    const handleDisplayData = data => (
       this.setState({initialPhoto: data.photo})
-    }
+    )
   }; // end function, addPhoto
 
   handleInputChange = event => {
@@ -178,7 +180,7 @@ handleDataTable = (id, data) =>{
                 </button>
               </div>
               <div className="modal-body">
-                
+
 
           <Wrapper>
           {this.state.tables
@@ -193,12 +195,12 @@ handleDataTable = (id, data) =>{
                   customerName={table.customerName}
                   handleDataTable={this.handleDataTable}
               />))}
-                  
-          </Wrapper> 
-                
+
+          </Wrapper>
+
               </div>
               <div className="modal-footer">
-               
+
               </div>
             </div>
           </div>
