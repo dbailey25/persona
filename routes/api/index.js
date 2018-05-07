@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const awsRoutes = require("./aws");
 const customerRoutes = require("./customers");
+const employeeRoutes = require("./employees");
 const menuRoutes = require("./menu");
 const orderRoutes = require("./order");
 const tableRoutes = require("./table");
@@ -9,6 +10,8 @@ const tableRoutes = require("./table");
 router.use("/aws", awsRoutes);
 // customer routes
 router.use("/customers", customerRoutes);
+// employee routes
+router.use("/employees", employeeRoutes);
 //Menu routes
 router.use("/menu", menuRoutes);
 //Order routes

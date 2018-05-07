@@ -72,7 +72,7 @@ class Login extends Component {
             this.setState({matchName: matchResult})
           } else if (res.data.FaceMatches) {
             userName = res.data.FaceMatches[0].Face.ExternalImageId;
-            API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
+            API.getEmployee(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
             this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
             roles.some(element => userName.includes(element))? enableRedirect() : alert("Authentication failed. Please see manager.")
           );
@@ -100,25 +100,26 @@ class Login extends Component {
       .catch(err => console.log(err));
 
       const handleAddEmployee = res => {
+        console.log(res);
         this.setState({
           faceId: res.data.FaceId,
           imageName: res.data.ExternalImageId,
-          initialPhoto: res.data.photo
-        });
+          });
+          API.postEmployee(
+            {
+              faceId: this.state.faceId,
+              name: this.state.imageName,
+              photo: this.state.lastPhoto
+            }
+          )
+        .then(res => handleDisplayData(res.data))
+        .catch(err => console.log(err));
       }
-      //   API.postCustomer(
-      //     {
-      //       faceId: this.state.faceId,
-      //       name: this.state.imageName,
-      //       photo: this.state.lastPhoto
-      //     }
-      //   )
-      // .then(res => handleDisplayData(res.data))
-      // .catch(err => console.log(err));
-      // }
-      // const handleDisplayData = data => {
-      //   this.setState({initialPhoto: data.photo})
-      // }
+       
+      
+      const handleDisplayData = data => {
+        this.setState({initialPhoto: data.photo})
+      }
     }; // end function, addPhoto
 
     handleInputChange = event => {
@@ -161,6 +162,7 @@ class Login extends Component {
               visibility={this.state.addPicVisibility}
               addPhoto={this.addPhoto}
               handleInputChange={this.handleInputChange}/>
+              
               </Card>
             </Col>
           </Row>

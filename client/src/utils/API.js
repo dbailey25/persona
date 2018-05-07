@@ -28,8 +28,16 @@ export default {
 },
 
   postCustomer: function(data){
-    console.log(data);
     return axios.post("api/customers/", data)
+  },
+  // Employee Data
+  getEmployee: function(id) {
+    return axios.get("/api/employees/" + id);
+},
+
+  postEmployee: function(data){
+    console.log(data);
+    return axios.post("api/employees/", data)
   },
 
   //Menu Data

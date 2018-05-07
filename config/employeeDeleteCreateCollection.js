@@ -28,16 +28,16 @@ var employeesCollection = config.employeesCollection;
 // AWS allows you to create separate collections of faces to search in. 
 // This creates the collection we'll use.
 
-// function deleteCollection(){
-//     rekognition.deleteCollection( { "CollectionId": config.employeesCollection }, function(err, data) {
-//         if (err) {
-//           console.log(err, err.stack); // an error occurred
-//         } else {
-//           console.log(data);           // successful response
-//           createCollection();
-//         }
-//       });
-// }
+function deleteCollection(){
+    rekognition.deleteCollection( { "CollectionId": config.employeesCollection }, function(err, data) {
+        if (err) {
+          console.log(err, err.stack); // an error occurred
+        } else {
+          console.log(data);           // successful response
+          createCollection();
+        }
+      });
+}
 
 function createCollection() {
 	// Index a dir of faces
@@ -52,4 +52,4 @@ function createCollection() {
 
 
 
-createCollection();
+deleteCollection();
