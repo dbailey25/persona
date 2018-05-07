@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 // import NoMatch from "../../pages/NoMatch";
 // import Nav from "../../components/Nav";
 // import Footer from "../../components/Footer";
-import Checkbox from "../../components/Checkbox";
+import { Button, ButtonGroup } from 'reactstrap';
 
 
 class Login extends Component {
@@ -26,7 +26,8 @@ class Login extends Component {
     initialPicVisibility: 'invisible',
     redirect: false,
     authWaiter: false,
-    authHost: false
+    authHost: false,
+    employeeRole: "",
     };
 
     setRef = (webcam) => {
@@ -35,6 +36,7 @@ class Login extends Component {
 
     capture = () => {
       console.log("Capture initiated");
+      console.log(this.state.employeeRole);
       this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible'});
 
       const lastPhoto = this.webcam.getScreenshot();
@@ -109,7 +111,8 @@ class Login extends Component {
             {
               faceId: this.state.faceId,
               name: this.state.imageName,
-              photo: this.state.lastPhoto
+              photo: this.state.lastPhoto,
+              role: this.state.employeeRole
             }
           )
         .then(res => handleDisplayData(res.data))
@@ -128,6 +131,19 @@ class Login extends Component {
         [name]: value
       });
     };
+   
+    constructor (props) {
+      super(props);
+  
+      this.state = { cSelected: [] };
+  
+      this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+      
+    }
+  
+    onRadioBtnClick(employeeRole) {
+      this.setState({ employeeRole });
+    }
 
   render() {
     const redirect = this.state.redirect;
@@ -165,9 +181,16 @@ class Login extends Component {
               visibility={this.state.addPicVisibility}
               addPhoto={this.addPhoto}
               handleInputChange={this.handleInputChange}/>
-              <Checkbox>
-
-              </Checkbox>
+             
+             <div className={this.state.currentPicVisibility}>
+              <h5>Role: </h5>
+              <ButtonGroup>
+                <Button color="primary" onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
+                <Button color="primary" onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
+              </ButtonGroup>
+              <p>Selected: {this.state.employeeRole}</p>
+            </div>
+                         
               </Card>
             </Col>
           </Row>

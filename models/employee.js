@@ -5,6 +5,7 @@ const employeeSchema = new Schema({
   faceId: { type: String, required: true},
   name: { type: String, required: true },
   photo: { type: String, required: false },
+  role: {type: String, required: false},
   table: { type: Number, required: false },
   date: { type: Date, default: Date.now }
 });
