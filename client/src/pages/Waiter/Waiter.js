@@ -99,12 +99,7 @@ getTableData = () => {
 }
 
 handleDataTable = (id, data) =>{
-<<<<<<< HEAD
-  console.log(data)
-  this.getCurrentOrderData(data);   
-=======
   this.getCurrentOrderData(data);
->>>>>>> 3f1310a1baf6b862a34a90eebbf587e18facb81f
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -169,12 +164,9 @@ handleHistoricalData = data => {
    let obj6 = Math.max.apply(Math,dessert.map(function(o){return o.value;}));
    let dess = dessert.find(function(o){ return o.value === obj6; });
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 3f1310a1baf6b862a34a90eebbf587e18facb81f
    this.setState({
     bevPref: bev.dish,
     appPref: app.dish,
