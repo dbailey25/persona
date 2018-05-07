@@ -10,7 +10,7 @@ import { Redirect } from "react-router-dom";
 // import NoMatch from "../../pages/NoMatch";
 // import Nav from "../../components/Nav";
 // import Footer from "../../components/Footer";
-
+import Checkbox from "../../components/Checkbox";
 
 
 class Login extends Component {
@@ -143,6 +143,9 @@ class Login extends Component {
     if (redirect) {
       return <Redirect to = {nextPage} />;
     }
+
+
+    
     return (
       <div>
         <Container>
@@ -162,7 +165,9 @@ class Login extends Component {
               visibility={this.state.addPicVisibility}
               addPhoto={this.addPhoto}
               handleInputChange={this.handleInputChange}/>
-              
+              <Checkbox>
+
+              </Checkbox>
               </Card>
             </Col>
           </Row>
