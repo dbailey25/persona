@@ -37,7 +37,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  findTotalOrders: function(req, res){
+  findTotalOrdersByDishes: function(req, res){
     db.Order
       .aggregate([
         { $match: { customerId: req.params.id, orderStatus:"open"} },
@@ -46,16 +46,16 @@ module.exports = {
       ])
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-     
-      // .aggregate([
-      //   { $match: { customerId: req.params.id, orderStatus:"open"} },
-      //   {$group:{_id:"$customerId", total:{$sum: "$price"}}},
-      //   { $sort: { total: -1 } }
-      // ])
   },
 
-  findTotal: function(req, res){
+  findTotalOrders: function(req, res){
     db.Order
+    .aggregate([
+      { $match: { customerId: req.params.id, orderStatus:"open"} },
+      {$group:{_id:"$customerId", total:{$sum: "$price"}}}
+    ])
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
 
   },
 

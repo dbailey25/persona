@@ -26,7 +26,8 @@ class Waiter extends Component {
     menu: [],
     tables: [],
     orders: [],
-    check: []
+    check: [],
+    totalCheck: ""
     };
 
 
@@ -69,7 +70,6 @@ postOrderData = (data) =>{
 }
 
 getCurrentOrderData = id =>{
-console.log(id);
  API.getOrder(id)
  .then(res => this.handleDisplayOrders(res.data))
  .catch(err => console.log(err));
@@ -106,7 +106,6 @@ API.getCustomer(data.customerId)
 }
 
 handleDisplayCustomerInfo = data =>{
-  console.log(data);
   this.setState({
     faceId: data.customerId,
     custName: data.customerName,
@@ -177,15 +176,23 @@ handleHistoricalData = data => {
 
 
 getCheck = () => {
-  API.getTotalAmount(this.state.faceId)
+  API.getTotalAmountByDishes(this.state.faceId)
   .then(res=>this.handleTotalCheck(res.data))
+  .catch(err => console.log(err));
+
+  API.getTotalAmount(this.state.faceId)
+  .then(res=>this.displayTotalCheck(res.data))
   .catch(err => console.log(err));
 }
 
 handleTotalCheck = data => {
-  console.log(data)
   this.setState({check: data})
 };
+
+displayTotalCheck = data => {
+  
+  this.setState({totalCheck: data[0].total})
+}
 
 closeTable = () =>{
   API.closeCurrentOrders(this.state.faceId)
@@ -356,7 +363,8 @@ deleteCurrentOrder = (id) => {
           </Wrapper>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
+              <h2>Total: {this.state.totalCheck}</h2>
+                <button type="button" className="btn btn-danger" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
               </div>
             </div>
           </div>
