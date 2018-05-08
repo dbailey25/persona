@@ -19,7 +19,11 @@ router
 
 router
   .route("/total/customer/:id")
-  .get(ordersController.findTotalOrders)
+  .get(ordersController.findTotalOrdersByDishes);
+
+  router
+  .route("/total/:id")
+  .get(ordersController.findTotalOrders);
 
 router
   .route("/closed/:id")

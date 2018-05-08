@@ -54,9 +54,14 @@ export default {
     return axios.get("api/order/current-order/customer/" + id)
   },
 
-  getTotalAmount: function(id){
+  getTotalAmountByDishes: function(id){
     return axios.get("api/order/total/customer/" + id)
   },
+
+  getTotalAmount: function(id){
+    return axios.get("api/order/total/" + id)
+  },
+
 
   getHistoricalData: function(id){
     return axios.get("api/order/" + id)
