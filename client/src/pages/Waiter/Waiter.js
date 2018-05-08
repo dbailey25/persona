@@ -7,6 +7,7 @@ import API from "../../utils/API";
 import TableCard from "../../components/TableCard";
 import OrderCard from "../../components/OrderCard";
 import CheckCard from "../../components/CheckCard";
+import UserName from "../../components/UserName";
 
 class Waiter extends Component {
   state = {
@@ -18,8 +19,7 @@ class Waiter extends Component {
     vegPref: "N/A",
     starchPref: "N/A",
     dessertPref: "N/A",
-    firstName: "N/A",
-    lastName: "N/A",
+    custName: "N/A",
     table: 1,
     position: 1,
     tableImg: "",
@@ -109,7 +109,7 @@ handleDisplayCustomerInfo = data =>{
   console.log(data);
   this.setState({
     faceId: data.customerId,
-    firstName: data.customerName,
+    custName: data.customerName,
     table: data.tableNumber,
     tableImg: data.tableImg,
 
@@ -203,6 +203,8 @@ emptyCurrentOrders = () =>{
   render() {
     return (
       <div>
+      <UserName
+      userName={this.props.location.state.referrer}/>
         <Row>
         <Col size="md-2">
         {/*<img className="image-small" src= {props.lastPhoto} alt="img" />*/}
@@ -210,8 +212,7 @@ emptyCurrentOrders = () =>{
         </Col>
         <Col size="md-10">
         <p>Table: {this.state.table} Position: {this.state.position}</p>
-        <p>First Name: {this.state.firstName}</p>
-        <p>Last Name: {this.state.lastName}</p>
+        <p>Guest Name: {this.state.custName}</p>
         </Col>
         </Row>
         <Row>
@@ -260,7 +261,7 @@ emptyCurrentOrders = () =>{
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="orderModalLabel">Order for First Name: {this.state.firstName} Last Name: {this.state.lastName}
+                <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.custName}
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -326,7 +327,7 @@ emptyCurrentOrders = () =>{
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="orderModalLabel">Order for First Name: {this.state.firstName} Last Name: {this.state.lastName}
+                <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.custName}
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

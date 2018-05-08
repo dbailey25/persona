@@ -52,38 +52,42 @@ class Login extends Component {
 
       const handleMatchResult = res => {
         let matchResult = '';
-        let userName = '';
-        const roles = ['Host_', 'Waiter_'];
+        // let userName = '';
+        // const roles = ['Host_', 'Waiter_'];
         const enableRedirect = () => {
           (() => {
             // console.log('enableRedirect/matchName', this.state.matchName);
-            if (userName.includes('Waiter_')) {
-             this.setState({authWaiter: true})
-          }
-          else if (userName.includes('Host_')) {
-           this.setState({authHost: true})
-          }
+            if (this.state.employeeRole === 'Waiter') {
+               this.setState({authWaiter: true})
+            }
+            else if (this.state.employeeRole === 'Host') {
+             this.setState({authHost: true})
+            }
           }) ()
           this.setState({redirect: true})
         };
-          if (res.data === 'Not recognized') {
-            matchResult = 'Not recognized.';
-            this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult})
-          } else if (res.data.message) {
-            matchResult = res.data.message
-            this.setState({matchName: matchResult})
-          } else if (res.data.FaceMatches) {
-            userName = res.data.FaceMatches[0].Face.ExternalImageId;
-            API.getEmployee(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
-            this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
-            roles.some(element => userName.includes(element))? enableRedirect() : alert("Authentication failed. Please see manager.")
-          );
-           const handleDisplayData = data => {
-              this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId});
-            };
-          } else {
-            matchResult = 'Unexpected result'
-          }
+
+        if (res.data === 'Not recognized') {
+          matchResult = 'Not recognized.';
+          this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult})
+        } else if (res.data.message) {
+          matchResult = res.data.message
+          this.setState({matchName: matchResult})
+        } else if (res.data.FaceMatches) {
+          // userName = res.data.FaceMatches[0].Face.ExternalImageId;
+          API.getEmployee(res.data.FaceMatches[0].Face.FaceId).then(res => handleEmployeeDBData(res.data)).then(()=>{
+            this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'});
+            console.log('role', this.state.employeeRole);
+            enableRedirect()
+          })
+
+         const handleEmployeeDBData = data => {
+           console.log('handleEmployeeDBData', data.role);
+            this.setState({initialPhoto: data.photo, matchName: res.data.FaceMatches[0].Face.ExternalImageId, employeeRole: data.role});
+          };
+        } else {
+          matchResult = 'Unexpected result'
+        }
      } // end function, handleMatchResult
 
    }; // end function, capture
@@ -118,8 +122,8 @@ class Login extends Component {
         .then(res => handleDisplayData(res.data))
         .catch(err => console.log(err));
       }
-       
-      
+
+
       const handleDisplayData = data => {
         this.setState({initialPhoto: data.photo})
       }
@@ -131,22 +135,23 @@ class Login extends Component {
         [name]: value
       });
     };
-   
+
     constructor (props) {
       super(props);
-  
+
       this.state = { cSelected: [] };
-  
+
       this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-      
+
     }
-  
+
     onRadioBtnClick(employeeRole) {
       this.setState({ employeeRole });
     }
 
   render() {
-    const redirect = this.state.redirect;
+    const { redirect, matchName } = this.state;
+    // const redirect = this.state.redirect;
     let nextPage = '';
     (() => {
       if (this.state.authWaiter) {
@@ -157,11 +162,13 @@ class Login extends Component {
     }
     }) ()
     if (redirect) {
-      return <Redirect to = {nextPage} />;
+      return <Redirect to = {{
+        pathname: nextPage, state: {referrer: matchName}
+      }} />;
     }
 
 
-    
+
     return (
       <div>
         <Container>
@@ -181,7 +188,7 @@ class Login extends Component {
               visibility={this.state.addPicVisibility}
               addPhoto={this.addPhoto}
               handleInputChange={this.handleInputChange}/>
-             
+
              <div className={this.state.currentPicVisibility}>
               <h5>Role: </h5>
               <ButtonGroup>
@@ -190,7 +197,7 @@ class Login extends Component {
               </ButtonGroup>
               <p>Selected: {this.state.employeeRole}</p>
             </div>
-                         
+
               </Card>
             </Col>
           </Row>

@@ -9,7 +9,7 @@ import TableCard from "../../components/TableCard";
 
 class Host extends Component {
   state = {
-      userName: 'N/A',
+      // referrer: '',
       lastPhoto: "",
       name: "",
       matchName: "",
@@ -146,7 +146,7 @@ handleDataTable = (id, data) =>{
     return (
       <div>
         <UserName
-        userName={this.state.userName}/>
+        userName={this.props.location.state.referrer}/>
         <ImageCapture
         setRef={this.setRef}
         capture={this.capture}
