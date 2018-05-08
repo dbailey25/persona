@@ -67,7 +67,7 @@ router.route("/employees")
   var bitmap =  Buffer.from(image, 'base64');
   
     rekognition.searchFacesByImage({
-      "CollectionId": config.employeesCollection,
+      "CollectionId": employeesCollection,
       "FaceMatchThreshold": 70,
       "Image": { 
         "Bytes": bitmap,
@@ -88,13 +88,13 @@ router.route("/employees")
 });
 
 router
-  .route("/employees/collection")
+  .route("/collection/employees")
   .post(function (req, res, next) {
     const image = req.body.imageData.lastPhoto.replace("data:image/jpeg;base64,", "");
     const bitmap =  Buffer.from(image, 'base64');
     const name = req.body.imageData.name;
    
-    // console.log(name);
+    console.log(name);
         
     rekognition.indexFaces({
         "CollectionId": employeesCollection,
