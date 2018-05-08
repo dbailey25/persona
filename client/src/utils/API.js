@@ -67,6 +67,11 @@ export default {
     return axios.put("api/order/closed/" + id)
   },
 
+  deleteOrder: function(id){
+    console.log(id)
+    return axios.delete("api/order/" + id)
+  },
+
   //Table Data
   getTablesData: function(){
     return axios.get("api/table")
