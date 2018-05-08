@@ -138,7 +138,7 @@ class Login extends Component {
 
       const handleDisplayData = data => {
         this.setState({initialPhoto: data.photo});
-        $('#addConfirm').text('Employee added!')
+        $('#addConfirm').html('<h4>Employee added!</h4>')
       }
     }; // end function, addPhoto
 
@@ -226,7 +226,6 @@ class Login extends Component {
               <AddImage
               addPhoto={this.addPhoto}
               handleInputChange={this.handleInputChange}/>
-              <div id='addConfirm'></div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

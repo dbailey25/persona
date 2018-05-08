@@ -3,13 +3,14 @@ import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import UserName from "../../components/UserName";
 // import TableAssign from "../../components/TableAssign";
 import API from "../../utils/API";
-import { Row } from "../../components/Grid";
+// import { Row } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
 import TableCard from "../../components/TableCard";
+import { show } from "bootstrap";
+import $ from "jquery";
 
 class Host extends Component {
   state = {
-      // referrer: '',
       lastPhoto: "",
       name: "",
       matchName: "",
@@ -19,6 +20,7 @@ class Host extends Component {
       addPicVisibility: 'invisible',
       currentPicVisibility: 'invisible',
       initialPicVisibility: 'invisible',
+      tablebuttonVisibility: false,
       tables: []
   }
 
@@ -27,10 +29,13 @@ class Host extends Component {
   }
 
   capture = () => {
-    this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible'});
+    this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible', tablebuttonVisibility: false});
 
     const lastPhoto = this.webcam.getScreenshot();
     this.setState( {lastPhoto});
+
+
+
 
     API.checkImg(
       lastPhoto,
@@ -45,19 +50,31 @@ class Host extends Component {
       if (res.data === 'Not recognized') {
         matchResult = 'Not recognized';
         this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult});
+        $('#addGuestModal').modal(show)
       } else if (res.data.message) {
         matchResult = res.data.message
+        this.setState({matchName: matchResult})
+        $('#message').html(`<h4>${this.state.matchName}</h4>`)
       } else if (res.data.FaceMatches) {
         this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
         API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
-        this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'}),
-        matchResult = res.data.FaceMatches[0].Face.ExternalImageId
-      );
-
-       const handleDisplayData = data => (
-          this.setState({initialPhoto: data.photo})
-           // matchResult = data.FaceMatches[0].Face.ExternalImageId
+        this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible', tablebuttonVisibility: true}),
+        // matchResult = res.data.FaceMatches[0].Face.ExternalImageId,
+        console.log('initialPhoto', this.state.initialPhoto),
         )
+
+
+       const handleDisplayData = data => {
+          this.setState({initialPhoto: data.photo});
+           matchResult = data.name;
+           $('#message').html(`<div>
+             <h4>Guest name: ${matchResult}</h4>
+             <img
+             src= "${this.state.initialPhoto}"
+             alt="img" />
+           </div>
+           `)
+        }
       } else {
         matchResult = 'Unexpected result'
       }
@@ -101,9 +118,10 @@ class Host extends Component {
     .then(res => handleDisplayData(res.data))
     .catch(err => console.log(err));
     }
-    const handleDisplayData = data => (
-      this.setState({initialPhoto: data.photo})
-    )
+    const handleDisplayData = data => {
+      this.setState({initialPhoto: data.photo, tablebuttonVisibility: true});
+      $('#addConfirm').html('<h4>Guest added!</h4>')
+    }
   }; // end function, addPhoto
 
   handleInputChange = event => {
@@ -120,6 +138,7 @@ class Host extends Component {
   }
 
   handleTableData = data => {
+    console.log(data);
     for (let value of data){
       if(value.tableAvailability === "available"){
         value.tableImg = "/images/table.png";
@@ -138,13 +157,15 @@ handleDataTable = (id, data) =>{
   tableImg: this.state.initialPhoto,
   customerName: this.state.matchName,
  })
- .then(res=>console.log(data))
+ // .then(res=>console.log(data))
+ .then(this.getTableData())
  .catch(err => console.log(err));
 }
 
   render() {
     return (
       <div>
+        <h3>Host Page</h3>
         <UserName
         userName={this.props.location.state.referrer}/>
         <ImageCapture
@@ -156,18 +177,12 @@ handleDataTable = (id, data) =>{
         currentPicVisibility={this.state.currentPicVisibility}
         initialPicVisibility={this.state.initialPicVisibility}
         />
-        {/* <TableAssign
-        initialPicVisibility={this.state.initialPicVisibility}
-        /> */}
-        <AddImage
-        visibility={this.state.addPicVisibility}
-        addPhoto={this.addPhoto}
-        handleInputChange={this.handleInputChange}/>
-         <Row>
-        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Table</button>
-        </Row>
+        <div id='message'></div>
+        {
+           this.state.tablebuttonVisibility && <button type="button" className="btn btn-primary " data-toggle="modal" data-target="#tableModal" data-dismiss="modal" onClick={this.getTableData}>Assign Table</button>
+         }
 
-        {/* Modal =======================================================================*/}
+        {/* Assign Table Modal ===================================================*/}
 
         <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -202,6 +217,38 @@ handleDataTable = (id, data) =>{
               <div className="modal-footer">
 
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Add Guest Modal ==================================================*/}
+
+        <div id="addGuestModal" className="modal fade" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Add New Guest</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div className="modal-body">
+                <h4>Current Image</h4>
+                <img
+                src= {this.state.lastPhoto}
+                alt="img" />
+              <br />
+              <AddImage
+              addPhoto={this.addPhoto}
+              handleInputChange={this.handleInputChange}/>
+              <div id='addConfirm'></div>
+              {
+                 this.state.tablebuttonVisibility && <button type="button" className="btn btn-primary " data-toggle="modal" data-target="#tableModal" data-dismiss="modal" onClick={this.getTableData}>Assign Table</button>
+               }
+
+              </div>
+
             </div>
           </div>
         </div>
