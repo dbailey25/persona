@@ -4,16 +4,21 @@ import Card from "../../components/Card";
 import { Col, Row, Container } from "../../components/Grid";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import API from "../../utils/API";
-
 import { Redirect } from "react-router-dom";
 // import Waiter from "../../pages/Waiter";
 // import NoMatch from "../../pages/NoMatch";
 // import Nav from "../../components/Nav";
 // import Footer from "../../components/Footer";
+// import { Button, ButtonGroup } from 'reactstrap';
+// import { Modal } from "../../components/LayoutComponents";
+// import AssignRole from "../../components/FunctionComponents";
+import $ from "jquery";
+import { backdrop } from "bootstrap";
 import { Button, ButtonGroup } from 'reactstrap';
 
 
 class Login extends Component {
+
   state = {
     lastPhoto: "",
     name: "",
@@ -22,13 +27,16 @@ class Login extends Component {
     imageName: "",
     initialPhoto: "",
     addPicVisibility: 'invisible',
-    currentPicVisibility: 'invisible',
+    currentPicVisibility: "invisible",
     initialPicVisibility: 'invisible',
     redirect: false,
     authWaiter: false,
     authHost: false,
     employeeRole: "",
+    addEmployeeModal: false,
+    displayPics: false
     };
+
 
     setRef = (webcam) => {
       this.webcam = webcam;
@@ -36,6 +44,7 @@ class Login extends Component {
 
     capture = () => {
       console.log("Capture initiated");
+      console.log(this.state.currentPicVisibility);
       console.log(this.state.employeeRole);
       this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible'});
 
@@ -56,7 +65,7 @@ class Login extends Component {
         // const roles = ['Host_', 'Waiter_'];
         const enableRedirect = () => {
           (() => {
-            // console.log('enableRedirect/matchName', this.state.matchName);
+            console.log('enableRedirect/matchName', this.state.matchName);
             if (this.state.employeeRole === 'Waiter') {
                this.setState({authWaiter: true})
             }
@@ -69,14 +78,17 @@ class Login extends Component {
 
         if (res.data === 'Not recognized') {
           matchResult = 'Not recognized.';
-          this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult})
+          // this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult});
+          this.setState({displayPics: true, matchName: matchResult});
+          $('#addEmployeeModal').modal(backdrop)
         } else if (res.data.message) {
           matchResult = res.data.message
           this.setState({matchName: matchResult})
         } else if (res.data.FaceMatches) {
-          // userName = res.data.FaceMatches[0].Face.ExternalImageId;
+          matchResult = res.data.FaceMatches[0].Face.ExternalImageId;
           API.getEmployee(res.data.FaceMatches[0].Face.FaceId).then(res => handleEmployeeDBData(res.data)).then(()=>{
-            this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'});
+            // this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible'});
+            this.setState({displayPics: true, matchName: matchResult});
             console.log('role', this.state.employeeRole);
             enableRedirect()
           })
@@ -125,7 +137,8 @@ class Login extends Component {
 
 
       const handleDisplayData = data => {
-        this.setState({initialPhoto: data.photo})
+        this.setState({initialPhoto: data.photo});
+        $('#addConfirm').text('Employee added!')
       }
     }; // end function, addPhoto
 
@@ -168,40 +181,60 @@ class Login extends Component {
     }
 
 
-
     return (
       <div>
         <Container>
           <Row>
+          {console.log(this.state.currentPicVisibility)}
             <Col size="md-6">
               <Card title="Login">
               <ImageCapture
               setRef={this.setRef}
               capture={this.capture}
               matchName={this.state.matchName}
-              lastPhoto={this.state.lastPhoto}
-              initialPhoto={this.state.initialPhoto}
-              currentPicVisibility={this.state.currentPicVisibility}
-              initialPicVisibility={this.state.initialPicVisibility}
               />
-              <AddImage
-              visibility={this.state.addPicVisibility}
-              addPhoto={this.addPhoto}
-              handleInputChange={this.handleInputChange}/>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
 
-             <div className={this.state.currentPicVisibility}>
-              <h5>Role: </h5>
+        {/* Modal ==================================================*/}
+
+        <div id="addEmployeeModal" className="modal fade" tabIndex="-1" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Add New Employee</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <div className="modal-body">
+                <h4>Current Image</h4>
+                <img
+                src= {this.state.lastPhoto}
+                alt="img" />
+              <br />
+              <h5>Select Role: </h5>
               <ButtonGroup>
                 <Button color="primary" onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
                 <Button color="primary" onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
               </ButtonGroup>
               <p>Selected: {this.state.employeeRole}</p>
+              <br/>
+              <AddImage
+              addPhoto={this.addPhoto}
+              handleInputChange={this.handleInputChange}/>
+              <div id='addConfirm'></div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
             </div>
+          </div>
+        </div>
 
-              </Card>
-            </Col>
-          </Row>
-        </Container>
       </div>
     );
   }
