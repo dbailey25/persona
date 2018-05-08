@@ -1,5 +1,6 @@
 import React from "react";
 import Webcam from 'react-webcam';
+// import 'bulma/css/bulma.css'
 
 export const ImageCapture = props => (
   <div>
@@ -17,20 +18,5 @@ export const ImageCapture = props => (
     onClick={props.capture}>
     Capture photo
     </button>
-    <br />
-    <h5>Match result: {props.matchName}</h5>
-    <div className={props.currentPicVisibility}>
-      <h4>Current Image</h4>
-      <img
-      src= {props.lastPhoto}
-      alt="img" />
-    </div>
-    <br />
-    <div className={props.initialPicVisibility}>
-      <h4>Intitial Image</h4>
-      <img
-      src= {props.initialPhoto}
-      alt="img" />
-    </div>
   </div>
 );

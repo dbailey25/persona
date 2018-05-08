@@ -217,6 +217,7 @@ deleteCurrentOrder = (id) => {
   render() {
     return (
       <div>
+      <h5>Waiter Page</h5>
       <UserName
       userName={this.props.location.state.referrer}/>
         <Row>
