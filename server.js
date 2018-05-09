@@ -9,10 +9,15 @@ const mongoose = require("mongoose");
 //Rekognition *************************************************************************************************************************
 app.use(bodyParser.json({limit: "50mb"}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+// parse some custom thing into a Buffer
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+
+// parse an HTML body into a string
+app.use(bodyParser.text({ type: 'text/html' }))
 
 // app.use(express.static('public'));
 
-app.use(express.static("client/build/"));
+app.use(express.static("client/build"));
 
 app.use(routes);
 
