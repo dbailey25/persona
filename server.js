@@ -7,7 +7,7 @@ const routes = require("./routes");
 const mongoose = require("mongoose");
 
 //Rekognition *************************************************************************************************************************
-a// Configure body parser for AJAX requests
+// Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Serve up static assets
