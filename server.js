@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 
 // app.use(express.static('public'));
 
-app.use(express.static("persona/client/build"));
+app.use(express.static("client/build"));
 
 app.use(routes);
 
