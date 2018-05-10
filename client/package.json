@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
-  "homepage" : "https://github.com/dbailey25/persona",
   "devDependencies": {
     "react-scripts": "1.0.14"
   },
