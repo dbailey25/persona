@@ -203,7 +203,7 @@ emptyCurrentOrders = () =>{
   render() {
     return (
       <div>
-      <h5>Waiter Page</h5>
+      <h3>Waiter Page</h3>
       <UserName
       userName={this.props.location.state.referrer}/>
         <Row>

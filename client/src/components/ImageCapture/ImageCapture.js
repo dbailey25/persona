@@ -1,22 +1,23 @@
 import React from "react";
 import Webcam from 'react-webcam';
 // import 'bulma/css/bulma.css'
+import './ImageCapture.css'
 
 export const ImageCapture = props => (
-  <div>
+  <div className="text-center">
     <Webcam
       audio={false}
       height={350}
       ref={props.setRef}
       screenshotFormat="image/jpeg"
-      width={350}
+      width={395}
     />
     <br />
     <button
     type="submit"
-    className="btn btn-lg btn-primary"
+    className="btn btn-lg capture-button"
     onClick={props.capture}>
-    Capture photo
+    Capture Photo
     </button>
   </div>
 );

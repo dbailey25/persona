@@ -1,12 +1,17 @@
 import React from "react";
+import "./Footer.css";
+// import 'bulma/css/bulma.css';
 
 const Footer = () => (
-  <footer>
-    <hr />
-    <p className="pull-right">
-      <i className="fa fa-github" aria-hidden="true" /> Proudly built by the Persona Team
-    </p>
-  </footer>
+  <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>
+         Proudly built by the Persona Team
+      </p>
+    </div>
+  </div>
+</footer>
 );
 
 export default Footer;

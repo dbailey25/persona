@@ -1,0 +1,16 @@
+p {
+
+}
+
+.head {
+  height: 70px;
+  background: #3C455C;
+  color: #DDE2E3;
+  box-shadow: 0px 5px 5px #999;
+}
+
+.header-title {
+  margin-left: 10px;
+  font-family: 'Kaushan Script', cursive;
+  font-size: 44px;
+}

@@ -185,8 +185,8 @@ class Login extends Component {
       <div>
         <Container>
           <Row>
-          {console.log(this.state.currentPicVisibility)}
-            <Col size="md-6">
+          <Col size="md-2"></Col>
+            <Col size="md-8">
               <Card title="Login">
               <ImageCapture
               setRef={this.setRef}
@@ -195,6 +195,7 @@ class Login extends Component {
               />
               </Card>
             </Col>
+            <Col size="md-2"></Col>
           </Row>
         </Container>
 

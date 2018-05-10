@@ -10,5 +10,6 @@ export const AddImage = props => (
         placeholder="Name"
       />
        <button type="submit" className="btn btn-lg btn-primary" onClick={props.addPhoto}>Add Photo to Collection</button>
+       <div id='addConfirm'>{props.addConfirm}</div>
     </form>
 );

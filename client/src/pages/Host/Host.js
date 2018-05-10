@@ -17,6 +17,7 @@ class Host extends Component {
       faceId: "",
       imageName: "",
       initialPhoto: "",
+      addConfirm: "",
       addPicVisibility: 'invisible',
       currentPicVisibility: 'invisible',
       initialPicVisibility: 'invisible',
@@ -33,9 +34,6 @@ class Host extends Component {
 
     const lastPhoto = this.webcam.getScreenshot();
     this.setState( {lastPhoto});
-
-
-
 
     API.checkImg(
       lastPhoto,
@@ -62,7 +60,6 @@ class Host extends Component {
         // matchResult = res.data.FaceMatches[0].Face.ExternalImageId,
         console.log('initialPhoto', this.state.initialPhoto),
         )
-
 
        const handleDisplayData = data => {
           this.setState({initialPhoto: data.photo});
@@ -119,8 +116,7 @@ class Host extends Component {
     .catch(err => console.log(err));
     }
     const handleDisplayData = data => {
-      this.setState({initialPhoto: data.photo, tablebuttonVisibility: true});
-      $('#addConfirm').html('<h4>Guest added!</h4>')
+      this.setState({initialPhoto: data.photo, tablebuttonVisibility: true, addConfirm: "Guest added!"});
     }
   }; // end function, addPhoto
 
@@ -241,8 +237,8 @@ handleDataTable = (id, data) =>{
               <br />
               <AddImage
               addPhoto={this.addPhoto}
+              addConfirm={this.state.addConfirm}
               handleInputChange={this.handleInputChange}/>
-              <div id='addConfirm'></div>
               {
                  this.state.tablebuttonVisibility && <button type="button" className="btn btn-primary " data-toggle="modal" data-target="#tableModal" data-dismiss="modal" onClick={this.getTableData}>Assign Table</button>
                }
