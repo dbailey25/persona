@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:500
 // app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
 
 // parse an HTML body into a string
-// app.use(bodyParser.text({ type: 'text/html' }))
+app.use(bodyParser.text({ type: 'text/html' }))
 
 // app.use(express.static('public'));
 
