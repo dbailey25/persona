@@ -114,7 +114,7 @@ handleDisplayCustomerInfo = data =>{
     tableImg: data.tableImg,
 
   })
-
+console.log(this.state.tableImg);
   API.getHistoricalData(data.customerId)
    .then(res => this.handleHistoricalData(res.data))
    .catch(err => console.log(err));
