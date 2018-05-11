@@ -15,7 +15,7 @@ export const ImageCapture = props => (
     <br />
     <button
     type="submit"
-    className="btn btn-lg capture-button"
+    className="btn button"
     onClick={props.capture}>
     Capture Photo
     </button>

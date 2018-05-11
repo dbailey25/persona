@@ -183,7 +183,6 @@ class Login extends Component {
 
     return (
       <div id='main'>
-      <div id='main-opacity'>
         <Container>
           <Row>
           <Col size="md-1"></Col>
@@ -236,7 +235,6 @@ class Login extends Component {
           </div>
         </div>
 
-      </div>
       </div>
     );
   }

@@ -2,3 +2,14 @@
   background-color: #B37C57;
   color: #fff;
 }
+
+.button {
+  background-color: #B37C57;
+  color: #fff;
+  margin: 10px;
+}
+
+.form-input-pers {
+  width: 250px;
+  margin: 20px auto;
+}
