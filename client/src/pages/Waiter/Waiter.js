@@ -8,6 +8,7 @@ import TableCard from "../../components/TableCard";
 import CheckCard from "../../components/CheckCard";
 import { List, ListItem, DeleteBtn } from "../../components/OrderCard";
 import UserName from "../../components/UserName";
+import { ListGroup} from 'reactstrap';
 
 class Waiter extends Component {
   state = {
@@ -374,6 +375,7 @@ deleteCurrentOrder = (id) => {
               </div>
               <div className="modal-body">
           <Wrapper>
+          <ListGroup>
             {this.state.check
                .map(dish => (
                 <CheckCard
@@ -381,6 +383,7 @@ deleteCurrentOrder = (id) => {
                   dish={dish._id}
                   total={dish.total}
               />))}
+               </ListGroup>
           </Wrapper>
               </div>
               <div className="modal-footer">

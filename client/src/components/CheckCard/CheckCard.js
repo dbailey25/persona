@@ -1,14 +1,10 @@
 import React from "react";
+import { ListGroupItem, Col, Row } from 'reactstrap';
+import "./CheckCard.css";
 
-// import { Col, Row } from "../Grid";
-// Character card component
 const CheckCard = props => (
   
-  <div>
-       
-        <p>{props.dish}: {props.total}</p>
-   
-  </div>
+  <ListGroupItem className="item"><Row><Col md="8">{props.dish}:</Col><Col  md="4">{props.total}</Col></Row></ListGroupItem>
 );
 
 export default CheckCard;
