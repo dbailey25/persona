@@ -99,7 +99,7 @@ getTableData = () => {
 }
 
 handleDataTable = (id, data) =>{
- 
+
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -190,7 +190,7 @@ handleTotalCheck = data => {
 };
 
 displayTotalCheck = data => {
-  
+
   this.setState({totalCheck: data[0].total})
 }
 
@@ -217,7 +217,7 @@ deleteCurrentOrder = (id) => {
   render() {
     return (
       <div>
-      <h5>Waiter Page</h5>
+      <h3>Waiter Page</h3>
       <UserName
       userName={this.props.location.state.referrer}/>
         <Row>

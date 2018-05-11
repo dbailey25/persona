@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 import $ from "jquery";
 import { backdrop } from "bootstrap";
 import { Button, ButtonGroup } from 'reactstrap';
-
+import "./Login.css"
 
 class Login extends Component {
 
@@ -182,11 +182,11 @@ class Login extends Component {
 
 
     return (
-      <div>
+      <div id='main'>
         <Container>
           <Row>
-          {console.log(this.state.currentPicVisibility)}
-            <Col size="md-6">
+          <Col size="md-1"></Col>
+            <Col className="mx-auto" size="md-8 mx-auto">
               <Card title="Login">
               <ImageCapture
               setRef={this.setRef}
@@ -195,6 +195,7 @@ class Login extends Component {
               />
               </Card>
             </Col>
+            {/*<Col size="md-2"></Col>*/}
           </Row>
         </Container>
 
