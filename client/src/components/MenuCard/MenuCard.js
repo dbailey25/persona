@@ -1,11 +1,12 @@
 import React from "react";
 import "./MenuCard.css";
+import { Alert } from 'reactstrap';
 
 // Menu card component
 const MenuCard = props => (
-  <button onClick={() => props.postOrderData(props)}>
+  <Alert className="dish" onClick={() => props.postOrderData(props)}>
        {props.dishName}
-  </button>
+  </Alert>
 
 );
 

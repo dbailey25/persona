@@ -54,9 +54,14 @@ export default {
     return axios.get("api/order/current-order/customer/" + id)
   },
 
-  getTotalAmount: function(id){
+  getTotalAmountByDishes: function(id){
     return axios.get("api/order/total/customer/" + id)
   },
+
+  getTotalAmount: function(id){
+    return axios.get("api/order/total/" + id)
+  },
+
 
   getHistoricalData: function(id){
     return axios.get("api/order/" + id)
@@ -65,6 +70,11 @@ export default {
   closeCurrentOrders: function(id){
     console.log(id)
     return axios.put("api/order/closed/" + id)
+  },
+
+  deleteOrder: function(id){
+    console.log(id)
+    return axios.delete("api/order/" + id)
   },
 
   //Table Data

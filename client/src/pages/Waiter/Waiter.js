@@ -5,8 +5,8 @@ import MenuCard from "../../components/MenuCard";
 import "./Waiter.css"
 import API from "../../utils/API";
 import TableCard from "../../components/TableCard";
-import OrderCard from "../../components/OrderCard";
 import CheckCard from "../../components/CheckCard";
+import { List, ListItem, DeleteBtn } from "../../components/OrderCard";
 import UserName from "../../components/UserName";
 
 class Waiter extends Component {
@@ -26,7 +26,8 @@ class Waiter extends Component {
     menu: [],
     tables: [],
     orders: [],
-    check: []
+    check: [],
+    totalCheck: ""
     };
 
 
@@ -64,13 +65,12 @@ postOrderData = (data) =>{
   menuSelection: data.menuSelection,
   table: this.state.table
   })
-.then(res => this.getCurrentOrderData(res.data))
+.then(res => this.getCurrentOrderData(res.data.customerId))
 .catch(err => console.log(err));
 }
 
-getCurrentOrderData = data =>{
-
- API.getOrder(data.customerId)
+getCurrentOrderData = id =>{
+ API.getOrder(id)
  .then(res => this.handleDisplayOrders(res.data))
  .catch(err => console.log(err));
 }
@@ -99,14 +99,13 @@ getTableData = () => {
 }
 
 handleDataTable = (id, data) =>{
-  this.getCurrentOrderData(data);
+
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
 }
 
 handleDisplayCustomerInfo = data =>{
-  console.log(data);
   this.setState({
     faceId: data.customerId,
     custName: data.customerName,
@@ -114,7 +113,7 @@ handleDisplayCustomerInfo = data =>{
     tableImg: data.tableImg,
 
   })
-console.log(this.state.tableImg);
+  this.getCurrentOrderData(this.state.faceId);
   API.getHistoricalData(data.customerId)
    .then(res => this.handleHistoricalData(res.data))
    .catch(err => console.log(err));
@@ -177,14 +176,23 @@ handleHistoricalData = data => {
 
 
 getCheck = () => {
-  API.getTotalAmount(this.state.faceId)
+  API.getTotalAmountByDishes(this.state.faceId)
   .then(res=>this.handleTotalCheck(res.data))
+  .catch(err => console.log(err));
+
+  API.getTotalAmount(this.state.faceId)
+  .then(res=>this.displayTotalCheck(res.data))
   .catch(err => console.log(err));
 }
 
 handleTotalCheck = data => {
   this.setState({check: data})
 };
+
+displayTotalCheck = data => {
+
+  this.setState({totalCheck: data[0].total})
+}
 
 closeTable = () =>{
   API.closeCurrentOrders(this.state.faceId)
@@ -198,6 +206,12 @@ closeTable = () =>{
 
 emptyCurrentOrders = () =>{
   this.setState({orders:[]})
+}
+
+deleteCurrentOrder = (id) => {
+  API.deleteOrder(id)
+  .then(res=> this.getCurrentOrderData(this.state.faceId))
+  .catch(err => console.log(err));
 }
 
   render() {
@@ -234,15 +248,19 @@ emptyCurrentOrders = () =>{
         <Col size="md-4">
         <h3>Current Order</h3>
         <Wrapper>
-            {this.state.orders
-               .map(order => (
-                <OrderCard
-                  key={order._id}
-                  dishName={order.dishName}
-                  alias={order.alias}
-                  menuSelection={order.menuSelection}
-                  price={order.price}
-          />))}
+            <List>
+                {this.state.orders.map(order => (
+                  <ListItem key={order._id}>
+                    <div to={"/orders/" + order._id}>
+                      <strong>
+                      {order.dishName}:  {order.price}
+                      </strong>
+                    </div>
+                    <DeleteBtn onClick={() => this.deleteCurrentOrder(order._id)} />
+                  </ListItem>
+                ))}
+              </List>
+
         </Wrapper>
         </Col>
         </Row>
@@ -346,7 +364,8 @@ emptyCurrentOrders = () =>{
           </Wrapper>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
+              <h2>Total: {this.state.totalCheck}</h2>
+                <button type="button" className="btn btn-danger" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
               </div>
             </div>
           </div>
