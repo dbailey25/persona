@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row } from "../../components/Grid";
+import { Col, Row, Container } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
 import MenuCard from "../../components/MenuCard";
 import "./Waiter.css"
@@ -13,7 +13,6 @@ class Waiter extends Component {
   state = {
     faceId: "",
     bevPref: "N/A",
-    restriction: "None",
     appPref: "N/A",
     protPref: "N/A",
     vegPref: "N/A",
@@ -22,7 +21,7 @@ class Waiter extends Component {
     custName: "N/A",
     table: 1,
     position: 1,
-    tableImg: "",
+    tableImg: "/images/person-placeholder.jpg",
     menu: [],
     tables: [],
     orders: [],
@@ -217,28 +216,36 @@ deleteCurrentOrder = (id) => {
   render() {
     return (
       <div>
+      <Container>
       <h3>Waiter Page</h3>
       <UserName
       userName={this.props.location.state.referrer}/>
         <Row>
-        <Col size="md-2">
+        <Col size="md-3">
         {/*<img className="image-small" src= {props.lastPhoto} alt="img" />*/}
         <img className="image-small" src={this.state.tableImg} alt="img" />
         </Col>
-        <Col size="md-10">
+        <Col size="md-9">
+        <div className='table-info-pers'>
         <p>Table: {this.state.table} Position: {this.state.position}</p>
         <p>Guest Name: {this.state.custName}</p>
+        <button type="button" className='btn button-pers'  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Get Table</button>
+
+        </div>
         </Col>
         </Row>
         <Row>
-          <Col size="md-4">
-            <h3>Beverage</h3>
+        <Col size="md-2">
+          </Col>
+        <h3 className="top-margin">Preferences</h3>
+        </Row>
+        <Row>
+        <Col size="md-4">
+            <h4>Beverage</h4>
             <p>{this.state.bevPref}</p>
-            <h3>Restrictions</h3>
-            <p>{this.state.restriction}</p>
           </Col>
           <Col size="md-4">
-          <h3>Food</h3>
+          <h4>Food</h4>
           <p>Appetizer: {this.state.appPref}</p>
           <p>Protein: {this.state.protPref}</p>
           <p>Vegetable: {this.state.vegPref}</p>
@@ -246,7 +253,7 @@ deleteCurrentOrder = (id) => {
           <p>Dessert: {this.state.dessertPref}</p>
         </Col>
         <Col size="md-4">
-        <h3>Current Order</h3>
+        <h4>Current Order</h4>
         <Wrapper>
             <List>
                 {this.state.orders.map(order => (
@@ -265,20 +272,19 @@ deleteCurrentOrder = (id) => {
         </Col>
         </Row>
         <Row>
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
-        </Row>
-        <br></br>
-        <Row>
-        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Table</button>
-        </Row>
-        <br></br>
-        <Row>
-        <button type="button" className={`btn btn-primary ${this.state.initialPicVisibility}`}  data-toggle="modal" data-target="#calculationModal" onClick={this.getCheck}>Calculation</button>
+        <Col size="md-2 ">
+        </Col>
+        <Col size="md-7 ">
+        <div className="text-center">
+        <button type="button" className="btn button-pers" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
+        <button type="button" className='btn button-pers'  data-toggle="modal" data-target="#calculationModal" onClick={this.getCheck}>Calculation</button>
+        </div>
+        </Col>
         </Row>
         {/* Menu Modal =======================================================================*/}
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
+          <div className="modal-dialog modal-lg dialog-margin-pers" role="document">
+            <div className="modal-content order-modal-pers">
               <div className="modal-header">
                 <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.custName}
                 </h5>
@@ -287,7 +293,17 @@ deleteCurrentOrder = (id) => {
                 </button>
               </div>
               <div className="modal-body">
-          <Wrapper>
+              <Row>
+              <Col size="md-2 ">
+              <p>Beverage:</p>
+              <p>Appetizer:</p>
+              <p>Protein:</p>
+              <p>Starch:</p>
+              <p>Vegetable:</p>
+              <p>Dessert:</p>
+              </Col>
+              <Col size="md-10 ">
+                  <Wrapper>
             {this.state.menu
                .map(dishes => (
                 <MenuCard
@@ -300,6 +316,8 @@ deleteCurrentOrder = (id) => {
                   postOrderData={this.postOrderData}
               />))}
           </Wrapper>
+          </Col>
+          </Row>
               </div>
               <div className="modal-footer">
 
@@ -307,6 +325,8 @@ deleteCurrentOrder = (id) => {
             </div>
           </div>
         </div>
+        </Container>
+
      {/* Table Modal =======================================================================*/}
      <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -365,7 +385,7 @@ deleteCurrentOrder = (id) => {
               </div>
               <div className="modal-footer">
               <h2>Total: {this.state.totalCheck}</h2>
-                <button type="button" className="btn btn-danger" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
+                <button type="button" className="btn button-pers" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
               </div>
             </div>
           </div>
