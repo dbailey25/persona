@@ -1,8 +1,9 @@
 .header-style {
-  background-color: #9AACB8;
+  /* background-color: #9AACB8; */
+  background-color: #999999 !important;
   color: #fff;
 }
 
-.card-style {  
+.card-style {
   font-family: 'Rubik', sans-serif;
 }
