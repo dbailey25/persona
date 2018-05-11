@@ -1,7 +1,37 @@
 .image-small {
   height: 120px;
-  
   border: solid 1px gray;
   border-radius: 5px;
-  /* margin-left: 25px; */
+}
+
+.font {
+  font-family: 'Rubik', sans-serif;
+  color: #red;
+}
+
+.table-info-pers {
+  margin-left: 10px;
+}
+
+.button-pers {
+  background-color: #B37C57;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.top-margin {
+  margin-top: 15px;
+}
+ .modal-body p {
+   margin: 5px 0 25px;
+
+ }
+.order-modal-pers {
+  width: 750px !important;
+}
+
+@media (min-width: 576px) {
+.dialog-margin-pers {
+  margin: 5px !important;
+}
 }
