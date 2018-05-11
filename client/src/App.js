@@ -5,7 +5,7 @@ import Host from "./pages/Host";
 import Guest from "./pages/Guest";
 import NoMatch from "./pages/NoMatch";
 import { Header } from "./components/LayoutComponents";
-import { Container } from "./components/Grid";
+// import { Container } from "./components/Grid";
 import Waiter from "./pages/Waiter";
 // import Footer from "./components/Footer";
 import "./App.css";
@@ -14,7 +14,7 @@ const App = () => (
   <Router>
     <div>
       <Header />
-      <Container>
+      {/*<Container>*/}
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/host" component={Host} />
@@ -23,8 +23,7 @@ const App = () => (
         <Route exact path="/*" component={Login} />
         <Route component={NoMatch} />
       </Switch>
-      </Container>
-      {/*<Footer />*/}
+      {/*</Container>*/}
     </div>
   </Router>
 );
