@@ -189,7 +189,7 @@ handleDataTable = (id, data) =>{
         <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header modl-header">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title" id="orderModalLabel">Tables
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -228,7 +228,7 @@ handleDataTable = (id, data) =>{
         <div id="priorGuestModal" className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header modl-header">
+              <div className="modal-header modal-header-pers">
                 <h3 className="modal-title">Prior Guest</h3>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -258,7 +258,7 @@ handleDataTable = (id, data) =>{
         <div id="addGuestModal" className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header modl-header">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title">Add New Guest</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>

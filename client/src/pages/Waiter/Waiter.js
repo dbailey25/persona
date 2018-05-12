@@ -286,7 +286,7 @@ deleteCurrentOrder = (id) => {
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-lg dialog-margin-pers" role="document">
             <div className="modal-content order-modal-pers">
-              <div className="modal-header">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.custName}
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -333,7 +333,7 @@ deleteCurrentOrder = (id) => {
      <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title" id="orderModalLabel">Tables
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -357,8 +357,11 @@ deleteCurrentOrder = (id) => {
               />))}
           </Wrapper>
               </div>
-              <div className="modal-footer">
-              </div>
+              {/*<div className="modal-footer">*/}
+                <div className=" text-center">
+                  <button type="button" class="btn button" data-dismiss="modal">Close</button>
+                </div>
+              {/*</div>*/}
             </div>
           </div>
         </div>
@@ -367,7 +370,7 @@ deleteCurrentOrder = (id) => {
      <div className="modal fade" id="calculationModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.custName}
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
