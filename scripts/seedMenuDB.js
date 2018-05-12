@@ -10,7 +10,7 @@ mongoose.connect(
 
 const menuSeed = [
   {
-    id:"1",
+    dishNumber:"1",
     dishName: "Beer",
     alias: "beer",
     price: 5.99,
@@ -18,7 +18,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"2",
+    dishNumber:"2",
     dishName: "Wine",
     alias: "wine",
     price: 7.99,
@@ -26,7 +26,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"3",
+    dishNumber:"3",
     dishName: "Tea",
     alias: "tea",
     price: 4.99,
@@ -34,7 +34,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"4",
+    dishNumber:"4",
     dishName: "Calamari",
     alias: "cala",
     price: 8.49,
@@ -42,7 +42,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"5",
+    dishNumber:"5",
     dishName: "Chicken Wings",
     alias: "wing",
     price: 10.99,
@@ -50,7 +50,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"6",
+    dishNumber:"6",
     dishName: "Salad",
     alias: "sald",
     price: 9.99,
@@ -58,7 +58,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"7",
+    dishNumber:"7",
     dishName: "Chicken",
     alias: "chkn",
     price: 12.49,
@@ -66,7 +66,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"8",
+    dishNumber:"8",
     dishName: "Steak",
     alias: "beef",
     price: 15.99,
@@ -74,7 +74,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"9",
+    dishNumber:"9",
     dishName: "Salmon",
     alias: "fish",
     price: 13.49,
@@ -82,7 +82,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"10",
+    dishNumber:"10",
     dishName: "Pasta",
     alias: "past",
     price: 5.99,
@@ -90,7 +90,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"11",
+    dishNumber:"11",
     dishName: "Potato",
     alias: "pota",
     price: 5.99,
@@ -98,7 +98,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"12",
+    dishNumber:"12",
     dishName: "Rice",
     alias: "rice",
     price: 5.99,
@@ -106,7 +106,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"13",
+    dishNumber:"13",
     dishName: "Carrots",
     alias: "carr",
     price: 4.99,
@@ -114,7 +114,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"14",
+    dishNumber:"14",
     dishName: "Broccoli",
     alias: "broc",
     price: 4.99,
@@ -122,7 +122,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"15",
+    dishNumber:"15",
     dishName: "Brussel Sprouts",
     alias: "sprt",
     price: 4.99,
@@ -130,7 +130,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"16",
+    dishNumber:"16",
     dishName: "Chocolate Cake",
     alias: "cake",
     price: 6.99,
@@ -138,7 +138,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"17",
+    dishNumber:"17",
     dishName: "Ice Cream Trio",
     alias: "icrm",
     price: 5.99,
@@ -146,7 +146,7 @@ const menuSeed = [
     date: new Date(Date.now())
   },
   {
-    id:"18",
+    dishNumber:"18",
     dishName: "New York Cheesecake",
     alias: "ccke",
     price: 7.99,
