@@ -296,13 +296,14 @@ deleteCurrentOrder = (id) => {
               <div className="modal-body">
               <Row>
               <Col size="md-2 ">
-              <p>Beverage:</p>
               <p>Appetizer:</p>
+              <p>Beverage:</p>
+              <p>Dessert:</p>
+              <br></br>
               <p>Protein:</p>
               <p>Starch:</p>
               <p>Vegetable:</p>
-              <p>Dessert:</p>
-              </Col>
+               </Col>
               <Col size="md-10 ">
                   <Wrapper>
             {this.state.menu
