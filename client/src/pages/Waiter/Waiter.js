@@ -191,7 +191,7 @@ handleTotalCheck = data => {
 
 displayTotalCheck = data => {
 
-  this.setState({totalCheck: data[0].total})
+  this.setState({totalCheck: (Math.round(data[0].total *100)/100)})
 }
 
 closeTable = () =>{
