@@ -6,7 +6,7 @@
 
 .font {
   font-family: 'Rubik', sans-serif;
-  color: #red;
+  color: #333;
 }
 
 .table-info-pers {
@@ -22,10 +22,16 @@
 .top-margin {
   margin-top: 15px;
 }
+
  .modal-body p {
    margin: 5px 0 25px;
-
  }
+
+ .modal-header-pers {
+   background-color: #DDE2E3;
+   color: #333;
+ }
+
 .order-modal-pers {
   width: 750px !important;
 }
