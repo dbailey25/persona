@@ -203,8 +203,8 @@ class Login extends Component {
 
         <div id="addEmployeeModal" className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
+            <div className="modal-content font">
+              <div className="modal-header modal-header-pers">
                 <h5 className="modal-title">Add New Employee</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -219,8 +219,8 @@ class Login extends Component {
               <br />
               <h5>Select Role: </h5>
               <ButtonGroup>
-                <Button color="primary" onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
-                <Button color="primary" onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
+                <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
+                <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
               </ButtonGroup>
               <p>Selected: {this.state.employeeRole}</p>
               <br/>
@@ -229,7 +229,7 @@ class Login extends Component {
               handleInputChange={this.handleInputChange}/>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn button-pers" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
