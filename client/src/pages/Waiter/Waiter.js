@@ -190,7 +190,7 @@ handleTotalCheck = data => {
 
 displayTotalCheck = data => {
 
-  this.setState({totalCheck: data[0].total})
+  this.setState({totalCheck: (Math.round(data[0].total *100)/100)})
 }
 
 closeTable = () =>{
@@ -286,6 +286,8 @@ deleteCurrentOrder = (id) => {
             </div>
           </Col>
         </Row>
+        </Container>
+
           {/* Menu Modal =======================================================================*/}
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-lg dialog-margin-pers" role="document">
@@ -298,39 +300,39 @@ deleteCurrentOrder = (id) => {
                 </button>
               </div>
               <div className="modal-body">
-                <Row>
-                  <Col size="md-2 ">
-                    <p>Beverage:</p>
-                    <p>Appetizer:</p>
-                    <p>Protein:</p>
-                    <p>Starch:</p>
-                    <p>Vegetable:</p>
-                    <p>Dessert:</p>
-                  </Col>
-                <Col size="md-10 ">
-                <Wrapper>
-                {this.state.menu
-                 .map(dishes => (
-                  <MenuCard
-                    key={dishes._id}
-                    date={dishes.date}
-                    dishName={dishes.dishName}
-                    alias={dishes.alias}
-                    menuSelection={dishes.menuSelection}
-                    price={dishes.price}
-                    postOrderData={this.postOrderData}
-                  />))}
-                  </Wrapper>
-                </Col>
-              </Row>
-            </div>
-            <div className=" text-center">
-              <button type="button" class="btn button" data-dismiss="modal">Close</button>
+              <Row>
+              <Col size="md-2 ">
+              <p>Appetizer:</p>
+              <p>Beverage:</p>
+              <p>Dessert:</p>
+              <br></br>
+              <p>Protein:</p>
+              <p>Starch:</p>
+              <p>Vegetable:</p>
+               </Col>
+              <Col size="md-10 ">
+                  <Wrapper>
+            {this.state.menu
+               .map(dishes => (
+                <MenuCard
+                  key={dishes._id}
+                  date={dishes.date}
+                  dishName={dishes.dishName}
+                  alias={dishes.alias}
+                  menuSelection={dishes.menuSelection}
+                  price={dishes.price}
+                  postOrderData={this.postOrderData}
+              />))}
+          </Wrapper>
+          </Col>
+          </Row>
+              </div>
+              <div className="modal-footer">
+
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </Container>
 
      {/* Table Modal =======================================================================*/}
      <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
@@ -398,6 +400,7 @@ deleteCurrentOrder = (id) => {
             </div>
           </div>
         </div>
+
       </div>
     );
   }
