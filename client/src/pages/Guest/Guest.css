@@ -1,7 +1,23 @@
-.image-small {
-  height: 120px;
-  
-  border: solid 1px gray;
-  border-radius: 5px;
-  /* margin-left: 25px; */
+.button {
+  background-color: #B37C57;
+  color: #fff;
+  margin: 10px;
+}
+
+.centered {
+  margin: 0 auto;
+  display: block;
+}
+
+.font {
+  font-family: 'Rubik', sans-serif;
+}
+
+.modal-header-pers {
+  background-color: #DDE2E3;
+  color: #333;
+}
+
+.modl-body {
+  color: #333;
 }

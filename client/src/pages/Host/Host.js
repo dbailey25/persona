@@ -69,13 +69,6 @@ class Host extends Component {
           this.setState({initialPhoto: data.photo});
            matchResult = data.name;
            this.setState({matchName: matchResult});
-           // $('#message').html(`<div>
-           //   <h4>Guest name: ${matchResult}</h4>
-           //   <img
-           //   src= "${this.state.initialPhoto}"
-           //   alt="img" />
-           // </div>
-           // `)
         }
       } else {
         matchResult = 'Unexpected result'
@@ -170,7 +163,7 @@ handleDataTable = (id, data) =>{
         <div className='title-bar-pers'>
           <h3>Host Page</h3>
           <UserName
-          userName={this.props.location.state.referrer}/>
+            userName={this.props.location.state.referrer}/>
         </div>
           <Card title="Capture Guest Image">
           <ImageCapture
@@ -217,7 +210,7 @@ handleDataTable = (id, data) =>{
 
               </div>
               <div className=" text-center">
-              <button type="button" class="btn button" data-dismiss="modal">Close</button>
+              <button type="button" className="btn button" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>

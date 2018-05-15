@@ -99,7 +99,6 @@ getTableData = () => {
 }
 
 handleDataTable = (id, data) =>{
-
 API.getCustomer(data.customerId)
 .then(res=>this.handleDisplayCustomerInfo(data))
 .catch(err => console.log(err));
@@ -218,71 +217,76 @@ deleteCurrentOrder = (id) => {
     return (
       <div>
       <Container>
-      <h3>Waiter Page</h3>
-      <UserName
-      userName={this.props.location.state.referrer}/>
+        <h3>Waiter Page</h3>
+        <UserName
+          userName={this.props.location.state.referrer}
+          />
         <Row>
-        <Col size="md-3">
-        {/*<img className="image-small" src= {props.lastPhoto} alt="img" />*/}
-        <img className="image-small" src={this.state.tableImg} alt="img" />
-        </Col>
-        <Col size="md-9">
-        <div className='table-info-pers'>
-        <p>Table: {this.state.table} Position: {this.state.position}</p>
-        <p>Guest Name: {this.state.custName}</p>
-        <button type="button" className='btn button-pers'  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Get Table</button>
-
-        </div>
-        </Col>
-        </Row>
-        <Row>
-        <Col size="md-2">
+          <Col size="md-3">
+            <img className="image-small" src={this.state.tableImg} alt="img" />
           </Col>
-        <h3 className="top-margin">Preferences</h3>
+          <Col size="md-9">
+            <div className='table-info-pers'>
+            <p>Table: {this.state.table} Position: {this.state.position}</p>
+            <p>Guest Name: {this.state.custName}</p>
+            <button type="button" className='btn button-pers'  data-toggle="modal" data-target="#tableModal" onClick={this.getTableData}>Get Table</button>
+            </div>
+          </Col>
         </Row>
         <Row>
-        <Col size="md-4">
-            <h4>Beverage</h4>
-            <p>{this.state.bevPref}</p>
+          <Col size="md-2">
+          </Col>
+          <h3 className="top-margin">Preferences</h3>
+        </Row>
+        <Row>
+          <Col size="md-4">
+              <h4>Beverage</h4>
+              <p>{this.state.bevPref}</p>
           </Col>
           <Col size="md-4">
-          <h4>Food</h4>
-          <p>Appetizer: {this.state.appPref}</p>
-          <p>Protein: {this.state.protPref}</p>
-          <p>Vegetable: {this.state.vegPref}</p>
-          <p>Starch: {this.state.starchPref}</p>
-          <p>Dessert: {this.state.dessertPref}</p>
-        </Col>
-        <Col size="md-4">
-        <h4>Current Order</h4>
-        <Wrapper>
-            <List>
-                {this.state.orders.map(order => (
-                  <ListItem key={order._id}>
-                    <div to={"/orders/" + order._id}>
-                      <strong>
-                      {order.dishName}:  {order.price}
-                      </strong>
-                    </div>
-                    <DeleteBtn onClick={() => this.deleteCurrentOrder(order._id)} />
-                  </ListItem>
-                ))}
-              </List>
-
-        </Wrapper>
-        </Col>
+            <h4>Food</h4>
+            <p>Appetizer: {this.state.appPref}</p>
+            <p>Protein: {this.state.protPref}</p>
+            <p>Vegetable: {this.state.vegPref}</p>
+            <p>Starch: {this.state.starchPref}</p>
+            <p>Dessert: {this.state.dessertPref}</p>
+          </Col>
+          <Col size="md-4">
+            <h4>Current Order</h4>
+            <Wrapper>
+              <List>
+                  {this.state.orders.map(order => (
+                    <ListItem key={order._id}>
+                      <div to={"/orders/" + order._id}>
+                        <strong>
+                        {order.dishName}:  {order.price}
+                        </strong>
+                      </div>
+                      <DeleteBtn onClick={() => this.deleteCurrentOrder(order._id)} />
+                    </ListItem>
+                  ))}
+                </List>
+            </Wrapper>
+          </Col>
         </Row>
         <Row>
-        <Col size="md-2 ">
-        </Col>
-        <Col size="md-7 ">
-        <div className="text-center">
-        <button type="button" className="btn button-pers" data-toggle="modal" data-target="#orderModal" onClick={this.getMenuData}>Take Order</button>
-        <button type="button" className='btn button-pers'  data-toggle="modal" data-target="#calculationModal" onClick={this.getCheck}>Calculation</button>
-        </div>
-        </Col>
+          <Col size="md-2 ">
+          </Col>
+          <Col size="md-7 ">
+            <div className="text-center">
+            <button
+            type="button"
+            className="btn button-pers" data-toggle="modal"
+            data-target="#orderModal" onClick={this.getMenuData}>
+            Take Order
+            </button>
+            <button
+            type="button"
+            className='btn button-pers'  data-toggle="modal" data-target="#calculationModal" onClick={this.getCheck}>Calculation</button>
+            </div>
+          </Col>
         </Row>
-        {/* Menu Modal =======================================================================*/}
+          {/* Menu Modal =======================================================================*/}
         <div className="modal fade" id="orderModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-lg dialog-margin-pers" role="document">
             <div className="modal-content order-modal-pers">
@@ -294,39 +298,39 @@ deleteCurrentOrder = (id) => {
                 </button>
               </div>
               <div className="modal-body">
-              <Row>
-              <Col size="md-2 ">
-              <p>Beverage:</p>
-              <p>Appetizer:</p>
-              <p>Protein:</p>
-              <p>Starch:</p>
-              <p>Vegetable:</p>
-              <p>Dessert:</p>
-              </Col>
-              <Col size="md-10 ">
-                  <Wrapper>
-            {this.state.menu
-               .map(dishes => (
-                <MenuCard
-                  key={dishes._id}
-                  date={dishes.date}
-                  dishName={dishes.dishName}
-                  alias={dishes.alias}
-                  menuSelection={dishes.menuSelection}
-                  price={dishes.price}
-                  postOrderData={this.postOrderData}
-              />))}
-          </Wrapper>
-          </Col>
-          </Row>
-              </div>
-              <div className="modal-footer">
-
-              </div>
+                <Row>
+                  <Col size="md-2 ">
+                    <p>Beverage:</p>
+                    <p>Appetizer:</p>
+                    <p>Protein:</p>
+                    <p>Starch:</p>
+                    <p>Vegetable:</p>
+                    <p>Dessert:</p>
+                  </Col>
+                <Col size="md-10 ">
+                <Wrapper>
+                {this.state.menu
+                 .map(dishes => (
+                  <MenuCard
+                    key={dishes._id}
+                    date={dishes.date}
+                    dishName={dishes.dishName}
+                    alias={dishes.alias}
+                    menuSelection={dishes.menuSelection}
+                    price={dishes.price}
+                    postOrderData={this.postOrderData}
+                  />))}
+                  </Wrapper>
+                </Col>
+              </Row>
+            </div>
+            <div className=" text-center">
+              <button type="button" class="btn button" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
-        </Container>
+      </div>
+    </Container>
 
      {/* Table Modal =======================================================================*/}
      <div className="modal fade" id="tableModal" tabIndex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
@@ -356,11 +360,9 @@ deleteCurrentOrder = (id) => {
               />))}
           </Wrapper>
               </div>
-              {/*<div className="modal-footer">*/}
                 <div className=" text-center">
                   <button type="button" class="btn button" data-dismiss="modal">Close</button>
                 </div>
-              {/*</div>*/}
             </div>
           </div>
         </div>

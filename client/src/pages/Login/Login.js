@@ -162,9 +162,9 @@ class Login extends Component {
       this.setState({ employeeRole });
     }
 
+
   render() {
     const { redirect, matchName } = this.state;
-    // const redirect = this.state.redirect;
     let nextPage = '';
     (() => {
       if (this.state.authWaiter) {
