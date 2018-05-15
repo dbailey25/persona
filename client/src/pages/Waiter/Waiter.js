@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
-import MenuCard from "../../components/MenuCard";
+import { MenuCard } from "../../components/MenuCard";
 import "./Waiter.css"
 import API from "../../utils/API";
 import TableCard from "../../components/TableCard";
@@ -195,7 +195,7 @@ displayTotalCheck = data => {
 
 closeTable = () =>{
   API.closeCurrentOrders(this.state.faceId)
-  .then(res=> this.emptyCurrentOrders(res.data))
+  .then(res=> this.clearPage(res.data))
   .catch(err => console.log(err));
 
   API.closeTable(this.state.table)
@@ -203,8 +203,19 @@ closeTable = () =>{
   .catch(err => console.log(err));
 }
 
-emptyCurrentOrders = () =>{
-  this.setState({orders:[]})
+clearPage = () =>{
+  this.setState({
+  orders:[],
+  tableImg: "/images/person-placeholder.jpg",
+  custName: "N/A",
+  table: 1,
+  bevPref: "N/A",
+  appPref: "N/A",
+  protPref: "N/A",
+  vegPref: "N/A",
+  starchPref: "N/A",
+  dessertPref: "N/A"
+  })
 }
 
 deleteCurrentOrder = (id) => {
@@ -327,8 +338,13 @@ deleteCurrentOrder = (id) => {
           </Col>
           </Row>
               </div>
-              <div className="modal-footer">
-
+              <div className=" text-center">
+                <button
+                type="button"
+                className="btn button"
+                data-dismiss="modal">
+                Close
+                </button>
               </div>
             </div>
           </div>
@@ -363,7 +379,7 @@ deleteCurrentOrder = (id) => {
           </Wrapper>
               </div>
                 <div className=" text-center">
-                  <button type="button" class="btn button" data-dismiss="modal">Close</button>
+                  <button type="button" className="btn button" data-dismiss="modal">Close</button>
                 </div>
             </div>
           </div>
@@ -395,7 +411,11 @@ deleteCurrentOrder = (id) => {
               </div>
               <div className="modal-footer">
               <h2>Total: {this.state.totalCheck}</h2>
-                <button type="button" className="btn button-pers" data-dismiss="modal"  onClick={this.closeTable}>Close Table</button>
+                <button
+                type="button"
+                className="btn button-pers" data-dismiss="modal"  onClick={this.closeTable}>
+                Close Table
+                </button>
               </div>
             </div>
           </div>

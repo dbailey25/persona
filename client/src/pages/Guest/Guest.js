@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import { Col, Row } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
-import MenuCard from "../../components/MenuCard";
+import { BulkMenuCard } from "../../components/MenuCard";
 import "./Guest.css"
 import API from "../../utils/API";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
@@ -22,7 +22,25 @@ class Guest extends Component {
     addConfirm: "",
     custName: "N/A",
     orderButtonVisibility: false,
-    menu: []
+    menu: [],
+    beer: 0,
+    wine: 0,
+    tea: 0,
+    cala: 0,
+    wing: 0,
+    sald: 0,
+    chkn: 0,
+    beef: 0,
+    fish: 0,
+    past: 0,
+    pota: 0,
+    rice: 0,
+    carr: 0,
+    broc: 0,
+    sprt: 0,
+    cake: 0,
+    icrm: 0,
+    ccke: 0
     // tables: [],
     // orders: [],
     // check: []
@@ -147,7 +165,18 @@ class Guest extends Component {
    }
    // Keep ==================================
 
+    countItem = (data) => {
+      let orderedItemCount0 = this.state[data.alias];
+      console.log('orderedItemCount0', orderedItemCount0);
+      let orderedItemCount1 = orderedItemCount0+=1;
+      console.log('orderedItemCount1', orderedItemCount1);
+      this.setState({
+        [data.alias]: orderedItemCount1
+      })
+    }
+
   postOrderData = (data) =>{
+    this.countItem(data);
     API.postOrder({
     customerId: this.state.faceId,
     orderStatus: "open",
@@ -159,11 +188,9 @@ class Guest extends Component {
     })
   .then(res => this.getCurrentOrderData(res.data))
   .catch(err => console.log(err));
-  }
-  // Keep ==================================
+  } // end function postOrderData
 
   getCurrentOrderData = data =>{
-
    API.getOrder(data.customerId)
    .then(res => this.handleDisplayOrders(res.data))
    .catch(err => console.log(err));
@@ -189,6 +216,16 @@ class Guest extends Component {
   API.getCustomer(data.customerId)
   .then(res=>this.handleDisplayCustomerInfo(data))
   .catch(err => console.log(err));
+  }
+
+  closeTable = () =>{
+    API.closeCurrentOrders(this.state.faceId)
+    .then(res=> console.log(res.data))
+    .catch(err => console.log(err));
+
+    API.closeTable(this.state.table)
+    .then(res=> console.log(res.data))
+    .catch(err => console.log(err));
   }
 
 //
@@ -281,7 +318,7 @@ class Guest extends Component {
     return (
       <div>
         <Container className='font'>
-          <h3>Bulk Order Page</h3>
+          <h3>Create Dining History</h3>
           <Card title="Capture Guest Image">
             <ImageCapture
             setRef={this.setRef}
@@ -297,7 +334,7 @@ class Guest extends Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header modal-header-pers">
-                <h5 className="modal-title">Add New Guest</h5>
+                <h5 className="modal-title">Upload Photo</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -320,8 +357,9 @@ class Guest extends Component {
                  className="btn button-pers"
                  data-toggle="modal"
                  data-target="#orderModal"
+                 data-dismiss="modal"
                  onClick={this.getMenuData}>
-                 Submit Orders
+                 Next
                  </button>
                 </div>
                }
@@ -337,7 +375,7 @@ class Guest extends Component {
           <div className="modal-dialog modal-lg dialog-margin-pers" role="document">
             <div className="modal-content order-modal-pers">
               <div className="modal-header modal-header-pers">
-                <h5 className="modal-title" id="orderModalLabel">Order for Guest Name: {this.state.imageName}
+                <h5 className="modal-title" id="orderModalLabel">Create Dining History for {this.state.imageName}
                 </h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -345,19 +383,25 @@ class Guest extends Component {
               </div>
               <div className="modal-body">
                 <Row>
+                <Container>
+                  <p>Select items below to simulate several prior visits</p>
+                  </Container>
+                </Row>
+                <Row>
                   <Col size="md-2 ">
-                    <p>Beverage:</p>
-                    <p>Appetizer:</p>
-                    <p>Protein:</p>
-                    <p>Starch:</p>
-                    <p>Vegetable:</p>
-                    <p>Dessert:</p>
+                  <p>Appetizer:</p>
+                  <p>Beverage:</p>
+                  <p>Dessert:</p>
+                  <br></br>
+                  <p>Protein:</p>
+                  <p>Starch:</p>
+                  <p>Vegetable:</p>
                   </Col>
                 <Col size="md-10 ">
                   <Wrapper>
                     {this.state.menu
                      .map(dishes => (
-                      <MenuCard
+                      <BulkMenuCard
                         key={dishes._id}
                         date={dishes.date}
                         dishName={dishes.dishName}
@@ -365,13 +409,18 @@ class Guest extends Component {
                         menuSelection={dishes.menuSelection}
                         price={dishes.price}
                         postOrderData={this.postOrderData}
+                        itemCount={this.state[dishes.alias]}
                       />))}
                     </Wrapper>
                   </Col>
                 </Row>
-              </div>
-              <div className=" text-center">
-                <button type="button" class="btn button" data-dismiss="modal">Close</button>
+                <div className=" text-center">
+                  <button
+                  type="button"
+                  className="btn button-pers" data-dismiss="modal"  onClick={this.closeTable}>
+                  Save History
+                  </button>
+                </div>
               </div>
             </div>
           </div>
