@@ -231,10 +231,10 @@ class Login extends Component {
                   <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
                   <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
                 </ButtonGroup>
-                <div className="inline">Selected: {this.state.employeeRole}</div>
                 <AddImage
                 addPhoto={this.addPhoto}
-                handleInputChange={this.handleInputChange}/>
+                handleInputChange={this.handleInputChange}
+                page="Employee"/>
                 </div>
               <div className="modal-footer">
                 <button

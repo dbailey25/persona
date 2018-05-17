@@ -273,7 +273,8 @@ class Guest extends Component {
               addPhoto={this.addPhoto}
               addConfirm={this.state.addConfirm}
               handleInputChange={this.handleInputChange}
-              name={this.state.name}/>
+              name={this.state.name}
+              page="Guest"/>
               {
                  this.state.orderButtonVisibility &&
                  <div className="text-center">

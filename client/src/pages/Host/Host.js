@@ -266,7 +266,8 @@ handleDataTable = (id, data) =>{
               <AddImage
               addPhoto={this.addPhoto}
               addConfirm={this.state.addConfirm}
-              handleInputChange={this.handleInputChange}/>
+              handleInputChange={this.handleInputChange}
+              page="Guest"/>
               {
                  this.state.tablebuttonVisibility &&
                  <div className="text-center">
