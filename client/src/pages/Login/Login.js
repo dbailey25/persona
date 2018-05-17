@@ -149,6 +149,14 @@ class Login extends Component {
       });
     };
 
+    clearEmployeeAdd = () => {
+      console.log('state.name added', this.state.name);
+      console.log("clearEmployeeAdd");
+      this.setState({name: ""});
+      console.log('state.name cleared', this.state.name);
+      $('#addConfirm').empty()
+    }
+
     constructor (props) {
       super(props);
 
@@ -162,10 +170,6 @@ class Login extends Component {
       this.setState({ employeeRole });
     }
 
-    clearEmployeeAdd = () => {
-      this.setState({ name: "" });
-      $('#addConfirm').html('')
-    }
 
 
   render() {
@@ -238,7 +242,7 @@ class Login extends Component {
                 type="button"
                 className="btn button-pers"
                 data-dismiss="modal"
-                onClick={() => this.onRadioBtnClick("Host")}>
+                onClick={() => this.clearEmployeeAdd()}>
                 Close
                 </button>
               </div>
