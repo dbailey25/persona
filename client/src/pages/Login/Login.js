@@ -162,6 +162,11 @@ class Login extends Component {
       this.setState({ employeeRole });
     }
 
+    clearEmployeeAdd = () => {
+      this.setState({ name: "" });
+      $('#addConfirm').html('')
+    }
+
 
   render() {
     const { redirect, matchName } = this.state;
@@ -199,7 +204,7 @@ class Login extends Component {
           </Row>
         </Container>
 
-        {/* Modal ==================================================*/}
+        {/* Add Employee Modal ==================================================*/}
 
         <div id="addEmployeeModal" className="modal fade" tabIndex="-1" role="dialog">
           <div className="modal-dialog" role="document">
@@ -229,7 +234,13 @@ class Login extends Component {
               handleInputChange={this.handleInputChange}/>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn button-pers" data-dismiss="modal">Close</button>
+                <button
+                type="button"
+                className="btn button-pers"
+                data-dismiss="modal"
+                onClick={() => this.onRadioBtnClick("Host")}>
+                Close
+                </button>
               </div>
             </div>
           </div>
