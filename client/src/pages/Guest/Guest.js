@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Col, Row } from "../../components/Grid";
+
 import Wrapper from "../../components/Wrapper";
 import { BulkMenuCard } from "../../components/MenuCard";
 import "./Guest.css"
