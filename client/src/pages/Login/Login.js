@@ -221,22 +221,21 @@ class Login extends Component {
               </div>
 
               <div className="modal-body">
-                <h4>Current Image</h4>
                 <img
                 src= {this.state.lastPhoto}
                 alt="img" />
-              <br />
-              <h5>Select Role: </h5>
-              <ButtonGroup>
-                <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
-                <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
-              </ButtonGroup>
-              <p>Selected: {this.state.employeeRole}</p>
-              <br/>
-              <AddImage
-              addPhoto={this.addPhoto}
-              handleInputChange={this.handleInputChange}/>
-              </div>
+                <br/>
+                <br/>
+                <h5>Select Role: </h5>
+                <ButtonGroup>
+                  <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Host")} active={this.state.employeeRole === "Host"}>Host</Button>
+                  <Button className='toggle-pers' onClick={() => this.onRadioBtnClick("Waiter")} active={this.state.employeeRole === "Waiter"}>Waiter</Button>
+                </ButtonGroup>
+                <div className="inline">Selected: {this.state.employeeRole}</div>
+                <AddImage
+                addPhoto={this.addPhoto}
+                handleInputChange={this.handleInputChange}/>
+                </div>
               <div className="modal-footer">
                 <button
                 type="button"

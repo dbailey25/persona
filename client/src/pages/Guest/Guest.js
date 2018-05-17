@@ -230,10 +230,10 @@ class Guest extends Component {
   }
 
   clearGuestAdd = () => {
+    let cleared = ""
     console.log('state.name added', this.state.name);
     console.log("clearEmployeeAdd");
-    this.setState({name: "Name"});
-    console.log('state.name cleared', this.state.name);
+    this.setState({name: cleared}, () => (console.log('state.name cleared', this.state.name)));
     $('#addConfirm').empty()
   }
 
@@ -272,7 +272,8 @@ class Guest extends Component {
               <AddImage
               addPhoto={this.addPhoto}
               addConfirm={this.state.addConfirm}
-              handleInputChange={this.handleInputChange}/>
+              handleInputChange={this.handleInputChange}
+              name={this.state.name}/>
               {
                  this.state.orderButtonVisibility &&
                  <div className="text-center">
