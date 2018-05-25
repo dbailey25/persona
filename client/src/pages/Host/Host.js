@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import UserName from "../../components/UserName";
-// import TableAssign from "../../components/TableAssign";
 import API from "../../utils/API";
-// import { Row } from "../../components/Grid";
 import Wrapper from "../../components/Wrapper";
 import TableCard from "../../components/TableCard";
 import { show } from "bootstrap";
@@ -21,9 +19,6 @@ class Host extends Component {
       imageName: "",
       initialPhoto: "",
       addConfirm: "",
-      addPicVisibility: 'invisible',
-      currentPicVisibility: 'invisible',
-      initialPicVisibility: 'invisible',
       tablebuttonVisibility: false,
       tables: []
   }
@@ -33,24 +28,20 @@ class Host extends Component {
   }
 
   capture = () => {
-    this.setState({addPicVisibility: 'invisible', currentPicVisibility: 'invisible', initialPicVisibility: 'invisible', tablebuttonVisibility: false});
-
     const lastPhoto = this.webcam.getScreenshot();
     this.setState( {lastPhoto});
 
     API.checkImg(
       lastPhoto,
-      )
-      // .then(res => console.log(res.data))
-      .then(res => handleMatchResult(res))
-      .catch(err => console.log(err));
+    )
+    .then(res => handleMatchResult(res))
+    .catch(err => console.log(err));
 
     const handleMatchResult = res => {
-      console.log(res.data);
       let matchResult = ''
       if (res.data === 'Not recognized') {
         matchResult = 'Not recognized';
-        this.setState({addPicVisibility: 'visible', currentPicVisibility: 'visible', matchName: matchResult});
+        this.setState({ matchName: matchResult });
         $('#addGuestModal').modal(show)
       } else if (res.data.message) {
         matchResult = res.data.message
@@ -59,9 +50,6 @@ class Host extends Component {
       } else if (res.data.FaceMatches) {
         this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
         API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleDisplayData(res.data),
-        // this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible', tablebuttonVisibility: true}),
-        // matchResult = res.data.FaceMatches[0].Face.ExternalImageId,
-        console.log('initialPhoto', this.state.initialPhoto),
         $('#priorGuestModal').modal(show)
         )
 
@@ -74,17 +62,11 @@ class Host extends Component {
         matchResult = 'Unexpected result'
       }
       this.setState({matchName: matchResult})
-   } // end function, handleMatchResult
-
- }; // end function, capture
+    } // end function, handleMatchResult
+  }; // end method, capture
 
   addPhoto = event => {
     event.preventDefault();
-    console.log("Host-addPhoto");
-    // const name = this.state.name;
-    // this.setState({name});
-    console.log('lastPhoto', this.state.lastPhoto);
-    console.log('name', this.state.name);
     API.addImg( {
       lastPhoto: this.state.lastPhoto,
       name: this.state.name
@@ -93,12 +75,7 @@ class Host extends Component {
     .then(res => handlePostCustomer(res))
     .catch(err => console.log(err));
 
-    console.log("image added");
-
     const handlePostCustomer = res => {
-      // const image = this.state.lastPhoto.replace("data:image/jpeg;base64,", "");
-      // const photo =  Buffer.from(image, 'base64');
-      console.log(res.data);
       this.setState({
         faceId: res.data.FaceId,
         imageName: res.data.ExternalImageId
@@ -116,45 +93,41 @@ class Host extends Component {
     const handleDisplayData = data => {
       this.setState({initialPhoto: data.photo, tablebuttonVisibility: true, addConfirm: "Guest added!"});
     }
-  }; // end function, addPhoto
+  }; // end method, addPhoto
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-  };
+  }; // end method, handleInputChange
 
   getTableData = () => {
    API.getTablesData()
    .then(res => this.handleTableData(res.data))
    .catch(err => console.log(err));
-  }
+  }  // end method, getTableData
 
   handleTableData = data => {
-    console.log(data);
     for (let value of data){
       if(value.tableAvailability === "available"){
         value.tableImg = "/images/table.png";
      };
      this.setState({tables: data});
-  }
-  console.log(this.state.tables);
-}
+    }
+  } // end method, handleTableData
 
-handleDataTable = (id, data) =>{
-    console.log (this.state.faceId);
- API.putTable(id, {
-  tableNumber: data.tableNumber,
-  tableAvailability: "occupied",
-  customerId: this.state.faceId,
-  tableImg: this.state.initialPhoto,
-  customerName: this.state.matchName,
- })
- // .then(res=>console.log(data))
- .then(this.getTableData())
- .catch(err => console.log(err));
-}
+  handleDataTable = (id, data) =>{
+    API.putTable(id, {
+      tableNumber: data.tableNumber,
+      tableAvailability: "occupied",
+      customerId: this.state.faceId,
+      tableImg: this.state.initialPhoto,
+      customerName: this.state.matchName,
+    })
+    .then(this.getTableData())
+    .catch(err => console.log(err));
+  } // end method, handleDataTable
 
   render() {
     return (
@@ -190,7 +163,6 @@ handleDataTable = (id, data) =>{
                 </button>
               </div>
               <div className="modal-body modl-body">
-
 
           <Wrapper>
           {this.state.tables
@@ -273,8 +245,7 @@ handleDataTable = (id, data) =>{
                  <div className="text-center">
                   <button type="button" className="btn button " data-toggle="modal" data-target="#tableModal" data-dismiss="modal" onClick={this.getTableData}>Assign Table</button>
                 </div>
-               }
-
+              }
               </div>
 
             </div>
