@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Wrapper from "../../components/Wrapper";
 import { BulkMenuCard } from "../../components/MenuCard";
 import "./Guest.css"
@@ -8,7 +7,6 @@ import { ImageCapture, AddImage } from "../../components/ImageCapture";
 import { Col, Row, Container } from "../../components/Grid";
 import Card from "../../components/Card";
 import { show } from "bootstrap";
-
 import $ from "jquery";
 
 class Guest extends Component {
@@ -41,140 +39,124 @@ class Guest extends Component {
     cake: 0,
     icrm: 0,
     ccke: 0
-    // tables: [],
-    // orders: [],
-    // check: []
-    };
+  };
 
-    // componentDidMount() {
-    //   console.log(this.state.menu);
-    //   this.getMenuData()
-    //
-    // };
+  setRef = (webcam) => {
+    this.webcam = webcam;
+  } // end method, setRef
 
-    setRef = (webcam) => {
-      this.webcam = webcam;
-    }
+  capture = () => {
+    this.setState({orderButtonVisibility: false, addConfirm: ""});
 
-    capture = () => {
-      this.setState({orderButtonVisibility: false, addConfirm: ""});
+    const lastPhoto = this.webcam.getScreenshot();
+    this.setState( {lastPhoto});
 
-      const lastPhoto = this.webcam.getScreenshot();
-      this.setState( {lastPhoto});
+    API.checkImg(
+      lastPhoto,
+      )
+      .then(res => handleMatchResult(res))
+      .catch(err => console.log(err));
 
-      API.checkImg(
-        lastPhoto,
-        )
-        // .then(res => console.log(res.data))
-        .then(res => handleMatchResult(res))
-        .catch(err => console.log(err));
-
-      const handleMatchResult = res => {
-        console.log(res.data);
-        let matchResult = ''
-        if (res.data === 'Not recognized') {
-          matchResult = 'Not recognized';
-          this.setState({displayCurrentImage: true, matchName: matchResult});
-          $('#addGuestModal').modal(show)
-        } else if (res.data.message) {
-          matchResult = res.data.message
-          this.setState({matchName: matchResult})
-          $('#message').html(`<h4>${this.state.matchName}</h4>`)
-        } else if (res.data.FaceMatches) {
-          this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
-          API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleGetData(res.data),
-          this.setState({currentPicVisibility: 'visible', initialPicVisibility: 'visible', tablebuttonVisibility: true}),
-          // matchResult = res.data.FaceMatches[0].Face.ExternalImageId,
-          )
-
-         const handleGetData = data => {
-            this.setState({initialPhoto: data.photo});
-             matchResult = data.name;
-             $('#message').html(`<div>
-               <h4>Guest name: ${matchResult}</h4>
-               <img
-               src= "${this.state.initialPhoto}"
-               alt="img" />
-             </div>
-             `)
-          }
-        } else {
-          matchResult = 'Unexpected result'
-        }
+    const handleMatchResult = res => {
+      console.log(res.data);
+      let matchResult = ''
+      if (res.data === 'Not recognized') {
+        matchResult = 'Not recognized';
+        this.setState({displayCurrentImage: true, matchName: matchResult});
+        $('#addGuestModal').modal(show)
+      } else if (res.data.message) {
+        matchResult = res.data.message
         this.setState({matchName: matchResult})
-     } // end function, handleMatchResult
+        $('#message').html(`<h4>${this.state.matchName}</h4>`)
+      } else if (res.data.FaceMatches) {
+        this.setState({faceId: res.data.FaceMatches[0].Face.FaceId});
+        API.getCustomer(res.data.FaceMatches[0].Face.FaceId).then(res => handleGetData(res.data),
+        )
 
-   }; // end function, capture
+        const handleGetData = data => {
+          this.setState({initialPhoto: data.photo});
+            matchResult = data.name;
+            $('#message').html(`<div>
+              <h4>Guest name: ${matchResult}</h4>
+              <img
+              src= "${this.state.initialPhoto}"
+              alt="img" />
+            </div>
+            `)
+        }
+      } else {
+        matchResult = 'Unexpected result'
+      }
+      this.setState({matchName: matchResult})
+    } // end function, handleMatchResult
+  }; // end method, capture
 
-   addPhoto = event => {
-     event.preventDefault();
-     //add customer photo to AWS collection
-     API.addImg( {
-       lastPhoto: this.state.lastPhoto,
-       name: this.state.name
-       }
-     )
-     // handle the data received from AWS
-     .then(res => handlePostCustomer(res))
-     .catch(err => console.log(err));
+  addPhoto = event => {
+    event.preventDefault();
+    //add customer photo to AWS collection
+    API.addImg( {
+      lastPhoto: this.state.lastPhoto,
+      name: this.state.name
+      }
+    )
+    // handle the data received from AWS
+    .then(res => handlePostCustomer(res))
+    .catch(err => console.log(err));
 
-     const handlePostCustomer = res => {
-       this.setState({
-         faceId: res.data.FaceId,
-         imageName: res.data.ExternalImageId
-       });
-       API.postCustomer(
-         {
-           faceId: this.state.faceId,
-           name: this.state.imageName,
-           photo: this.state.lastPhoto
-         }
-       )
-     .then(res => handlePostData(res.data))
-     .catch(err => console.log(err));
-   } // end function handlePostCustomer
+    const handlePostCustomer = res => {
+      this.setState({
+        faceId: res.data.FaceId,
+        imageName: res.data.ExternalImageId
+      });
+      API.postCustomer(
+        {
+          faceId: this.state.faceId,
+          name: this.state.imageName,
+          photo: this.state.lastPhoto
+        }
+      )
+    .then(res => handlePostData(res.data))
+    .catch(err => console.log(err));
+  } // end function handlePostCustomer
 
-     const handlePostData = data => {
-       this.setState({addConfirm: "Guest added!", orderButtonVisibility: true});
-     }
-   }; // end function, addPhoto
+    const handlePostData = data => {
+      this.setState({addConfirm: "Guest added!", orderButtonVisibility: true});
+    }
+  }; // end method, addPhoto
 
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
-  };
+  }; // end method, handleInputChange
 
   handleFormSubmit = event => {
     event.preventDefault();
     console.log('order placed');
-  };
+  }; // end method, handleFormSubmit
 
-  // Keep ==================================
   getMenuData = event => {
-    // event.preventDefault();
     this.clearGuestAdd();
     API.getMenuData()
-  .then(res => this.hadleMenuData(res.data))
+  .then(res => this.handleMenuData(res.data))
   .catch(err => console.log(err));
-  } // end function getMenuData
+  } // end Method, getMenuData
 
-  hadleMenuData = (data) => {
+  handleMenuData = (data) => {
     this.setState({menu: data});
    console.log(this.state.menu);
-   }
-   // Keep ==================================
+  } // end method, handleMenuData
 
-    countItem = (data) => {
-      let orderedItemCount0 = this.state[data.alias];
-      console.log('orderedItemCount0', orderedItemCount0);
-      let orderedItemCount1 = orderedItemCount0+=1;
-      console.log('orderedItemCount1', orderedItemCount1);
-      this.setState({
-        [data.alias]: orderedItemCount1
-      })
-    }
+  countItem = (data) => {
+    let orderedItemCount0 = this.state[data.alias];
+    console.log('orderedItemCount0', orderedItemCount0);
+    let orderedItemCount1 = orderedItemCount0+=1;
+    console.log('orderedItemCount1', orderedItemCount1);
+    this.setState({
+      [data.alias]: orderedItemCount1
+    })
+  } // end method, countItem
 
   postOrderData = (data) =>{
     this.countItem(data);
@@ -189,19 +171,18 @@ class Guest extends Component {
     })
   .then(res => this.getCurrentOrderData(res.data))
   .catch(err => console.log(err));
-  } // end function postOrderData
+  } // end method, postOrderData
 
   getCurrentOrderData = data =>{
    API.getOrder(data.customerId)
    .then(res => this.handleDisplayOrders(res.data))
    .catch(err => console.log(err));
-  }
+  } // end method, getCurrentOrderData
 
   handleDisplayOrders = data =>{
     console.log(data)
     this.setState({orders: data})
-  }
-  // Keep ==================================
+  } // end method, handleDisplayOrders
 
   handleDisplayCustomerInfo = data =>{
     console.log(data);
@@ -211,13 +192,13 @@ class Guest extends Component {
       table: data.tableNumber,
       tableImg: data.tableImg,
     })
-  }
+  } // end method, handleDisplayCustomerInfo
 
   handleDataTable = (id, data) =>{
   API.getCustomer(data.customerId)
   .then(res=>this.handleDisplayCustomerInfo(data))
   .catch(err => console.log(err));
-  }
+  } // end method, handleDataTable
 
   closeTable = () =>{
     API.closeCurrentOrders(this.state.faceId)
@@ -227,7 +208,7 @@ class Guest extends Component {
     API.closeTable(this.state.table)
     .then(res=> console.log(res.data))
     .catch(err => console.log(err));
-  }
+  } // end method, closeTable
 
   clearGuestAdd = () => {
     let cleared = ""
@@ -235,8 +216,7 @@ class Guest extends Component {
     console.log("clearEmployeeAdd");
     this.setState({name: cleared}, () => (console.log('state.name cleared', this.state.name)));
     $('#addConfirm').empty()
-  }
-
+  } // end method, clearGuestAdd
 
   render() {
     return (
@@ -309,34 +289,37 @@ class Guest extends Component {
               </div>
               <div className="modal-body">
                 <Row>
-                <Container>
-                  <p>Select items below to simulate several prior visits</p>
+                  <Container>
+                    <p>Select items below to simulate several prior visits</p>
                   </Container>
                 </Row>
                 <Row>
                   <Col size="md-2 ">
-                  <p>Appetizer:</p>
-                  <p>Beverage:</p>
-                  <p>Dessert:</p>
-                  <br></br>
-                  <p>Protein:</p>
-                  <p>Starch:</p>
-                  <p>Vegetable:</p>
+                    <p>Appetizer:</p>
+                    <p>Beverage:</p>
+                    <p>Dessert:</p>
+                    <br></br>
+                    <p>Protein:</p>
+                    <p>Starch:</p>
+                    <p>Vegetable:</p>
                   </Col>
-                <Col size="md-10 ">
-                  <Wrapper>
-                    {this.state.menu
-                     .map(dishes => (
-                      <BulkMenuCard
-                        key={dishes._id}
-                        date={dishes.date}
-                        dishName={dishes.dishName}
-                        alias={dishes.alias}
-                        menuSelection={dishes.menuSelection}
-                        price={dishes.price}
-                        postOrderData={this.postOrderData}
-                        itemCount={this.state[dishes.alias]}
-                      />))}
+                  <Col size="md-10 ">
+                    <Wrapper>
+                      {this.state.menu
+                        .map(dishes => (
+                            <BulkMenuCard
+                              key={dishes._id}
+                              date={dishes.date}
+                              dishName={dishes.dishName}
+                              alias={dishes.alias}
+                              menuSelection={dishes.menuSelection}
+                              price={dishes.price}
+                              postOrderData={this.postOrderData}
+                              itemCount={this.state[dishes.alias]}
+                            />
+                          )
+                        )
+                      }
                     </Wrapper>
                   </Col>
                 </Row>
@@ -355,7 +338,7 @@ class Guest extends Component {
 
 
       </div>
-    );
-  }
-}
+    ); // end method, Return
+  } // end method, Render
+} // end class, Guest
 export default Guest;
