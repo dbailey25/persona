@@ -12,6 +12,11 @@
   display: inline;
 }
 
+.header-style {
+  background-color: #9AACB8;
+  color: #fff;
+}
+
 .list-overflow-container {
   max-height: 545px;
   width: 700px;

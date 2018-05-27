@@ -5,3 +5,5 @@ export * from "./TableCard";
 export * from "./CheckCard";
 export * from "./DeleteBtn";
 export * from "./UserName";
+export * from "./ImageCapture";
+export * from "./AddImage";

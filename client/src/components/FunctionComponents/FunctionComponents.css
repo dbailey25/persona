@@ -1,6 +1,17 @@
- .card {
+.button {
+  background-color: #B37C57;
+  color: #fff;
+  margin: 10px;
+}
+
+.card {
  font-size: 15px;
  cursor: pointer;
+}
+
+.capture-button {
+  background-color: #B37C57;
+  color: #fff;
 }
 
 .delete-btn {
@@ -44,6 +55,16 @@
     transition: 0s
 }
 
+.font {
+  font-family: 'Rubik', sans-serif;
+  color: #333;
+}
+
+.form-input-pers {
+  width: 250px;
+  margin: 10px auto;
+}
+
 .item{
     width: 460px;
 }
@@ -53,6 +74,16 @@
     width: 120px;
 }
 
+.top-margin-15 {
+  margin-top: 15px;
+}
+
 .username {
   display: inline;
 }
+
+
+
+
+
+
