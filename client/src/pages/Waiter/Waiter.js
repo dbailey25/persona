@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "../../components/Grid";
-import Wrapper from "../../components/Wrapper";
-import { MenuCard } from "../../components/MenuCard";
-import "./Waiter.css"
-import API from "../../utils/API";
-import TableCard from "../../components/TableCard";
-import CheckCard from "../../components/CheckCard";
-import { List, ListItem, DeleteBtn } from "../../components/OrderCard";
-import UserName from "../../components/UserName";
+import { Col, Row, Container, Wrapper, List, ListItem } from "../../components/LayoutComponents";
+import { MenuCard, TableCard, CheckCard, DeleteBtn, UserName } from "../../components/FunctionComponents";
 import { ListGroup} from 'reactstrap';
+import API from "../../utils/API";
+import "./Waiter.css"
 
 class Waiter extends Component {
   state = {
@@ -312,7 +307,6 @@ class Waiter extends Component {
                     <p>Appetizer:</p>
                     <p>Beverage:</p>
                     <p>Dessert:</p>
-                    <br></br>
                     <p>Protein:</p>
                     <p>Starch:</p>
                     <p>Vegetable:</p>

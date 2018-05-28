@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import Wrapper from "../../components/Wrapper";
-import { BulkMenuCard } from "../../components/MenuCard";
-import "./Guest.css"
-import API from "../../utils/API";
-import { ImageCapture, AddImage } from "../../components/ImageCapture";
-import { Col, Row, Container } from "../../components/Grid";
-import Card from "../../components/Card";
+import { Col, Row, Container, Wrapper, Card } from "../../components/LayoutComponents";
+import { BulkMenuCard, ImageCapture, AddImage } from "../../components/FunctionComponents";
 import { show } from "bootstrap";
 import $ from "jquery";
+import API from "../../utils/API";
+import "./Guest.css";
 
 class Guest extends Component {
   state = {
@@ -298,7 +295,6 @@ class Guest extends Component {
                     <p>Appetizer:</p>
                     <p>Beverage:</p>
                     <p>Dessert:</p>
-                    <br></br>
                     <p>Protein:</p>
                     <p>Starch:</p>
                     <p>Vegetable:</p>

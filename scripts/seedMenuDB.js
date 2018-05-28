@@ -123,7 +123,7 @@ const menuSeed = [
   },
   {
     dishNumber:"15",
-    dishName: "Brussel Sprouts",
+    dishName: "Corn",
     alias: "sprt",
     price: 4.99,
     menuSelection: "Vegetable",
@@ -131,7 +131,7 @@ const menuSeed = [
   },
   {
     dishNumber:"16",
-    dishName: "Chocolate Cake",
+    dishName: "Choc Cake",
     alias: "cake",
     price: 6.99,
     menuSelection: "Dessert",
@@ -139,7 +139,7 @@ const menuSeed = [
   },
   {
     dishNumber:"17",
-    dishName: "Ice Cream Trio",
+    dishName: "Ice Cream",
     alias: "icrm",
     price: 5.99,
     menuSelection: "Dessert",
@@ -147,7 +147,7 @@ const menuSeed = [
   },
   {
     dishNumber:"18",
-    dishName: "New York Cheesecake",
+    dishName: "Cheesecake",
     alias: "ccke",
     price: 7.99,
     menuSelection: "Dessert",
