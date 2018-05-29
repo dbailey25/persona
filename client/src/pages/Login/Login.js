@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Card from "../../components/Card";
-import { Col, Row, Container } from "../../components/Grid";
-import { ImageCapture, AddImage } from "../../components/ImageCapture";
+import { Col, Row, Container, Card } from "../../components/LayoutComponents";
+import { ImageCapture, AddImage } from "../../components/FunctionComponents";
 import API from "../../utils/API";
 import { Redirect } from "react-router-dom";
 import $ from "jquery";
