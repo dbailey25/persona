@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Container } from "../../components/LayoutComponents";
-import Nav from "../../components/FunctionComponents";
+import { Nav } from "../../components/FunctionComponents";
 
 const NoMatch = () => (
   <Container fluid>
