@@ -69,6 +69,10 @@
     width: 460px;
 }
 
+.navbar {
+  border-radius: 0;
+}
+
 .tableImage {
     height: 90px;
     width: 120px;
