@@ -7,3 +7,4 @@ export * from "./DeleteBtn";
 export * from "./UserName";
 export * from "./ImageCapture";
 export * from "./AddImage";
+export * from "./Nav";

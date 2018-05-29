@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { ImageCapture, AddImage } from "../../components/ImageCapture";
-import UserName from "../../components/UserName";
+import { ImageCapture, AddImage, UserName, TableCard } from "../../components/FunctionComponents";
+import { Wrapper, Container, Card } from "../../components/LayoutComponents";
 import API from "../../utils/API";
-import Wrapper from "../../components/Wrapper";
-import TableCard from "../../components/TableCard";
 import { show } from "bootstrap";
 import $ from "jquery";
-import { Container } from "../../components/Grid";
-import Card from "../../components/Card";
 import "./Host.css"
 
 class Host extends Component {
